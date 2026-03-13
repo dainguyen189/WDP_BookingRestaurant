@@ -1,4 +1,11 @@
-
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const User = require('../models/user');
+const createError = require('../util/errorHandle');
+const cache = require('../util/cache');
+const emailService = require('../services/email.service');
+const sms = require('../services/sms.service');
 
 const register = async (req, res, next) => {
 
