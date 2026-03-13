@@ -1,0 +1,35 @@
+.admin-sidebar {
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    position: sticky;
+    top: 20px;
+}
+
+.admin-sidebar .card-header {
+    background-color: #333333;
+    border-bottom: 1px solid #444444;
+    color: #ffc107;
+    font-weight: 600;
+    padding: 15px;
+}
+
+.admin-nav .nav-link {
+    color: #dddddd;
+    padding: 12px 15px;
+    border-left: 4px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.admin-nav .nav-link:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.admin-nav .nav-link.active {
+    background-color: #333333;
+    color: #ffc107;
+    border-left: 4px solid #ffc107;
+}

@@ -1,0 +1,119 @@
+.menu-page-container {
+    padding: 80px 20px 40px;
+    background-color: #1a1a1a;
+    min-height: 100vh;
+    color: #ffffff;
+  }
+  
+  .menu-page-container h2 {
+    color: #ffc107;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Search input */
+  .search-input {
+    width: 300px;
+    height: 40px;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    border: 2px solid blue;
+    background-color: #fff;
+    color: #000;
+    z-index: 1000;
+    position: relative;
+  }
+  
+  
+  /* Category buttons */
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+  
+  .category-list button {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-weight: 500;
+  }
+  
+  .category-list button:hover {
+    background-color: #ffd700;
+    color: #000;
+  }
+  
+  .category-list .active {
+    background-color: #ffa500;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Menu grid */
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .menu-grid:empty::after {
+    content: "Không có món ăn nào.";
+    color: #ccc;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+  
+  /* Pagination */
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .pagination button {
+    padding: 6px 12px;
+    border: 1px solid #aaa;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pagination .active {
+    background-color: #ffa500;
+    color: white;
+    border-color: #ffa500;
+  }
+  
+  /* 📱 Responsive for mobile */
+  @media (max-width: 600px) {
+    .search-input {
+      width: 90%;
+      font-size: 14px;
+    }
+  
+    .category-list button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  
+    .menu-grid {
+      grid-template-columns: 1fr;
+      padding: 0 10px;
+    }
+  
+    .pagination button {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+  }
+  

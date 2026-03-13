@@ -1,0 +1,243 @@
+/* AdminHeader.css - Enhanced with Sticky Functionality */
+
+/* ==================== STICKY NAVBAR ==================== */
+.custom-navbar {
+    background-color: #1a1a1a;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+    /* Sticky Properties */
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+/* Enhanced shadow when scrolled */
+.custom-navbar.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(26, 26, 26, 0.95);
+}
+
+/* ==================== BRAND STYLING ==================== */
+.brand {
+    color: #ffc107 !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.custom-navbar.scrolled .brand {
+    font-size: 1.4rem;
+}
+
+/* ==================== NAVIGATION LINKS ==================== */
+.nav-link {
+    color: #ffffff !important;
+    margin: 0 5px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px !important;
+    border-radius: 6px;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+    background-color: rgba(255, 193, 7, 0.1);
+    transform: translateY(-1px);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ffc107;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 80%;
+}
+
+/* ==================== ACTIVE LINK ==================== */
+.navbar-dark .navbar-nav .nav-link.active {
+    color: #ffc107 !important;
+    background-color: rgba(255, 193, 7, 0.15);
+}
+
+/* ==================== DROPDOWN MENU ==================== */
+.dropdown-menu {
+    background-color: #2a2a2a;
+    border: 1px solid #444444;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    margin-top: 8px;
+    padding: 8px 0;
+    backdrop-filter: blur(10px);
+}
+
+.dropdown-item {
+    color: #ffffff;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    margin: 2px 8px;
+}
+
+.dropdown-item:hover {
+    background-color: #333333;
+    color: #ffc107;
+    transform: translateX(5px);
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444444;
+    margin: 8px 0;
+}
+
+/* ==================== NAVBAR TOGGLER (Mobile) ==================== */
+.navbar-toggler {
+    border: none;
+    padding: 4px 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ==================== MOBILE RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .custom-navbar {
+        padding: 12px 0;
+    }
+
+    .custom-navbar.scrolled {
+        padding: 8px 0;
+    }
+
+    .brand {
+        font-size: 1.3rem;
+    }
+
+    .custom-navbar.scrolled .brand {
+        font-size: 1.2rem;
+    }
+
+    .navbar-collapse {
+        background-color: rgba(26, 26, 26, 0.98);
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 15px;
+        backdrop-filter: blur(15px);
+    }
+
+    .nav-link {
+        margin: 5px 0;
+        text-align: center;
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link:hover {
+        transform: none;
+        background-color: rgba(255, 193, 7, 0.2);
+    }
+}
+
+/* ==================== ANIMATION ENHANCEMENTS ==================== */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.custom-navbar {
+    animation: slideDown 0.5s ease-out;
+}
+
+/* ==================== DARK THEME ENHANCEMENTS ==================== */
+@media (prefers-color-scheme: dark) {
+    .custom-navbar {
+        background-color: rgba(26, 26, 26, 0.95);
+        border-bottom: 1px solid #333333;
+    }
+
+    .custom-navbar.scrolled {
+        background-color: rgba(26, 26, 26, 0.98);
+        border-bottom: 1px solid #444444;
+    }
+}
+
+/* ==================== HIGH CONTRAST MODE ==================== */
+@media (prefers-contrast: high) {
+    .custom-navbar {
+        border-bottom: 2px solid #ffffff;
+    }
+
+    .nav-link {
+        border: 1px solid transparent;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        border-color: #ffc107;
+    }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+
+    .custom-navbar,
+    .nav-link,
+    .dropdown-item,
+    .brand {
+        transition: none;
+    }
+
+    .nav-link:hover {
+        transform: none;
+    }
+
+    .dropdown-item:hover {
+        transform: none;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+    .custom-navbar {
+        position: static;
+        background-color: transparent !important;
+        box-shadow: none;
+        border-bottom: 2px solid #000;
+    }
+
+    .nav-link {
+        color: #000 !important;
+    }
+
+    .brand {
+        color: #000 !important;
+    }
+}

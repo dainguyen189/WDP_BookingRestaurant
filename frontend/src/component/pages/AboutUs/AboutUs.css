@@ -1,0 +1,351 @@
+/* --- GOOGLE FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap');
+
+/* --- GENERAL STYLES --- */
+.savory-about-us {
+  font-family: 'Montserrat', sans-serif;
+  color: #6c6c6c;
+  background-color: #fff;
+}
+
+h1, h2, h3 {
+  font-family: 'Lora', serif;
+  color: #2a2a2a;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+  position: relative;
+  height: 60vh; /* << ĐÃ THU NHỎ BANNER */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 4rem; /* Giảm kích thước chữ cho phù hợp */
+  color: #fff;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 25px;
+}
+
+.scroll-down::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 20px;
+  background-color: #fff;
+}
+
+/* --- CONTENT SECTION --- */
+.content-section {
+  padding: 100px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.pre-title {
+  font-size: 0.8rem;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background-color: #c8a97e; /* Gold accent color */
+}
+
+.section-description {
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  line-height: 1.8;
+}
+
+/* --- OUR STORY GRID --- */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: left;
+}
+
+.story-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.story-item img:hover {
+  opacity: 0.8;
+}
+
+.story-item h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.story-item p {
+  line-height: 1.7;
+  font-size: 0.9rem;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 15px;
+  color: #c8a97e;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* --- OUR CHEF SECTION --- */
+.chef-section {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+.chef-content {
+  flex: 1;
+}
+
+.chef-content .section-header, .chef-content .section-description {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+}
+
+.chef-content .section-header h2::after {
+    left: 0;
+    transform: none;
+}
+
+.menu-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: 2px solid #2a2a2a;
+  background: none;
+  color: #2a2a2a;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.chef-image {
+  flex: 1;
+  max-width: 450px;
+}
+
+.chef-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* --- OUR SPECIALTIES SECTION --- */
+.specialties-nav {
+  margin-bottom: 40px;
+}
+
+.specialties-nav a {
+  margin: 0 20px;
+  text-decoration: none;
+  color: #aaa;
+  font-weight: 600;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.specialties-nav a.active, .specialties-nav a:hover {
+  color: #2a2a2a;
+  border-bottom-color: #c8a97e;
+}
+
+.specialties-nav a:active {
+  transform: translateY(1px);
+}
+
+.specialties-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.specialty-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.signature img {
+    max-width: 150px;
+}
+
+/* --- FOOTER --- */
+.footer-section {
+  background-color: #121212;
+  color: #999;
+  padding: 80px 20px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 60px auto;
+  border-bottom: 1px solid #333;
+  padding-bottom: 60px;
+}
+
+.footer-widget h4 {
+  color: #fff;
+  font-family: 'Lora', serif;
+  margin-bottom: 25px;
+}
+
+.footer-widget p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.footer-widget a {
+  color: #c8a97e;
+  text-decoration: none;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #999;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.instagram-grid img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 992px) {
+  .story-grid, .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .chef-section {
+    flex-direction: column-reverse;
+  }
+  .chef-content {
+      text-align: center;
+  }
+  .chef-content .section-header, .chef-content .section-description {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .chef-content .section-header h2::after {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}

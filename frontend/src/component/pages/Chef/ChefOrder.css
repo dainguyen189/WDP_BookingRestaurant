@@ -1,0 +1,705 @@
+/* Chef.css - Yellow & Black Theme */
+.chef-order-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #222222;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #444;
+    border-top: 4px solid #ffcc00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Header */
+.chef-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: black;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.1);
+    border: 1px solid #333;
+}
+
+.header-left h1 {
+    margin: 0;
+    color: #ffcc00;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.header-left p {
+    margin: 5px 0 0 0;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.refresh-btn {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-btn:hover:not(:disabled) {
+    background: #ff9900;
+    transform: translateY(-1px);
+}
+
+.refresh-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: black;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.1);
+    border: 1px solid #333;
+    border-left: 4px solid;
+}
+
+.stat-card.pending { 
+    border-left-color: #ffcc00; 
+    background: linear-gradient(135deg, black 0%, #1a1600 100%);
+}
+.stat-card.preparing { 
+    border-left-color: #ff9900; 
+    background: linear-gradient(135deg, black 0%, #1a0f00 100%);
+}
+.stat-card.completed { 
+    border-left-color: #66cc00; 
+    background: linear-gradient(135deg, black 0%, #0d1a00 100%);
+}
+.stat-card.revenue { 
+    border-left-color: #ffcc00; 
+    background: linear-gradient(135deg, black 0%, #1a1600 100%);
+}
+
+.stat-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0 0 8px 0;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    color: #ffcc00;
+}
+
+.stat-money {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: #ffcc00;
+}
+
+.stat-icon {
+    font-size: 40px;
+    opacity: 0.7;
+    color: #ffcc00;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    background: black;
+    color: #ccc;
+    border: 2px solid #333;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-tab:hover {
+    border-color: #ffcc00;
+    color: #ffcc00;
+}
+
+.filter-tab.active {
+    background: #ffcc00;
+    color: black;
+    border-color: #ffcc00;
+}
+
+/* Error Message */
+.error-message {
+    background: #cc3300;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #ff4444;
+}
+
+/* Orders Container */
+.orders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* No Orders */
+.no-orders {
+    text-align: center;
+    padding: 60px 20px;
+    background: black;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.1);
+    border: 1px solid #333;
+}
+
+.no-orders-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #ffcc00;
+}
+
+.no-orders p {
+    font-size: 18px;
+    color: #ccc;
+    margin: 0;
+}
+
+/* Order Card */
+.order-card {
+    background: black;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255, 204, 0, 0.1);
+    border: 1px solid #333;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.2);
+    border-color: #ffcc00;
+}
+
+/* Order Header */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.order-info h3 {
+    margin: 0 0 8px 0;
+    color: #ffcc00;
+    font-size: 20px;
+}
+
+.customer-name {
+    margin: 0 0 8px 0;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.order-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 12px;
+}
+
+.order-time {
+    color: #ccc;
+}
+
+.waiting-time {
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.waiting-time.normal { 
+    color: #66cc00; 
+    background: #1a2200;
+}
+
+.waiting-time.warning { 
+    color: #ffcc00; 
+    background: #1a1600;
+}
+
+.waiting-time.urgent { 
+    color: #ff4444; 
+    background: #220000;
+}
+
+.order-summary {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.order-total {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffcc00;
+    margin: 5px 0;
+}
+
+.item-count {
+    font-size: 12px;
+    color: #ccc;
+    margin: 0;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.status-pending {
+    background: #1a1600;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+}
+
+.status-badge.status-preparing {
+    background: #1a0f00;
+    color: #ff9900;
+    border: 1px solid #ff9900;
+}
+
+.status-badge.status-served {
+    background: #0d1a00;
+    color: #66cc00;
+    border: 1px solid #66cc00;
+}
+
+.payment-status {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.payment-status.paid {
+    background: #0d1a00;
+    color: #66cc00;
+    border: 1px solid #66cc00;
+}
+
+.payment-status.unpaid {
+    background: #220000;
+    color: #ff4444;
+    border: 1px solid #ff4444;
+}
+
+/* Order Items */
+.order-items {
+    padding: 0 20px;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.item-info h4 {
+    margin: 0 0 5px 0;
+    color: #ffcc00;
+    font-size: 16px;
+}
+
+.item-details {
+    margin: 0 0 5px 0;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.item-notes {
+    margin: 0;
+    color: #ff9900;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.item-status-badge.item-status-ordered {
+    background: #333;
+    color: #ccc;
+    border: 1px solid #555;
+}
+
+.item-status-badge.item-status-preparing {
+    background: #1a1600;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+}
+
+.item-status-badge.item-status-done {
+    background: #0d1a00;
+    color: #66cc00;
+    border: 1px solid #66cc00;
+}
+
+.item-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-start {
+    background: #ffcc00;
+    color: black;
+    border: 1px solid #ffcc00;
+}
+
+.btn-start:hover {
+    background: #ff9900;
+    border-color: #ff9900;
+}
+
+.btn-done {
+    background: #66cc00;
+    color: black;
+    border: 1px solid #66cc00;
+}
+
+.btn-done:hover {
+    background: #55aa00;
+    border-color: #55aa00;
+}
+
+.btn-primary {
+    background: #ffcc00;
+    color: black;
+    padding: 12px 24px;
+    font-size: 14px;
+    border: 1px solid #ffcc00;
+}
+
+.btn-primary:hover {
+    background: #ff9900;
+    border-color: #ff9900;
+}
+
+.btn-secondary {
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    font-size: 14px;
+    border: 1px solid #555;
+}
+
+.btn-secondary:hover {
+    background: #444;
+    border-color: #666;
+}
+
+.btn-success {
+    background: #66cc00;
+    color: black;
+    padding: 12px 24px;
+    font-size: 14px;
+    border: 1px solid #66cc00;
+}
+
+.btn-success:hover {
+    background: #55aa00;
+    border-color: #55aa00;
+}
+
+/* Order Actions */
+.order-actions {
+    padding: 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estimated Time */
+.estimated-time {
+    padding: 10px 20px;
+    background: #333;
+    color: #ccc;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+    border-top: 1px solid #444;
+}
+
+/* Additional Yellow-Black Theme Elements */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffcc00;
+}
+
+a {
+    text-decoration: none;
+    color: #ffcc00;
+}
+
+a:hover {
+    color: #ff9900;
+}
+
+.input-field {
+    border: 1px solid #555;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    border-radius: 6px;
+}
+
+.input-field:focus {
+    border-color: #ffcc00;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chef-order-container {
+        padding: 15px;
+    }
+    
+    .chef-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .header-left h1 {
+        font-size: 24px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    .filter-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .filter-tab {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .order-summary {
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 0;
+    }
+    
+    .item-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .order-actions {
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    .action-group {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+        flex: 1;
+        min-width: 120px;
+    }
+    
+    .order-items {
+        padding: 0 15px;
+    }
+    
+    .estimated-time {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chef-order-container {
+        padding: 10px;
+    }
+    
+    .chef-header {
+        padding: 15px;
+    }
+    
+    .header-left h1 {
+        font-size: 20px;
+    }
+    
+    .stats-grid {
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .order-card {
+        margin-bottom: 15px;
+    }
+    
+    .order-header {
+        padding: 12px;
+    }
+    
+    .order-info h3 {
+        font-size: 18px;
+    }
+    
+    .order-total {
+        font-size: 18px;
+    }
+    
+    .filter-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    .btn-primary,
+    .btn-secondary,
+    .btn-success {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+}
