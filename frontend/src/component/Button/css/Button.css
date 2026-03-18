@@ -1,0 +1,42 @@
+.custom-button {
+    background-color: #ffc107;
+    color: #000000;
+    font-weight: 600;
+    border: none;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.custom-button:hover,
+.custom-button:focus {
+    background-color: #e0a800;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    color: #ffc107;
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+    background-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background-color: #c82333;
+    color: #ffffff;
+}
