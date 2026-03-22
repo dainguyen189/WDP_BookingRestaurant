@@ -1,4 +1,5 @@
 import React from "react";
+import { API_BASE_URL } from "../../../config/api";
 import { useOrder } from "../../../context/OrderContext";
 import "./MenuItemCard.css";
 
@@ -20,7 +21,7 @@ function MenuItemCard({ item }) {
   const imageUrl = item.image?.startsWith("http")
     ? item.image
     : item.image
-    ? `http://localhost:8080/uploads/${item.image}`
+    ? `${API_BASE_URL}/uploads/${item.image}`
     : "https://via.placeholder.com/300x200?text=No+Image";
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import axios from 'axios';
+import { API_URL } from '../../../config/api';
 import Header from '../../Header/Header';
 import './AboutUs.css';
 import { FaTwitter, FaFacebookF, FaVimeoV, FaInstagram } from 'react-icons/fa';
@@ -24,7 +25,7 @@ function AboutUs() {
         const fetchCategories = async () => {
             try {
                 setLoadingCategories(true);
-                const response = await axios.get('http://localhost:8080/api/menu-categories');
+                const response = await axios.get(`${API_URL}/menu-categories`);
                 if (response.data) {
                     setCategories(response.data);
                 }
@@ -60,7 +61,7 @@ function AboutUs() {
                 
                 if (foundCategory) {
                     // Load items from specific category
-                    const response = await axios.get(`http://localhost:8080/api/menu-items?category=${foundCategory._id}&isAvailable=true`);
+                    const response = await axios.get(`${API_URL}/menu-items?category=${foundCategory._id}&isAvailable=true`);
                     if (response.data) {
                         setSpecialties(response.data.slice(0, 3)); // Limit to 3 items
                     } else {
@@ -68,7 +69,7 @@ function AboutUs() {
                     }
                 } else {
                     // Fallback to bestsellers if category not found
-                    const response = await axios.get('http://localhost:8080/api/order-items/bestsellers?limit=3');
+                    const response = await axios.get(`${API_URL}/order-items/bestsellers?limit=3`);
                     if (response.data.success) {
                         setSpecialties(response.data.data);
                     } else {

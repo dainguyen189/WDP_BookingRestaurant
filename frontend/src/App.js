@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import ScrollToTop from './component/ScrollToTop/ScrollToTop';
+import AppFooter from './component/Footer/AppFooter';
 import { OrderProvider } from "./context/OrderContext";
 import { SessionProvider } from "./context/SessionContext";
 
@@ -33,12 +35,17 @@ import PrintableInvoice from "./component/pages/Invoice/InvoicePrint";
 import FloatingChat from './component/FloatingChat/FloatingChat';
 import SuccessPage from './component/SuccessPage/SuccessPage';
 import FailedPage from './component/FailedPage/FailedPage';
-function App() {
+
+function AppShell() {
+    const { pathname } = useLocation();
+    const hideFooter =
+        /^\/(admin|staff|cashier|chef)(\/|$)/i.test(pathname) ||
+        /^\/invoice\/print\//i.test(pathname);
+
     return (
-        <SessionProvider>
-            <OrderProvider>
-                <Router>
-                    <Routes>
+        <>
+            <ScrollToTop />
+            <Routes>
                         <Route path="/register" element={<Register />} />
 
                         <Route path="/profile" element={<UserProfile />} />
@@ -75,8 +82,19 @@ function App() {
 
                             } />
                         </Route>
-                    </Routes>
-                    <FloatingChat />
+            </Routes>
+            {!hideFooter && <AppFooter />}
+            <FloatingChat />
+        </>
+    );
+}
+
+function App() {
+    return (
+        <SessionProvider>
+            <OrderProvider>
+                <Router>
+                    <AppShell />
                 </Router>
             </OrderProvider>
         </SessionProvider>

@@ -1,13 +1,17 @@
 .custom-navbar {
-    background-color: #1a1a1a;
+    background: linear-gradient(180deg, #141414 0%, #1a1a1a 100%);
     padding: 15px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    border-bottom: 1px solid rgba(255, 193, 7, 0.12);
+    font-family: var(--font-sans, system-ui, sans-serif);
 }
 
 .brand {
     color: #ffc107 !important;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.45rem;
+    font-family: var(--font-display, Georgia, serif);
+    letter-spacing: 0.02em;
 }
 
 .nav-link {
@@ -39,6 +43,20 @@
     border-top: 1px solid #444444;
 }
 
-.navbar-dark .navbar-nav .nav-link.active {
+.navbar-dark .navbar-nav .nav-link.active,
+.nav-link.active {
     color: #ffc107 !important;
+    position: relative;
+}
+
+.navbar-dark .navbar-nav .nav-link.active::after,
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 0.35rem;
+    right: 0.35rem;
+    bottom: 0.15rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffc107, transparent);
+    border-radius: 2px;
 }

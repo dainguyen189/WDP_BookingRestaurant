@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL, API_BASE_URL } from '../../../config/api';
 import Header from '../../Header/Header';
 import './MenuPage.css';
 import './MenuItemCard.css';
@@ -23,8 +24,8 @@ const ViewMenuPage = () => {
   const fetchData = async () => {
     try {
       const [categoriesRes, menuRes] = await Promise.all([
-        axios.get('http://localhost:8080/api/menu-categories'),
-        axios.get('http://localhost:8080/api/menu-items')
+        axios.get(`${API_URL}/menu-categories`),
+        axios.get(`${API_URL}/menu-items`)
       ]);
 
       setCategories(categoriesRes.data || []);
@@ -40,8 +41,8 @@ const ViewMenuPage = () => {
   const fetchMenuItems = async () => {
     try {
       const url = selectedCategory
-        ? `http://localhost:8080/api/menu-items?category=${selectedCategory}`
-        : 'http://localhost:8080/api/menu-items';
+        ? `${API_URL}/menu-items?category=${selectedCategory}`
+        : `${API_URL}/menu-items`;
       
       const res = await axios.get(url);
       const validMenuItems = (res.data || []).filter(item => item && item.name);
@@ -146,7 +147,7 @@ const ViewMenuPage = () => {
               const imageUrl = item.image?.startsWith("http")
                 ? item.image
                 : item.image
-                ? `http://localhost:8080/uploads/${item.image}`
+                ? `${API_BASE_URL}/uploads/${item.image}`
                 : "https://via.placeholder.com/300x200?text=No+Image";
 
               return (

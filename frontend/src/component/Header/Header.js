@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useOrder } from "../../context/OrderContext";
 import CartDrawer from "../pages/Order/CartDrawer";
 import { useLocation } from 'react-router-dom';
@@ -17,20 +17,27 @@ const Header = () => {
     const sessionId = searchParams.get("sessionId");
 
 
-    const user = JSON.parse(localStorage.getItem("user"));
+    let user = null;
+    try {
+        const raw = localStorage.getItem('user');
+        if (raw) user = JSON.parse(raw);
+    } catch {
+        user = null;
+    }
     const { cartItems } = useOrder();
     const [isDrawerOpen, setDrawerOpen] = useState(false);
 
 
     const handleLogout = () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         navigate('/login');
     };
     return (
         <>
             <Navbar expand="lg" className="custom-navbar" variant="dark">
                 <Container>
-                    <Navbar.Brand href="/home" className="brand">
+                    <Navbar.Brand as={Link} to="/home" className="brand">
                         <FontAwesomeIcon icon={faUtensils} className="me-2" />
                         Restaurant Booking
                     </Navbar.Brand>
@@ -38,10 +45,10 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link href="/home" className="nav-link">Home</Nav.Link>
-                            <Nav.Link as={Link} to="/booking" className="nav-link">Đặt bàn</Nav.Link>
-                            <Nav.Link href="/aboutus" className="nav-link">About Us</Nav.Link>
-                            <Nav.Link as={Link} to="/view-menu" className="nav-link">Menu</Nav.Link>
+                            <Nav.Link as={NavLink} to="/home" end className="nav-link">Trang chủ</Nav.Link>
+                            <Nav.Link as={NavLink} to="/booking" className="nav-link">Đặt bàn</Nav.Link>
+                            <Nav.Link as={NavLink} to="/aboutus" className="nav-link">Giới thiệu</Nav.Link>
+                            <Nav.Link as={NavLink} to="/view-menu" className="nav-link">Thực đơn</Nav.Link>
 
                             {sessionId && (
                                 <>
