@@ -1,35 +1,38 @@
 .admin-sidebar {
-    background-color: #2a2a2a;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    color: #ffffff;
-    position: sticky;
-    top: 20px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  color: #1f2937;
+  position: sticky;
+  top: 20px;
 }
 
 .admin-sidebar .card-header {
-    background-color: #333333;
-    border-bottom: 1px solid #444444;
-    color: #ffc107;
-    font-weight: 600;
-    padding: 15px;
+  background-color: #10b981;
+  border-bottom: 1px solid #e5e7eb;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 16px 16px 0 0;
 }
 
 .admin-nav .nav-link {
-    color: #dddddd;
-    padding: 12px 15px;
-    border-left: 4px solid transparent;
-    transition: all 0.2s ease;
+  color: #4b5563;
+  padding: 14px 18px;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .admin-nav .nav-link:hover {
-    background-color: #333333;
-    color: #ffffff;
+  background-color: #f0fdf4;
+  color: #10b981;
 }
 
 .admin-nav .nav-link.active {
-    background-color: #333333;
-    color: #ffc107;
-    border-left: 4px solid #ffc107;
+  background-color: #f0fdf4;
+  color: #10b981;
+  border-left: 4px solid #10b981;
+  font-weight: 600;
 }

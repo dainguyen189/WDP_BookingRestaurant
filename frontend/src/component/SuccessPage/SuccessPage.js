@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
-import styles from "./success.module.css"
+import styles from "./css/success.module.css"
 
 export default function SuccessPage() {
     const [searchParams] = useSearchParams()

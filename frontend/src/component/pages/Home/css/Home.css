@@ -1,22 +1,22 @@
-/* ==================== FEATURED DISHES (thay thế FEATURED RESTAURANTS) ==================== */
 .featured-dishes {
-  background: white;
+  background: #ffffff;
   padding: 80px 0;
-  color: #333;
+  color: #1f2937;
 }
 
 .dish-card {
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   height: 100%;
+  background: #ffffff;
 }
 
 .dish-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .card-image-wrapper {
@@ -32,7 +32,7 @@
 }
 
 .dish-card:hover .card-image-wrapper img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .image-overlay {
@@ -71,12 +71,13 @@
 }
 
 .bestseller-badge {
-  background: linear-gradient(45deg, #ffd700, #ffed4e) !important;
-  color: #333 !important;
+  background: linear-gradient(45deg, #10b981, #34d399) !important;
+  color: white !important;
 }
 
 .discount-badge {
-  background: linear-gradient(45deg, #17a2b8, #20c997) !important;
+  background: linear-gradient(45deg, #3b82f6, #60a5fa) !important;
+  color: white !important;
 }
 
 .overlay-actions {
@@ -92,14 +93,15 @@
   align-items: center;
   justify-content: center;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
+  background: rgba(255, 255, 255, 0.95);
+  color: #4b5563;
   transition: all 0.3s ease;
 }
 
 .action-btn:hover {
   background: white;
   transform: scale(1.1);
+  color: #10b981;
 }
 
 .dish-header {
@@ -113,12 +115,12 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
-  color: #333;
+  color: #1f2937;
   flex: 1;
 }
 
 .dish-category {
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: linear-gradient(45deg, #10b981, #059669);
   color: white;
   padding: 4px 12px;
   border-radius: 15px;
@@ -128,13 +130,13 @@
 }
 
 .dish-restaurant {
-  color: #666;
+  color: #6b7280;
   margin-bottom: 8px;
   font-size: 0.9rem;
 }
 
 .dish-description {
-  color: #555;
+  color: #4b5563;
   font-size: 0.9rem;
   margin-bottom: 12px;
   line-height: 1.4;
@@ -158,16 +160,16 @@
 }
 
 .star-filled {
-  color: #ffc107;
+  color: #fbbf24;
 }
 
 .star-empty {
-  color: #e9ecef;
+  color: #e5e7eb;
 }
 
 .rating-text {
   font-size: 0.8rem;
-  color: #666;
+  color: #6b7280;
 }
 
 .dish-info {
@@ -177,7 +179,7 @@
 .cooking-time {
   margin: 0;
   font-size: 0.85rem;
-  color: #666;
+  color: #6b7280;
 }
 
 .ingredients-tags {
@@ -191,12 +193,14 @@
   padding: 3px 8px;
   font-size: 0.7rem;
   border-radius: 10px;
+  background: #f3f4f6;
+  color: #4b5563;
 }
 
 .price-section {
   margin-bottom: 20px;
   padding: 12px 0;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid #f3f4f6;
 }
 
 .price-info {
@@ -207,13 +211,13 @@
 }
 
 .original-price {
-  color: #999;
+  color: #9ca3af;
   text-decoration: line-through;
   font-size: 0.9rem;
 }
 
 .current-price {
-  color: #e74c3c;
+  color: #10b981;
   font-weight: 700;
   font-size: 1.2rem;
 }
@@ -231,10 +235,19 @@
   font-weight: 500;
   font-size: 0.9rem;
   width: 100%;
+  background: #f3f4f6;
+  color: #4b5563;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+  background: #e5e7eb;
+  color: #1f2937;
 }
 
 .order-btn {
-  background: linear-gradient(45deg, #28a745, #20c997);
+  background: linear-gradient(45deg, #10b981, #059669);
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
@@ -246,11 +259,10 @@
 
 .order-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-  background: linear-gradient(45deg, #218838, #1e7e34);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(45deg, #059669, #047857);
 }
 
-/* ==================== RESPONSIVE FOR DISHES ==================== */
 @media (max-width: 768px) {
   .dish-header {
     flex-direction: column;
@@ -291,7 +303,6 @@
   }
 }
 
-/* ==================== ANIMATIONS FOR DISHES ==================== */
 .dish-card:nth-child(1) {
   animation-delay: 0.1s;
 }
@@ -328,7 +339,7 @@
   height: 60px;
   border-radius: 50%;
   border: 3px solid white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   object-fit: cover;
 }
 
@@ -338,11 +349,308 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
 }
 
 .loading-container p {
   margin-top: 20px;
   font-size: 1.1rem;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  padding: 60px 0;
+  min-height: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-content {
+  padding: 20px 0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero-title .highlight {
+  color: #fef3c7;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item .stat-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.stat-item .stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-actions .primary-btn,
+.hero-actions .secondary-btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-actions .primary-btn {
+  background: #ffffff;
+  color: #10b981;
+}
+
+.hero-actions .primary-btn:hover {
+  background: #f0fdf4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.hero-actions .secondary-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-actions .secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-image {
+  position: relative;
+}
+
+.hero-image img {
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* ==================== CTA SECTION ==================== */
+.cta-section {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 50px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.cta-section h2 {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  background: #ffffff !important;
+  color: #10b981 !important;
+  padding: 14px 28px !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #f0fdf4 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cta-section .btn-outline-light {
+  padding: 14px 28px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.cta-section .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* ==================== RESPONSIVE HERO & CTA ==================== */
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 40px 0;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-stats {
+    gap: 24px;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .hero-image {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 30px 0;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-stats {
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.3rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .primary-btn,
+  .hero-actions .secondary-btn {
+    width: 100%;
+  }
+
+  .cta-section {
+    padding: 40px 0;
+  }
+
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .cta-btn,
+  .cta-section .btn-outline-light {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 20px 0;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-stats {
+    gap: 16px;
+  }
+
+  .stat-item .stat-number {
+    font-size: 1.2rem;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.3rem;
+  }
 }
