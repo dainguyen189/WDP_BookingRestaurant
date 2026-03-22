@@ -24,6 +24,7 @@ import Header from '../../Header/Header';
 import Button from '../../Button/Button';
 import { useOrder } from '../../../context/OrderContext';
 import axiosInstance from '../../../utils/axiosConfig';
+import { API_URL } from '../../../config/api';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ const Home = () => {
         setDishesError(null);
 
         // Call API để lấy top 3 bestsellers
-        const response = await axios.get('http://localhost:8080/api/order-items/bestsellers?limit=3');
+        const response = await axios.get(`${API_URL}/order-items/bestsellers?limit=3`);
 
         if (response.data.success) {
           setFeaturedDishes(Array.isArray(response.data.data) ? response.data.data : []);

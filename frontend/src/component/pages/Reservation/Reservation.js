@@ -7,6 +7,7 @@ import './Reservation.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import DishSelectionModal from './DishSelectionModal';
+import { API_URL } from '../../../config/api';
 
 function Reservation() {
   const [showDishModal, setShowDishModal] = useState(false); const [showOtpModal, setShowOtpModal] = useState(false);
@@ -34,19 +35,16 @@ function Reservation() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const storedUser = JSON.parse(localStorage.getItem('user'));
-
-        if (!storedUser || !storedUser._id) {
-          console.log('User information not found');
-        }
+        const raw = localStorage.getItem('user');
+        const storedUser = raw ? JSON.parse(raw) : null;
+        if (!storedUser?._id) return;
 
         const token = localStorage.getItem('token');
 
-        const response = await axios.get(`http://localhost:8080/api/user/${storedUser._id}`, {
+        const response = await axios.get(`${API_URL}/user/${storedUser._id}`, {
           headers: { Authorization: `Bearer ${token}` },
           withCredentials: true
         });
-        console.log(response.data)
 
         setFormData(prev => ({
           ...prev,
@@ -60,7 +58,7 @@ function Reservation() {
     };
     fetchUserProfile()
 
-    fetch('http://localhost:8080/api/menu-items?needPreOrder=true')
+    fetch(`${API_URL}/menu-items?needPreOrder=true`)
       .then(res => res.json())
       .then(data => setMenuItems(data))
       .catch(err => console.error('Error fetching menu items:', err));
@@ -166,7 +164,7 @@ function Reservation() {
     const payload = otpTarget === 'phone' ? { phone: target } : { email: target };
 
     try {
-      const res = await fetch(`http://localhost:8080/api/reservation/otp/${otpTarget}`, {
+      const res = await fetch(`${API_URL}/reservation/otp/${otpTarget}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -194,11 +192,11 @@ function Reservation() {
       return;
     }
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    console.log(formData)
+    const rawUser = localStorage.getItem('user');
+    const storedUser = rawUser ? JSON.parse(rawUser) : null;
 
     try {
-      const res = await fetch('http://localhost:8080/api/reservation', {
+      const res = await fetch(`${API_URL}/reservation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
