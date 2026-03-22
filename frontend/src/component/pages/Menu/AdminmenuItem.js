@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminHeader from '../../Header/AdminHeader';
 import { Container } from 'react-bootstrap';
-import './AdminmenuItem.css';
+import './css/AdminmenuItem.css';
 
 const API_URL = 'http://localhost:8080/api/menu-items';
 
