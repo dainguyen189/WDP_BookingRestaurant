@@ -59,8 +59,8 @@ router.post('/create-order', async (req, res) => {
             orderCode,
             amount: amountNumber,
             description: `#${orderId}`,
-            returnUrl: 'http://localhost:3000/success',
-            cancelUrl: 'http://localhost:3000/failed',
+            returnUrl: 'http://localhost:5173/success',
+            cancelUrl: 'http://localhost:5173/failed',
         });
 
         if (!paymentLink?.checkoutUrl) {

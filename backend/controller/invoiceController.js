@@ -89,7 +89,7 @@ exports.createZaloPayOrder = async (req, res, next) => {
         console.log(`💰 Order amount: ${amount} VND`);
 
         const embed_data = {
-            redirecturl: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/payment-result`
+            redirecturl: `${process.env.CLIENT_URL || 'http://localhost:5173'}/payment-result`
         };
 
         const unique_suffix = Date.now().toString().slice(-6);
@@ -335,7 +335,7 @@ exports.testMacSignature = async (req, res, next) => {
             app_user: "test_user",
             amount: 1000,
             app_time: Date.now(),
-            embed_data: JSON.stringify({ redirecturl: "http://localhost:3000/payment-result" }),
+            embed_data: JSON.stringify({ redirecturl: "http://localhost:5173/payment-result" }),
             item: JSON.stringify([{ itemid: "test", itemname: "Test", itemprice: 1000, itemquantity: 1 }])
         };
         

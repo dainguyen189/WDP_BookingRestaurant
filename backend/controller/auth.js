@@ -91,7 +91,7 @@ const sendEmailVerification = async (req, res, next) => {
     const key = `verify_email_${user._id}`;
     cache.set(key, token, 60 * 60); // 1 hour
 
-    const verifyUrl = `${process.env.CLIENT_URL || 'http://localhost:3000'}/verify-email?token=${token}&uid=${user._id}`;
+    const verifyUrl = `${process.env.CLIENT_URL || 'http://localhost:5173'}/verify-email?token=${token}&uid=${user._id}`;
     await emailService.sendBookingConfirm({
       email: user.email,
       name: user.username,
