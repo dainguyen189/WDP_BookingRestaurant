@@ -1,42 +1,94 @@
 .register-page {
-    min-height: 100vh;
-    background-color: #222222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e5e7eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
 }
 
 .register-card {
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    background-color: #2a2a2a;
-    color: #ffffff;
-    padding: 25px;
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #1f2937;
+  padding: 40px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 .register-title {
-    color: #ffc107;
-    font-weight: 600;
-    margin-top: 10px;
+  color: #10b981;
+  font-weight: 700;
+  margin-top: 10px;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 .restaurant-icon {
-    font-size: 3rem;
-    color: #ffc107;
+  font-size: 3rem;
+  color: #10b981;
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .login-link {
-    color: #ffc107;
-    text-decoration: none;
-    font-weight: 500;
+  color: #10b981;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .login-link:hover {
-    color: #ffca28;
-    text-decoration: underline;
+  color: #059669;
+  text-decoration: underline;
+}
+
+.register-card .form-control {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.register-card .form-control:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  outline: none;
+}
+
+.register-card .btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  border-radius: 10px;
+  padding: 14px 24px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.register-card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.register-card .form-label {
+  color: #4b5563;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.register-card .text-muted {
+  color: #6b7280 !important;
+}
+
+.register-card hr {
+  border-color: #e5e7eb;
 }

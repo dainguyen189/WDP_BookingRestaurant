@@ -1,7 +1,7 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #222222;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
     min-height: 100vh;
 }
 
@@ -11,18 +11,16 @@ h3,
 h4,
 h5,
 h6 {
-    color: #333;
+    color: #1f2937;
 }
 
 a {
     text-decoration: none;
-    color: #ffcc00;
-    /* Yellow color for links */
+    color: #10b981;
 }
 
 a:hover {
-    color: #ff9900;
-    /* Darker yellow/orange on hover */
+    color: #059669;
 }
 
 .container {
@@ -32,26 +30,31 @@ a:hover {
 }
 
 .button-primary {
-    background-color: #ffcc00;
-    /* Yellow background */
-    color: black;
-    /* Black text */
+    background-color: #10b981;
+    color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .button-primary:hover {
-    background-color: #ff9900;
-    /* Darker yellow/orange on hover */
+    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .input-field {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
+    border: 2px solid #e5e7eb;
+    padding: 12px 16px;
+    margin: 8px 0;
     width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
 }
 
 input,
@@ -61,24 +64,22 @@ input,
 }
 
 .input-field:focus {
-    border-color: #ffcc00;
-    /* Yellow border on focus */
+    border-color: #10b981;
     outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
 .header {
-    background-color: black;
-    /* Black background for header */
-    color: white;
-    /* White text */
-    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #1f2937;
+    padding: 12px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .footer {
     text-align: center;
-    padding: 20px;
-    background-color: black;
-    /* Black background for footer */
-    color: white;
-    /* White text */
+    padding: 24px;
+    background-color: #ffffff;
+    color: #6b7280;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
 }

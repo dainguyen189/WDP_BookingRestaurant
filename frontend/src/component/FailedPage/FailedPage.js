@@ -1,5 +1,5 @@
 import { Link, useSearchParams, useNavigate } from "react-router-dom"
-import styles from "./failed.module.css"
+import styles from "./css/failed.module.css"
 
 export default function FailedPage() {
     const [searchParams] = useSearchParams()

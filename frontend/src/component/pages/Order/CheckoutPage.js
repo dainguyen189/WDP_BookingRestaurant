@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSession } from "../../../context/SessionContext";
 import Header from "../../Header/Header";
 import { useNavigate } from "react-router-dom";
-import "..css/CheckoutPage.css";
+import "./css/CheckoutPage.css";
 
 function CheckoutPage() {
   const { sessionId, user, setUser } = useSession();
