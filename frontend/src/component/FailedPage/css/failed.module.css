@@ -1,0 +1,248 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 448px;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(30, 41, 59, 0.2) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+    backdrop-filter: blur(4px);
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+    animation: scaleIn 0.8s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.iconBg {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(239, 68, 68, 0.15);
+    border-radius: 50%;
+    filter: blur(16px);
+    z-index: 0;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    color: #ef4444;
+    stroke-width: 2;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: rgba(239, 68, 68, 0.8);
+    text-align: center;
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.alertBox {
+    background: rgba(217, 119, 6, 0.1);
+    border: 1px solid rgba(217, 119, 6, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.alertText {
+    color: rgba(217, 119, 6, 0.9);
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+}
+
+.infoCard {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.infoLabel {
+    color: rgba(100, 116, 139, 1);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 8px 0;
+}
+
+.infoValue {
+    color: #ffffff;
+    font-family: "Monaco", "Courier New", monospace;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+    word-break: break-all;
+}
+
+.errorStatus {
+    color: #ef4444;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0;
+}
+
+.helpBox {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.helpText {
+    color: rgba(203, 213, 225, 0.9);
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+    width: 100%;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.buttonPrimary {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.buttonPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.buttonPrimary:active {
+    transform: translateY(0);
+}
+
+.buttonSecondary {
+    background: rgba(30, 41, 59, 0.6);
+    color: white;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.buttonSecondary:hover {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(71, 85, 105, 0.8);
+}
+
+.support {
+    margin-top: 32px;
+    text-align: center;
+    color: rgba(100, 116, 139, 1);
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.supportLink {
+    color: #ef4444;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.supportLink:hover {
+    color: #dc2626;
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 24px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .buttonGroup {
+        gap: 10px;
+    }
+}
