@@ -241,10 +241,15 @@ const Home = () => {
                     <FontAwesomeIcon icon={faCalendarAlt} className="me-2" />
                     Đặt Bàn Ngay
                   </Button>
-                  {/* <BootstrapButton variant="outline-light" size="lg" className="secondary-btn">
+                  <BootstrapButton
+                    variant="outline-light"
+                    size="lg"
+                    className="secondary-btn ms-2 mt-2 mt-sm-0"
+                    onClick={() => navigate('/view-menu')}
+                  >
                     <FontAwesomeIcon icon={faUtensils} className="me-2" />
-                    Khám Phá Menu
-                  </BootstrapButton> */}
+                    Xem menu
+                  </BootstrapButton>
                 </div>
               </div>
             </Col>
@@ -447,9 +452,23 @@ const Home = () => {
                   <FontAwesomeIcon icon={faCalendarAlt} className="me-2" />
                   Đặt Bàn Ngay
                 </Button>
-                <BootstrapButton variant="outline-light" size="lg">
+                <BootstrapButton
+                  variant="outline-light"
+                  size="lg"
+                  className="ms-2 mt-2 mt-md-0"
+                  onClick={() => navigate('/view-menu')}
+                >
+                  <FontAwesomeIcon icon={faUtensils} className="me-2" />
+                  Xem menu
+                </BootstrapButton>
+                <BootstrapButton
+                  variant="outline-light"
+                  size="lg"
+                  className="ms-2 mt-2 mt-md-0"
+                  onClick={() => window.open('tel:02838221234')}
+                >
                   <FontAwesomeIcon icon={faPhone} className="me-2" />
-                  Liên Hệ Hỗ Trợ
+                  Liên hệ
                 </BootstrapButton>
               </div>
             </Col>
