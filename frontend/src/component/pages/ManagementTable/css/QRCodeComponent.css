@@ -1,0 +1,14 @@
+.qr-title {
+    color: #ffcc00; /* nổi bật vàng */
+    margin-bottom: 10px;
+  }
+  
+  .qr-subtitle {
+    margin-top: 10px;
+    color: #ccc;
+    font-style: italic;
+  }
+  .session-text {
+    color: white;
+  }
+  
