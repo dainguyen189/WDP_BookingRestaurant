@@ -1,0 +1,163 @@
+/* ChangeTableModal.css */
+.change-table-modal .modal-content {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.change-table-modal .modal-header {
+  border-bottom: 2px solid #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.change-table-modal .modal-title {
+  color: #ffc107;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.change-table-modal .btn-close {
+  filter: invert(1);
+}
+
+.change-table-modal .modal-body {
+  padding: 20px;
+}
+
+.change-table-modal .session-info {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid #ffc107;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.change-table-modal .session-info p {
+  margin: 5px 0;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.change-table-modal .form-label {
+  color: #ffc107;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 8px;
+}
+
+.change-table-modal .form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ffc107;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.change-table-modal .form-select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+  color: #fff;
+}
+
+.change-table-modal .form-select option {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.change-table-modal .form-text {
+  color: #ffc107 !important;
+  font-size: 0.875rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.change-table-modal .alert {
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.change-table-modal .alert-danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+}
+
+.change-table-modal .alert-warning {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: #fff;
+}
+
+.change-table-modal .modal-footer {
+  border-top: 2px solid #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 15px 20px;
+}
+
+.change-table-modal .btn {
+  border-radius: 8px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.change-table-modal .btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.change-table-modal .btn-secondary:hover {
+  background: linear-gradient(135deg, #5a6268, #545b62);
+  border-color: #545b62;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.change-table-modal .btn-primary {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  border-color: #ffc107;
+  color: #000;
+}
+
+.change-table-modal .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e0a800, #d39e00);
+  border-color: #d39e00;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+}
+
+.change-table-modal .btn-primary:disabled {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  border-color: #6c757d;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Animation hiệu ứng khi modal xuất hiện */
+.change-table-modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+  transform: scale(0.9);
+}
+
+.change-table-modal.show .modal-dialog {
+  transform: scale(1);
+}
+
+/* Responsive design */
+@media (max-width: 576px) {
+  .change-table-modal .modal-dialog {
+    margin: 10px;
+  }
+
+  .change-table-modal .modal-body {
+    padding: 15px;
+  }
+
+  .change-table-modal .session-info {
+    padding: 10px;
+  }
+}

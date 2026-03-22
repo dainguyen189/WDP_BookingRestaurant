@@ -1,0 +1,68 @@
+.filters-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.filter-input {
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.order-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-item-body p {
+  margin: 4px 0;
+}
+
+.order-item-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 1rem;
+}
+.status-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.tab-button:hover {
+  background-color: #e0e0e0;
+}
+
+.tab-button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+

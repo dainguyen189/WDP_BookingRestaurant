@@ -1,0 +1,578 @@
+/* AdminDashboard.css - Complete Optimized Version */
+
+/* ==================== MAIN CONTAINER ==================== */
+.admin-dashboard {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+/* ==================== DASHBOARD TITLE ==================== */
+.dashboard-title {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.dashboard-title .me-3 {
+  color: #3498db;
+  filter: drop-shadow(0 2px 4px rgba(52, 152, 219, 0.3));
+}
+
+/* ==================== STATISTICS CARDS ==================== */
+.stat-card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+  background: white;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.stat-content {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.stat-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-right: 20px;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Card Specific Icon Colors */
+.revenue-card .stat-icon {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  box-shadow: 0 8px 20px rgba(17, 153, 142, 0.3);
+}
+
+.orders-card .stat-icon {
+  background: linear-gradient(135deg, #fc466b 0%, #3f5efb 100%);
+  box-shadow: 0 8px 20px rgba(252, 70, 107, 0.3);
+}
+
+.users-card .stat-icon {
+  background: linear-gradient(135deg, #fdbb2d 0%, #22c1c3 100%);
+  box-shadow: 0 8px 20px rgba(253, 187, 45, 0.3);
+}
+
+.menu-card .stat-icon {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  box-shadow: 0 8px 20px rgba(255, 154, 158, 0.3);
+}
+
+.stat-info h3 {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.stat-info p {
+  color: #7f8c8d;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+/* ==================== CHART CARDS ==================== */
+.chart-card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  overflow: hidden;
+  background: white;
+}
+
+.chart-card .card-header {
+  border: none;
+  padding: 20px 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-card .card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+}
+
+.chart-card .card-header.bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.chart-card .card-body {
+  padding: 30px;
+  background: #fafbfc;
+}
+
+/* ==================== BEST SELLERS CARD ==================== */
+.best-sellers-card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white;
+}
+
+.best-sellers-card .card-header {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: white !important;
+  border: none;
+  padding: 20px 25px;
+}
+
+.best-sellers-card .card-body {
+  padding: 30px;
+  background: #fafbfc;
+}
+
+/* ==================== RANKING BADGES ==================== */
+.rank-badge {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 35px;
+  font-weight: bold;
+  color: white;
+  font-size: 14px;
+  position: relative;
+}
+
+.rank-1 {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  color: #333;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.rank-1::after {
+  content: '👑';
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  font-size: 12px;
+}
+
+.rank-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #e6e6e6 100%);
+  color: #333;
+  box-shadow: 0 4px 15px rgba(192, 192, 192, 0.4);
+}
+
+.rank-3 {
+  background: linear-gradient(135deg, #cd7f32 0%, #daa520 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(205, 127, 50, 0.4);
+}
+
+.rank-4,
+.rank-5 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* ==================== ITEM IMAGES ==================== */
+.item-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.item-image:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== QUANTITY BADGE ==================== */
+.quantity-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* ==================== TABLE STYLING ==================== */
+.best-sellers-card table {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.best-sellers-card .table-responsive {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.best-sellers-card thead th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  font-weight: 600;
+  padding: 15px;
+  text-align: center;
+}
+
+.best-sellers-card tbody td {
+  padding: 20px 15px;
+  border: none;
+  vertical-align: middle;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.best-sellers-card tbody tr:hover {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== PIE CHART SECTION ==================== */
+.best-sellers-card .flex-grow-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==================== FORM CONTROLS ==================== */
+.chart-card .card-header .form-select {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.chart-card .card-header .form-select:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.chart-card .card-header .form-select option {
+  background: #2c3e50;
+  color: white;
+}
+
+/* ==================== LOADING CONTAINER ==================== */
+.loading-container {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading-container .spinner-border {
+  width: 4rem;
+  height: 4rem;
+  color: #667eea;
+}
+
+.loading-container p {
+  color: #2c3e50;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* ==================== ALERT STYLING ==================== */
+.alert-danger {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  border: none;
+  border-radius: 15px;
+  color: #721c24;
+  box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+}
+
+/* ==================== RECHARTS CUSTOMIZATION ==================== */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+.recharts-legend-wrapper {
+  padding-top: 20px !important;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card,
+.chart-card,
+.best-sellers-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+  .best-sellers-card .table-responsive {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 10px 0;
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .stat-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .stat-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .chart-card .card-header .form-select {
+    margin-top: 10px;
+  }
+
+  .chart-card .card-body {
+    padding: 20px;
+  }
+
+  .best-sellers-card .card-body {
+    padding: 20px;
+  }
+
+  .item-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .rank-badge {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .chart-card .card-body {
+    padding: 15px;
+  }
+
+  .best-sellers-card .card-body {
+    padding: 15px;
+  }
+
+  .stat-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.8rem;
+  }
+
+  .stat-content {
+    padding: 10px;
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  .admin-dashboard {
+    background: white !important;
+  }
+
+  .stat-card,
+  .chart-card,
+  .best-sellers-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .chart-card .card-header {
+    background: #f8f9fa !important;
+    color: #333 !important;
+  }
+
+  .best-sellers-card .card-header {
+    background: #f8f9fa !important;
+    color: #333 !important;
+  }
+}
+
+/* ==================== DARK MODE SUPPORT ==================== */
+@media (prefers-color-scheme: dark) {
+  .admin-dashboard {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  }
+
+  .dashboard-title {
+    color: #ecf0f1;
+  }
+
+  .stat-card,
+  .chart-card,
+  .best-sellers-card {
+    background: #34495e;
+
+  }
+
+  .chart-card .card-body,
+  .best-sellers-card .card-body {
+    background: #2c3e50;
+  }
+
+  .best-sellers-card table {
+    background: #34495e;
+  }
+
+  .best-sellers-card tbody td {
+    border-bottom: 1px solid #495057;
+  }
+
+  .stat-info h3 {
+    color: #ecf0f1;
+  }
+
+  .stat-info p {
+    color: #bdc3c7;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for accessibility */
+.chart-card .card-header .form-select:focus,
+.stat-card:focus-within {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+
+  .stat-card,
+  .chart-card,
+  .best-sellers-card {
+    border: 2px solid #000;
+  }
+
+  .rank-badge {
+    border: 2px solid #000;
+  }
+}
