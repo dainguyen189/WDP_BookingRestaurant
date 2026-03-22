@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../../../config/api';
 import Button from '../../Button/Button';
 import Input from '../../Input/Input';
 import './Register.css';
@@ -37,7 +38,7 @@ const Register = () => {
             setLoading(true);
             console.log('Sending registration data:', { email, username, password });
 
-            const response = await axios.post('http://localhost:8080/api/auth/register', {
+            const response = await axios.post(`${API_URL}/auth/register`, {
                 email,
                 username,
                 password

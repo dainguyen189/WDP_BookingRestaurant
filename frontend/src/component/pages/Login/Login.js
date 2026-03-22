@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { API_URL } from '../../../config/api';
 
 import './Login.css';
 import Button from '../../Button/Button';
@@ -45,13 +45,14 @@ const Login = () => {
       //   password,
       // });
       const response = await axios.post(
-        'http://localhost:8080/api/auth/login',
+        `${API_URL}/auth/login`,
         {
           email,
           password,
         },
         { withCredentials: true }
-      ); if (response.status === 200) {
+      );
+      if (response.status === 200) {
         const userData = response.data;
 
         // Lưu thông tin người dùng và token vào localStorage
