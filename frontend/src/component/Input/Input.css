@@ -1,0 +1,32 @@
+.custom-input label {
+    color: #ffc107;
+    font-weight: 500;
+}
+
+.custom-form-control {
+    background-color: #333333;
+    border: 1px solid #444444;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+    display: block !important;
+    width: 100% !important;
+    /* Đảm bảo chiều rộng 100% */
+}
+
+.custom-form-control:focus {
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+.custom-form-control::placeholder {
+    color: #888888;
+}
+
+.custom-input input {
+    display: block !important;
+    /* Ép buộc hiển thị */
+    width: 100% !important;
+}
