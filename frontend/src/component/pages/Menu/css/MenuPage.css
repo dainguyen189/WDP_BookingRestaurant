@@ -1,134 +1,246 @@
+.menu-page-shell {
+  min-height: calc(100vh - 56px);
+  background: linear-gradient(
+    165deg,
+    #ecfdf5 0%,
+    #f0fdf4 18%,
+    #f5f7fa 52%,
+    #f5f7fa 100%
+  );
+  padding: 1.25rem 0 3.5rem;
+}
+
 .menu-page-container {
-  padding: 80px 20px 40px;
-  background-color: #f5f7fa;
-  min-height: 100vh;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
   color: #1f2937;
 }
 
-.menu-page-container h2 {
-  color: #10b981;
+.menu-page-header {
   text-align: center;
-  margin-bottom: 20px;
-  font-weight: 700;
+  margin-bottom: 1.75rem;
 }
 
-.search-input {
-  width: 300px;
-  height: 44px;
-  font-size: 16px;
-  margin: 20px auto;
-  display: block;
+.menu-page-guest-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 auto 0.75rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.875rem;
+  color: #065f46;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 999px;
+}
+
+.menu-page-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #047857;
+  line-height: 1.2;
+}
+
+.menu-page-lead {
+  margin: 0 auto;
+  max-width: 28rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+.menu-page-banner {
+  max-width: 42rem;
+  margin: 0 auto 1.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #0f766e;
+  background: #ccfbf1;
+  border: 1px solid #99f6e4;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.menu-search-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.menu-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 440px;
+  padding: 0 1rem;
+  background: #ffffff;
   border: 2px solid #e5e7eb;
-  background-color: #ffffff;
-  color: #1f2937;
-  z-index: 1000;
-  position: relative;
-  border-radius: 10px;
-  padding: 0 16px;
-  transition: all 0.3s ease;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.search-input:focus {
+.menu-search-wrap:focus-within {
   border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.menu-search-icon {
+  color: #10b981;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.menu-search-input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  color: #1f2937;
   outline: none;
+}
+
+.menu-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.category-list-scroll {
+  margin-bottom: 1.75rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .category-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 0.5rem;
   justify-content: center;
 }
 
+@media (max-width: 640px) {
+  .category-list-scroll {
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    mask-image: linear-gradient(to right, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+  }
+
+  .category-list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+}
+
 .category-list button {
+  flex-shrink: 0;
   background-color: #ffffff;
   border: 2px solid #e5e7eb;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    transform 0.15s ease;
+  font-weight: 600;
+  font-size: 0.875rem;
   color: #4b5563;
 }
 
 .category-list button:hover {
-  background-color: #10b981;
-  color: #ffffff;
-  border-color: #10b981;
+  background-color: #ecfdf5;
+  color: #047857;
+  border-color: #a7f3d0;
 }
 
-.category-list .active {
-  background-color: #10b981;
-  color: white;
-  border-color: #10b981;
-  font-weight: 600;
+.category-list button.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 0 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
 }
 
-.menu-grid:empty::after {
-  content: "Khong co mon an nao.";
-  color: #6b7280;
-  text-align: center;
+.menu-empty-hint {
   grid-column: 1 / -1;
+  text-align: center;
+  padding: 2.5rem 1rem;
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16px;
+  border: 1px dashed #d1d5db;
 }
 
-.pagination {
-  margin-top: 20px;
+.menu-pagination {
+  margin-top: 2.25rem;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
-.pagination button {
-  padding: 8px 14px;
+.menu-pagination button {
+  min-width: 42px;
+  height: 42px;
+  padding: 0 0.65rem;
   border: 2px solid #e5e7eb;
   background-color: #ffffff;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 10px;
   color: #4b5563;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
-.pagination button:hover {
-  background-color: #10b981;
+.menu-pagination button:hover {
+  background-color: #ecfdf5;
   border-color: #10b981;
-  color: #ffffff;
+  color: #047857;
 }
 
-.pagination .active {
-  background-color: #10b981;
-  color: white;
-  border-color: #10b981;
+.menu-pagination button.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 @media (max-width: 600px) {
-  .search-input {
-    width: 90%;
-    font-size: 14px;
+  .menu-page-shell {
+    padding: 1rem 0 2.5rem;
   }
 
-  .category-list button {
-    padding: 8px 16px;
-    font-size: 14px;
+  .menu-page-container {
+    padding: 0 1rem;
   }
 
   .menu-grid {
     grid-template-columns: 1fr;
-    padding: 0 10px;
+    gap: 1rem;
   }
 
-  .pagination button {
-    padding: 6px 12px;
-    font-size: 14px;
+  .menu-search-wrap {
+    border-radius: 12px;
+  }
+
+  .menu-search-input {
+    height: 46px;
+    font-size: 16px;
   }
 }
