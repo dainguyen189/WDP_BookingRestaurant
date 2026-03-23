@@ -129,8 +129,9 @@ function Reservation() {
   return (
     <>
       <Header />
+      <div className="reservation-admin-page">
       <Container className="mt-4 booking-form-container">
-        <h3 className="mb-4 text-center" style={{ color: "#ffc107" }}>Quản lý Đặt bàn</h3>
+        <h3 className="mb-4 text-center reservation-admin-title">Quản lý Đặt bàn</h3>
 
         <Form className="mb-4" onSubmit={(e) => e.preventDefault()}>
           <Row>
@@ -140,7 +141,6 @@ function Reservation() {
                   type="input"
                   value={filters.phone}
                   onChange={(e) => setFilters(prev => ({ ...prev, phone: e.target.value, page: 1 }))}
-                  style={{ backgroundColor: '#ffffff', color: '#000000' }}
                 />
               </FloatingLabel>
             </Col>
@@ -150,7 +150,6 @@ function Reservation() {
                   type="input"
                   value={filters.name}
                   onChange={(e) => setFilters(prev => ({ ...prev, name: e.target.value, page: 1 }))}
-                  style={{ backgroundColor: '#ffffff', color: '#000000' }}
                 />
               </FloatingLabel>
             </Col>
@@ -181,9 +180,9 @@ function Reservation() {
           <Alert variant="danger">{apiError}</Alert>
         ) : (
           <>
-            <table className="table table-dark table-striped table-hover mt-3">
+            <table className="table table-striped table-hover reservation-admin-table mt-3">
               <thead>
-                <tr style={{color: 'white'}}>
+                <tr>
                   <th>Phone</th>
                   <th>Email</th>
                   <th>Name</th>
@@ -213,7 +212,7 @@ function Reservation() {
                         </span>
                       </td>
                       <td className="text-center">
-                        <Button size="sm" variant="warning" onClick={() => { setSelectedReservation(r); setShowModal(true); }}>Chi tiết</Button>
+                        <Button size="sm" className="btn-reservation-detail" onClick={() => { setSelectedReservation(r); setShowModal(true); }}>Chi tiết</Button>
                       </td>
                     </tr>
                   )
@@ -221,19 +220,19 @@ function Reservation() {
               </tbody>
             </table>
 
-            <div className="d-flex justify-content-center mt-3">
+            <div className="d-flex justify-content-center align-items-center mt-4 gap-2 reservation-pagination flex-wrap">
               <Button
-                variant="outline-warning"
+                variant="outline-success"
                 disabled={filters.page <= 1}
                 onClick={() => setFilters(prev => ({ ...prev, page: prev.page - 1 }))}
               >
                 Previous
               </Button>
-              <span className="mx-3 text-warning align-self-center">
+              <span className="mx-2 reservation-page-indicator align-self-center">
                 Page {filters.page} of {totalPages}
               </span>
               <Button
-                variant="outline-warning"
+                variant="outline-success"
                 disabled={filters.page >= totalPages}
                 onClick={() => setFilters(prev => ({ ...prev, page: prev.page + 1 }))}
               >
@@ -243,6 +242,7 @@ function Reservation() {
           </>
         )}
       </Container>
+      </div>
 
       {selectedReservation && (
         <Modal show={showModal} onHide={() => setShowModal(false)} size='xl'>

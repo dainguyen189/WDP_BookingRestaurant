@@ -1,14 +1,236 @@
+/* Admin Table QR Page - Green & White Theme */
+
+/* ========== Trang Quản lý bàn (Admin) ========== */
+.admin-table-page {
+  min-height: calc(100vh - 72px);
+  background: linear-gradient(
+    165deg,
+    #ecfdf5 0%,
+    #f0fdf4 18%,
+    #f5f7fa 52%,
+    #f5f7fa 100%
+  );
+}
+
+.table-management-header {
+  margin-bottom: 1.5rem !important;
+}
+
+.table-management-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #047857;
+  line-height: 1.2;
+}
+
+.table-management-subtitle {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  color: #6b7280;
+  max-width: 28rem;
+}
+
+.btn-create-table {
+  padding: 0.65rem 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-create-table:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(16, 185, 129, 0.45);
+  color: #ffffff !important;
+}
+
+/* Thẻ bàn — nền trắng, viền xanh nhẹ */
+.table-management-card {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.table-management-card:hover {
+  border-color: #a7f3d0 !important;
+  box-shadow: 0 12px 36px rgba(16, 185, 129, 0.14);
+  transform: translateY(-4px);
+}
+
+.table-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+  border-radius: 16px 16px 0 0;
+}
+
+.table-card-title {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #047857 !important;
+  margin-bottom: 1rem !important;
+  padding-top: 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.table-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.table-card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.table-card-meta-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.table-card-meta-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.table-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.table-status-available {
+  background: rgba(16, 185, 129, 0.15);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.table-status-busy {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.table-status-default {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #e5e7eb;
+}
+
+.btn-table-delete {
+  width: 100%;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.table-management-empty {
+  background: rgba(255, 255, 255, 0.85);
+  border: 2px dashed #a7f3d0;
+  border-radius: 16px;
+  color: #6b7280;
+}
+
+/* Modal thêm bàn */
+.add-table-modal-overlay {
+  z-index: 1050;
+}
+
+.add-table-modal {
+  max-width: 420px !important;
+  width: 92% !important;
+  padding: 1.75rem !important;
+  text-align: left !important;
+}
+
+.add-table-modal-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #047857;
+  text-align: center;
+}
+
+.add-table-modal-hint {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: -0.5rem 0 1rem;
+  line-height: 1.45;
+}
+
+.add-table-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.btn-modal-submit {
+  width: 100%;
+  padding: 0.65rem 1rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+}
+
+.btn-modal-submit:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  color: #ffffff !important;
+}
+
+.btn-modal-cancel {
+  width: 100%;
+  padding: 0.65rem 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  border: 2px solid #e5e7eb !important;
+  background: #ffffff !important;
+  color: #4b5563 !important;
+}
+
+.btn-modal-cancel:hover {
+  background: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #1f2937 !important;
+}
+
 .admin-table-container {
   padding: 30px;
-  background-color: #222222;
+  background-color: #f5f7fa;
   min-height: 100vh;
-  color: #ffffff;
+  color: #1f2937;
 }
 
 .admin-table-container h2 {
   margin-bottom: 30px;
-  color: #ffcc00;
+  color: #10b981;
   text-align: center;
+  font-weight: 700;
 }
 
 .table-grid {
@@ -20,59 +242,66 @@
 }
 
 .table-grid li {
-  background-color: #2a2a2a;
-  border: 1px solid #444;
-  border-radius: 10px;
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
 .table-grid li:hover {
   transform: translateY(-5px);
+  border-color: #10b981;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
 }
 
 .table-grid li strong {
   display: block;
   font-size: 18px;
-  color: #ffcc00;
+  color: #10b981;
   margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .table-grid li span {
   display: block;
   font-size: 14px;
   margin-bottom: 10px;
-  color: #cccccc;
+  color: #6b7280;
 }
 
 .table-grid button {
   padding: 8px 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   margin-top: 5px;
 }
 
 .table-grid button.view-btn {
-  background-color: #17a2b8;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #fff;
 }
 
 .table-grid button.view-btn:hover {
-  background-color: #138496;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
 }
 
 .table-grid button.create-btn {
-  background-color: #28a745;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #fff;
 }
 
 .table-grid button.create-btn:hover {
-  background-color: #218838;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
 }
 
 /* Modal styles */
@@ -82,7 +311,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,14 +319,15 @@
 }
 
 .modal-content {
-  background-color: #2a2a2a;
+  background-color: #ffffff;
   padding: 30px;
-  border-radius: 10px;
-  border: 1px solid #444;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
   text-align: center;
-  color: white;
+  color: #1f2937;
   min-width: 300px;
   position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content .button-group {
@@ -112,45 +342,49 @@
   padding: 10px 16px;
   min-width: 120px;
   font-size: 14px;
-  border-radius: 6px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 /* Button colors */
 .end-btn {
-  background-color: #dc3545;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
 }
 
 .end-btn:hover {
-  background-color: #c82333;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
 }
 
 .checkout-btn {
-  background-color: #ffcc00;
-  color: #222;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
   font-weight: bold;
 }
 
 .checkout-btn:hover {
-  background-color: #e6b800;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
 }
 
 .checkout-btn:active {
-  background-color: #cc9900;
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
   transform: scale(1);
 }
 
 .close-btn {
-  background-color: #555;
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   color: white;
 }
 
 .close-btn:hover {
-  background-color: #444;
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
 }
 
 /* Responsive */
@@ -184,7 +418,7 @@
 
 .modal-content {
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   width: 90%;
   max-width: 400px;
   max-width: 900px !important;
@@ -192,10 +426,20 @@
 
 .modal-content input {
   width: 100%;
-  padding: 10px;
+  padding: 12px 16px;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #ffffff;
+  color: #1f2937;
+  transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus {
+  border-color: #10b981;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
 .button-group {

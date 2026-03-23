@@ -651,11 +651,24 @@ exports.applyVoucher = async (req, res, next) => {
       return res.status(404).json({ success: false, message: 'Mã voucher không hợp lệ hoặc đã hết hạn.' });
     }
 
+    const usageLimit = Number(promotion.usage_limit) || 0;
+    const usedCount = Number(promotion.used_count) || 0;
+    if (usageLimit > 0 && usedCount >= usageLimit) {
+      return res.status(400).json({ success: false, message: 'Mã khuyến mãi đã hết lượt sử dụng.' });
+    }
+
     const items = await OrderItem.find({ orderId: orderId });
     const subTotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-    if (subTotal < promotion.min_order_amount) {
-      return res.status(400).json({ success: false, message: `Đơn hàng phải có giá trị tối thiểu ${promotion.min_order_amount.toLocaleString('vi-VN')}₫ để áp dụng mã này.` });
+    const minRequired = Math.max(
+      Number(promotion.min_order_value) || 0,
+      Number(promotion.min_order_amount) || 0
+    );
+    if (subTotal < minRequired) {
+      return res.status(400).json({
+        success: false,
+        message: `Đơn hàng phải có giá trị tối thiểu ${minRequired.toLocaleString('vi-VN')}₫ để áp dụng mã này.`,
+      });
     }
 
     let discountAmount = 0;
@@ -669,6 +682,8 @@ exports.applyVoucher = async (req, res, next) => {
     order.promotion_id = promotion._id;
 
     await order.save();
+
+    await Promotion.findByIdAndUpdate(promotion._id, { $inc: { used_count: 1 } });
 
     res.status(200).json({
       success: true,

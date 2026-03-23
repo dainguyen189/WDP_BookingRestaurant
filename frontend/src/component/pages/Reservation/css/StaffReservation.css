@@ -1,32 +1,28 @@
+/* Staff Reservation - Green & White Theme */
 .admin-table-container {
   padding: 2rem;
   min-height: 100vh;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #f5f7fa 100%);
+  color: #1f2937;
 }
 
 .admin-table-container h3 {
   margin-bottom: 2rem;
-  color: #ffcc00;
+  color: #10b981;
   text-align: center;
   font-size: 2rem;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px #000000;
-}
-
-input .form-control {
-  background-color: white !important;
+  font-weight: 700;
 }
 
 .table {
   width: 100%;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #1f2937;
   border-collapse: separate;
   border-spacing: 0;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 12px rgba(255, 204, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
 }
 
 .table th,
@@ -37,10 +33,9 @@ input .form-control {
 }
 
 .table thead th {
-  background-color: #111111;
-  color: #ffcc00;
+  background-color: #10b981;
+  color: #ffffff;
   border: none;
-  border-bottom: 2px solid #ffcc00;
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 0.5px;
@@ -51,51 +46,51 @@ input .form-control {
 }
 
 .table tbody tr:hover {
-  background-color: #333333;
+  background-color: #f0fdf4;
 }
 
 .badge-success {
-  background-color: #28a745 !important;
+  background-color: #10b981 !important;
   padding: 0.4em 0.7em;
   border-radius: 12px;
   font-size: 0.75rem;
 }
 
 .badge-danger {
-  background-color: #dc3545 !important;
+  background-color: #ef4444 !important;
   padding: 0.4em 0.7em;
   border-radius: 12px;
   font-size: 0.75rem;
 }
 
 .badge-warning {
-  background-color: #ffc107 !important;
-  color: #000;
+  background-color: #f59e0b !important;
+  color: #fff;
   padding: 0.4em 0.7em;
   border-radius: 12px;
   font-size: 0.75rem;
 }
 
 .text-center .spinner-border {
-  color: #ffcc00;
+  color: #10b981;
 }
 
 .alert-danger {
-  background-color: #ff4d4d;
+  background-color: #ef4444;
   color: white;
   border: none;
   padding: 1rem;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
 }
 
 .alert-info {
-  background-color: #2a2a2a;
-  color: #ffcc00;
-  border: 1px solid #ffcc00;
+  background-color: #f0fdf4;
+  color: #10b981;
+  border: 2px solid #10b981;
   padding: 1rem;
-  border-radius: 8px;
-  font-weight: 500;
+  border-radius: 12px;
+  font-weight: 600;
 }
 
 .table .btn {
@@ -103,7 +98,7 @@ input .form-control {
 }
 
 .modal-header .btn-close {
-  background-color: #ffc107 !important;
+  background-color: #10b981 !important;
   border-radius: 50% !important;
   opacity: 1 !important;
 }

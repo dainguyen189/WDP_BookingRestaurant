@@ -4,6 +4,7 @@ const Reservation = require("../models/reservation");
 const emailService = require('../services/email.service');
 const sms = require("../services/sms.service");
 const cache = require('../util/cache');
+const { normalizeVietnamPhone } = require('../util/phoneNormalize');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 
@@ -95,26 +96,20 @@ exports.bookingOtpPhone = async (req, res) => {
   try {
     const { phone } = req.body;
 
-    // Enhanced validation
     if (!phone || typeof phone !== 'string') {
       return res.status(400).json({ message: 'Số điện thoại là bắt buộc.' });
     }
 
-    // Clean phone number (remove spaces, dashes, etc.)
-    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-    
-    // Validate phone number format
-    if (!/^[0-9]{9,15}$/.test(cleanPhone)) {
-      return res.status(400).json({ 
-        message: 'Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại từ 9-15 chữ số.' 
+    const normalizedPhone = normalizeVietnamPhone(phone);
+    if (!normalizedPhone) {
+      return res.status(400).json({
+        message: 'Số điện thoại không hợp lệ. Dùng dạng 09xxxxxxxx hoặc +84...',
       });
     }
 
-    // Generate OTP
     const otp = generateOTP(OTP_LENGTH);
-    const key = `phone_${cleanPhone}`;
+    const key = `phone_${normalizedPhone}`;
 
-    // Save to cache with phone prefix to avoid conflicts
     cache.set(key, otp, OTP_TTL_SECONDS);
 
     const checkCache = cache.get(key);
@@ -122,30 +117,43 @@ exports.bookingOtpPhone = async (req, res) => {
       throw new Error('Lưu OTP vào bộ nhớ đệm thất bại.');
     }
 
-    // Only log OTP in development mode
     if (process.env.NODE_ENV === 'development') {
-      console.log(`OTP for phone ${cleanPhone}: ${otp}`);
+      console.log(`OTP for phone ${normalizedPhone} (raw: ${phone.trim()}): ${otp}`);
     } else {
-      console.log(`OTP sent to phone ${cleanPhone}`);
+      console.log(`OTP sent to phone ${normalizedPhone}`);
     }
 
     const requestId = crypto.randomBytes(4).toString('hex');
 
-    // Basic env checks for SMS
     if (!process.env.ESMS_API_KEY || !process.env.ESMS_SECRET_KEY) {
+      if (process.env.NODE_ENV === 'development') {
+        console.warn(
+          '[DEV] ESMS chưa cấu hình — không gửi SMS thật. OTP:',
+          otp,
+          '| SĐT chuẩn:',
+          normalizedPhone
+        );
+        return res.status(201).json({
+          success: true,
+          message:
+            'Chế độ dev: OTP được in trong console backend (chưa cấu hình ESMS). Mã: xem terminal server.',
+        });
+      }
       console.error('ESMS_API_KEY/ESMS_SECRET_KEY is not configured');
-      return res.status(500).json({ message: 'SMS server chưa được cấu hình (ESMS_API_KEY/ESMS_SECRET_KEY).' });
+      return res.status(500).json({
+        message: 'SMS server chưa được cấu hình (ESMS_API_KEY/ESMS_SECRET_KEY).',
+      });
     }
 
     await sms.sendEsms({
-     phone: cleanPhone,
-     code: otp,
-     requestId
+      phone: normalizedPhone,
+      code: otp,
+      requestId,
     });
 
-    return res.status(201).json({ 
-      success: true, 
-      message: 'OTP đã được gửi đến số điện thoại của bạn.' 
+    return res.status(201).json({
+      success: true,
+      message: 'OTP đã được gửi đến số điện thoại của bạn.',
     });
 
   } catch (error) {
@@ -210,8 +218,11 @@ exports.createReservation = async (req, res) => {
       if (!phone) {
         return res.status(400).json({ message: "Số điện thoại là bắt buộc khi xác thực qua SMS." });
       }
-      const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-      key = `phone_${cleanPhone}`;
+      const normalizedPhone = normalizeVietnamPhone(phone);
+      if (!normalizedPhone) {
+        return res.status(400).json({ message: "Số điện thoại không hợp lệ." });
+      }
+      key = `phone_${normalizedPhone}`;
     } else {
       return res.status(400).json({ message: "Phương thức xác thực không hợp lệ." });
     }

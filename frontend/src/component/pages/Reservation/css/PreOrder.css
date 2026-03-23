@@ -1,0 +1,195 @@
+/* Tổng hợp món đặt trước — theme xanh lá + trắng */
+
+.preorder-summary-page {
+  min-height: calc(100vh - 56px);
+  /* Toàn bộ nền xanh lá nhạt — không pha xám #f5f7fa */
+  background: linear-gradient(
+    165deg,
+    #d1fae5 0%,
+    #ecfdf5 28%,
+    #f0fdf4 55%,
+    #ecfdf5 100%
+  );
+  padding-bottom: 2.5rem;
+}
+
+/* Tránh khối .booking-form-container (trắng) che hết nền xanh */
+.preorder-summary-page .booking-form-container {
+  padding-top: 1.5rem;
+  background-color: transparent !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.preorder-hero-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-left: 4px solid #10b981 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 24px rgba(16, 185, 129, 0.12) !important;
+}
+
+.preorder-hero-card .preorder-title {
+  color: #047857 !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.preorder-hero-card .preorder-date-line {
+  color: #374151 !important;
+  font-size: 1.05rem;
+}
+
+.preorder-hero-card .form-control {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 10px !important;
+}
+
+.preorder-hero-card .form-control:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+}
+
+.preorder-hero-card .form-floating > label {
+  color: #6b7280;
+}
+
+.preorder-stat-card {
+  background: #ffffff !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.08) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preorder-stat-card:hover {
+  border-color: #a7f3d0;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.14) !important;
+}
+
+.preorder-stat-card .card-title {
+  color: #059669 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.preorder-stat-card .preorder-stat-value-types {
+  color: #10b981 !important;
+  font-weight: 800 !important;
+  font-size: 1.35rem !important;
+}
+
+.preorder-stat-card .preorder-stat-value-qty {
+  color: #047857 !important;
+  font-weight: 800 !important;
+  font-size: 1.35rem !important;
+}
+
+.preorder-stat-card .preorder-stat-value-money {
+  color: #059669 !important;
+  font-weight: 800 !important;
+  font-size: 1.25rem !important;
+}
+
+.preorder-table-card {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1) !important;
+}
+
+.table.preorder-table {
+  margin-bottom: 0 !important;
+  color: #1f2937 !important;
+  background: #ffffff !important;
+}
+
+.table.preorder-table thead th {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+}
+
+.table.preorder-table tbody td {
+  background-color: #ffffff !important;
+  color: #1f2937 !important;
+  border-color: #e5e7eb !important;
+  vertical-align: middle;
+}
+
+.table.preorder-table.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: #f9fafb !important;
+  color: #1f2937 !important;
+}
+
+.table.preorder-table.table-hover tbody tr:hover > * {
+  background-color: #ecfdf5 !important;
+}
+
+.preorder-table .preorder-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #a7f3d0;
+}
+
+.preorder-badge-qty {
+  background: #fef3c7 !important;
+  color: #92400e !important;
+  font-weight: 700;
+  font-size: 0.875rem !important;
+  padding: 0.4em 0.65em;
+  border-radius: 8px;
+}
+
+.preorder-badge-price {
+  background: #dbeafe !important;
+  color: #1e40af !important;
+  font-weight: 600;
+  font-size: 0.875rem !important;
+  padding: 0.4em 0.65em;
+  border-radius: 8px;
+}
+
+.preorder-badge-total {
+  background: #d1fae5 !important;
+  color: #065f46 !important;
+  font-weight: 700;
+  font-size: 0.875rem !important;
+  padding: 0.4em 0.65em;
+  border-radius: 8px;
+}
+
+.preorder-empty-box {
+  background: #ffffff;
+  border: 2px dashed #a7f3d0;
+  border-radius: 14px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 12px rgba(16, 185, 129, 0.08);
+}
+
+.preorder-empty-box h5 {
+  color: #047857;
+  font-weight: 700;
+}
+
+.preorder-empty-box .preorder-empty-sub {
+  color: #6b7280 !important;
+  margin-bottom: 0;
+}
+
+.preorder-spinner.text-success {
+  color: #10b981 !important;
+}

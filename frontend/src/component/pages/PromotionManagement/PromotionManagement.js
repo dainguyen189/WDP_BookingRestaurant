@@ -63,7 +63,7 @@ const PromotionManagement = () => {
     start_date: '',
     end_date: '',
     promotion_type: 'general',
-    usage_limit: 1,
+    usage_limit: 0,
     is_active: true
   });
 
@@ -146,16 +146,37 @@ const PromotionManagement = () => {
     }
   };
 
+  const buildPromotionPayload = () => {
+    const ul = parseInt(String(formData.usage_limit), 10);
+    return {
+      code: formData.code,
+      description: formData.description,
+      discount_type: formData.discount_type,
+      discount_value: formData.discount_value,
+      points_required: parseInt(String(formData.points_required), 10) || 0,
+      min_order_value: parseFloat(String(formData.min_order_value)) || 0,
+      start_date: formData.start_date,
+      end_date: formData.end_date,
+      promotion_type: formData.promotion_type,
+      usage_limit: Number.isFinite(ul) && ul >= 0 ? ul : 0,
+      is_active: formData.is_active,
+    };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
+      const payload = buildPromotionPayload();
 
       if (editingPromotion) {
-        await axios.put(`http://localhost:8080/api/promotions/update/${editingPromotion._id}`, formData);
+        await axios.put(
+          `http://localhost:8080/api/promotions/update/${editingPromotion._id}`,
+          payload
+        );
         setSuccess('Cập nhật khuyến mãi thành công');
       } else {
-        await axios.post('http://localhost:8080/api/promotions/create', formData);
+        await axios.post('http://localhost:8080/api/promotions/create', payload);
         setSuccess('Tạo khuyến mãi thành công');
       }
 
@@ -199,7 +220,10 @@ const PromotionManagement = () => {
       start_date: promotion.start_date ? new Date(promotion.start_date).toISOString().split('T')[0] : '',
       end_date: promotion.end_date ? new Date(promotion.end_date).toISOString().split('T')[0] : '',
       promotion_type: promotion.promotion_type || 'general',
-      usage_limit: promotion.usage_limit || 1,
+      usage_limit:
+        promotion.usage_limit != null && Number(promotion.usage_limit) > 0
+          ? Number(promotion.usage_limit)
+          : 0,
       is_active: promotion.is_active
     });
     setShowModal(true);
@@ -216,10 +240,12 @@ const PromotionManagement = () => {
       start_date: '',
       end_date: '',
       promotion_type: 'general',
-      usage_limit: 1,
+      usage_limit: 0,
       is_active: true
     });
   };
+
+  const isUsageUnlimited = (limit) => limit == null || Number(limit) === 0;
 
   const getStatusBadge = (promotion) => {
     const now = new Date();
@@ -450,13 +476,21 @@ const PromotionManagement = () => {
                           <td>
                             <div className="usage-info">
                               <div className="usage-count">
-                                {promotion.used_count || 0} / {promotion.usage_limit || '∞'}
+                                {Number(promotion.used_count) || 0} /{' '}
+                                {isUsageUnlimited(promotion.usage_limit)
+                                  ? '∞'
+                                  : Number(promotion.usage_limit)}
                               </div>
                               <div className="usage-bar">
                                 <div
                                   className="usage-fill"
                                   style={{
-                                    width: `${promotion.usage_limit ? (promotion.used_count / promotion.usage_limit) * 100 : 0}%`
+                                    width: `${(() => {
+                                      const lim = Number(promotion.usage_limit) || 0;
+                                      const used = Number(promotion.used_count) || 0;
+                                      if (lim <= 0) return 0;
+                                      return Math.min(100, (used / lim) * 100);
+                                    })()}%`
                                   }}
                                 ></div>
                               </div>
@@ -505,7 +539,7 @@ const PromotionManagement = () => {
                       {[...Array(totalPages)].map((_, index) => (
                         <Pagination.Item
                           key={index + 1}
-                        active  ={index + 1 === currentPage}
+                          active={index + 1 === currentPage}
                           onClick={() => setCurrentPage(index + 1)}
                         >
                           {index + 1}

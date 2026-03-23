@@ -262,11 +262,7 @@ function OrdersList() {
   return (
     <>
       <CashierHeader />
-    <div style={{ 
-      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
-      minHeight: '100vh',
-      padding: '20px'
-    }}>
+    <div className="orders-list-page">
       <div className="container">
         <div className="main-card">
           <h3 className="main-title">

@@ -84,10 +84,16 @@ function Reservation() {
     }
   }, [showOtpModal]);
 
+  const parseLocalYmd = (dateStr) => {
+    if (!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return null;
+    const [y, m, d] = dateStr.split("-").map(Number);
+    return new Date(y, m - 1, d);
+  };
+
   const validate = () => {
     const errs = {};
     const phoneRegex = /^0(3|5|7|8|9)[0-9]{8,9}$/;
-    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    const timeRegex = /^([01]\d|2[0-3]):[0-5]\d$/;
 
     if (!formData.phone && !formData.email) errs.contact = 'Cần cung cấp số điện thoại hoặc email';
     if (formData.phone && !phoneRegex.test(formData.phone)) errs.phone = 'Số điện thoại không hợp lệ';
@@ -96,41 +102,51 @@ function Reservation() {
     if (!formData.reservationDate) {
       errs.reservationDate = 'Ngày là bắt buộc';
     } else {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const selectedDate = new Date(formData.reservationDate);
-      selectedDate.setHours(0, 0, 0, 0);
-
-      if (selectedDate < today) {
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const selectedDay = parseLocalYmd(formData.reservationDate);
+      if (!selectedDay) {
         errs.reservationDate = 'Ngày không hợp lệ';
+      } else {
+        selectedDay.setHours(0, 0, 0, 0);
+        if (selectedDay < todayStart) {
+          errs.reservationDate = 'Ngày không hợp lệ';
+        }
       }
     }
 
-    if (!timeRegex.test(formData.reservationTime)) {
-      errs.reservationTime = 'Giờ không hợp lệ (HH:mm)';
+    const timeStr = (formData.reservationTime || "").trim();
+    if (!timeStr) {
+      errs.reservationTime = "Vui lòng chọn giờ đặt bàn";
+    } else if (!timeRegex.test(timeStr)) {
+      errs.reservationTime = "Giờ không hợp lệ (HH:mm)";
     } else {
-      const [hours, minutes] = formData.reservationTime.split(':').map(Number);
+      const [hs, ms] = timeStr.split(":");
+      const hours = Number(hs);
+      const minutes = Number(ms);
 
-      // Enforce 9AM to 9PM time slot
       if (hours < 9 || (hours === 21 && minutes > 0) || hours > 21) {
-        errs.reservationTime = 'Giờ chỉ được phép từ 09:00 đến 21:00';
+        errs.reservationTime = "Giờ chỉ được phép từ 09:00 đến 21:00";
       } else {
-        const selectedDate = new Date(formData.reservationDate);
-        const reservationDateTime = new Date(selectedDate);
-        reservationDateTime.setHours(hours, minutes, 0, 0);
+        const requiredHoursAhead = 3;
+        const reservationDateTime = parseLocalYmd(formData.reservationDate);
+        if (reservationDateTime) {
+          reservationDateTime.setHours(hours, minutes, 0, 0);
+          const now = new Date();
+          const minBookingTime = new Date(
+            now.getTime() + requiredHoursAhead * 60 * 60 * 1000
+          );
 
-        const now = new Date();
-        const requiredTime = 3
-        const fiveHoursLater = new Date(now.getTime() + requiredTime * 60 * 60 * 1000);
-
-        // If selected date is today, check the time rule
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        selectedDate.setHours(0, 0, 0, 0);
-
-        if (selectedDate.getTime() === today.getTime()) {
-          if (reservationDateTime < fiveHoursLater) {
-            errs.reservationTime = `Thời gian phải ít nhất ${requiredTime} tiếng kể từ bây giờ`;
+          const todayStart = new Date();
+          todayStart.setHours(0, 0, 0, 0);
+          const selDay = parseLocalYmd(formData.reservationDate);
+          if (selDay) {
+            selDay.setHours(0, 0, 0, 0);
+            if (selDay.getTime() === todayStart.getTime()) {
+              if (reservationDateTime < minBookingTime) {
+                errs.reservationTime = `Thời gian phải ít nhất ${requiredHoursAhead} tiếng kể từ bây giờ`;
+              }
+            }
           }
         }
       }
@@ -142,9 +158,53 @@ function Reservation() {
     return Object.keys(errs).length === 0;
   };
 
+  const pad2 = (n) => String(Number(n)).padStart(2, "0");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const bookingHours24 = Array.from({ length: 13 }, (_, i) => pad2(i + 9));
+
+  const timeParts = formData.reservationTime.split(":");
+  const resH = timeParts[0] || "";
+  const resM = timeParts[1] || "";
+  const bookingMinutes =
+    resH === "21" ? ["00"] : Array.from({ length: 60 }, (_, i) => pad2(i));
+
+  const clearReservationTimeError = () => {
+    setErrors(prev => {
+      if (!prev.reservationTime) return prev;
+      const next = { ...prev };
+      delete next.reservationTime;
+      return next;
+    });
+  };
+
+  const handleBookingHourChange = (e) => {
+    const hour = e.target.value;
+    clearReservationTimeError();
+    if (!hour) {
+      setFormData(prev => ({ ...prev, reservationTime: "" }));
+      return;
+    }
+    const prevMin = formData.reservationTime.split(":")[1];
+    const minute =
+      hour === "21" ? "00" : prevMin && /^[0-5]\d$/.test(prevMin) ? prevMin : "00";
+    setFormData(prev => ({ ...prev, reservationTime: `${hour}:${minute}` }));
+  };
+
+  const handleBookingMinuteChange = (e) => {
+    const minute = e.target.value;
+    const hour = formData.reservationTime.split(":")[0];
+    if (!hour) return;
+    clearReservationTimeError();
+    if (!minute) {
+      setFormData(prev => ({ ...prev, reservationTime: `${hour}:00` }));
+      return;
+    }
+    setFormData(prev => ({ ...prev, reservationTime: `${hour}:${minute}` }));
   };
 
   const handleSubmit = async (e) => {
@@ -179,8 +239,19 @@ function Reservation() {
         setOtpSent(true);
         setResendTimer(60);
       } else {
-        const data = await res.json();
-        setOtpStatus(data.message || 'Lỗi khi gửi OTP');
+        let data = {};
+        try {
+          data = await res.json();
+        } catch {
+          /* ignore */
+        }
+        const firstErr = Array.isArray(data.errors) ? data.errors[0] : null;
+        setOtpStatus(
+          data.message ||
+            firstErr?.msg ||
+            firstErr?.message ||
+            'Lỗi khi gửi OTP'
+        );
       }
     } catch (error) {
       setOtpStatus('Lỗi kết nối tới máy chủ');
@@ -308,15 +379,41 @@ function Reservation() {
                 <Form.Label className="booking-field-label">
                   Giờ đặt bàn <span className="text-danger">*</span>
                 </Form.Label>
-                <Form.Control
-                  type="time"
-                  name="reservationTime"
-                  value={formData.reservationTime}
-                  isInvalid={!!errors.reservationTime}
-                  onChange={handleChange}
-                  lang="en-GB"
-                />
-                <Form.Control.Feedback type="invalid">{errors.reservationTime}</Form.Control.Feedback>
+                <div className="booking-time-24h">
+                  <Form.Select
+                    aria-label="Giờ theo định dạng 24h (09–21)"
+                    value={resH}
+                    onChange={handleBookingHourChange}
+                    isInvalid={!!errors.reservationTime}
+                  >
+                    <option value="">— Giờ —</option>
+                    {bookingHours24.map(h => (
+                      <option key={h} value={h}>
+                        {h} giờ
+                      </option>
+                    ))}
+                  </Form.Select>
+                  <span className="booking-time-sep" aria-hidden>
+                    :
+                  </span>
+                  <Form.Select
+                    aria-label="Phút"
+                    value={resH ? resM : ""}
+                    onChange={handleBookingMinuteChange}
+                    disabled={!resH}
+                    isInvalid={!!errors.reservationTime}
+                  >
+                    <option value="">— Phút —</option>
+                    {bookingMinutes.map(m => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </div>
+                {errors.reservationTime ? (
+                  <div className="text-danger small mt-1">{errors.reservationTime}</div>
+                ) : null}
               </Form.Group>
             </Col>
           </Row>

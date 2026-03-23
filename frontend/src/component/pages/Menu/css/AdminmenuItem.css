@@ -110,20 +110,49 @@
   border-radius: 10px;
 }
 
-.menu-table button {
-  margin: 2px;
-  padding: 6px 12px;
-  background-color: #10b981;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
+/* Nhóm nút hành động trong bảng */
+.menu-table-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.menu-table button:hover {
-  background-color: #059669;
+.menu-table .btn-menu-edit,
+.menu-table .btn-menu-delete {
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  min-width: 72px;
+}
+
+.menu-table .btn-menu-edit {
+  background: #ffffff;
+  color: #047857;
+  border: 2px solid #10b981;
+}
+
+.menu-table .btn-menu-edit:hover {
+  background: #ecfdf5;
+  border-color: #059669;
+  color: #065f46;
+}
+
+.menu-table .btn-menu-delete {
+  background: #ffffff;
+  color: #b91c1c;
+  border: 2px solid #f87171;
+}
+
+.menu-table .btn-menu-delete:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #991b1b;
 }
 
 .pagination {
@@ -134,26 +163,29 @@
 }
 
 .pagination button {
-  padding: 8px 14px;
-  border: 2px solid #e5e7eb;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 2px solid #d1d5db;
   background-color: #ffffff;
   cursor: pointer;
-  border-radius: 8px;
-  color: #4b5563;
-  font-weight: 500;
+  border-radius: 10px;
+  color: #374151;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 
-.pagination button:hover {
-  background-color: #10b981;
+.pagination button:hover:not(.active) {
+  background-color: #f0fdf4;
   border-color: #10b981;
-  color: #ffffff;
+  color: #047857;
 }
 
 .pagination .active {
-  background-color: #10b981;
-  color: white;
-  border-color: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
 }
 
 .admin-menu-wrapper {
@@ -202,21 +234,115 @@
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-.menu-form button {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
-  padding: 10px 20px;
-  border: none;
+/* Upload ảnh — không dùng Bootstrap btn-primary (xanh dương) */
+.btn-upload-image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 20px;
   border-radius: 10px;
   cursor: pointer;
-  font-weight: 600;
-  width: 100%;
-  transition: all 0.3s ease;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  border: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25);
 }
 
-.menu-form button:hover {
+.btn-upload-image:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.4);
+  color: #ffffff !important;
+}
+
+/* Checkbox theo tông xanh lá */
+.menu-form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  max-width: 100%;
+}
+
+.menu-form-checkbox {
+  width: 1.15rem !important;
+  height: 1.15rem;
+  margin: 0 !important;
+  flex-shrink: 0;
+  cursor: pointer;
+  accent-color: #10b981;
+  border-radius: 4px;
+}
+
+.menu-form-check .form-check-label {
+  margin: 0;
+  cursor: pointer;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Khối nút: chính (xanh) vs phụ (viền) */
+.menu-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.menu-form .btn-menu-primary {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.menu-form .btn-menu-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.45);
+}
+
+.menu-form .btn-menu-primary:disabled {
+  background: #9ca3af;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.85;
+}
+
+.menu-form .btn-menu-secondary {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4b5563;
+  background: #ffffff;
+  border: 2px solid #d1d5db;
+  transition: all 0.2s ease;
+}
+
+.menu-form .btn-menu-secondary:hover:not(:disabled) {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #1f2937;
+}
+
+.menu-form .btn-menu-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .create-btn {
@@ -236,8 +362,8 @@
   box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
 }
 
-.submit-button::disabled {
-  background-color: #d1d5db;
+.submit-button:disabled {
+  background: #9ca3af !important;
   cursor: not-allowed;
 }
 

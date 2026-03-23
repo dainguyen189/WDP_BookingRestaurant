@@ -1,68 +1,263 @@
-.filters-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  align-items: center;
+/* Chef - Green & White Theme */
+.menu-page-container {
+  padding: 80px 20px 40px;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  color: #1f2937;
 }
 
-.filter-input {
-  padding: 8px;
+.menu-page-container h2 {
+  color: #10b981;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.form input,
+.form select {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: all 0.3s ease;
 }
 
-.order-items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.form input:focus,
+.form select:focus {
+  border-color: #10b981;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
-.order-item-card {
-  border: 1px solid #ddd;
-  padding: 1rem;
+.form button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+.search-input {
+  width: 300px;
+  height: 44px;
+  font-size: 16px;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0 16px;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #10b981;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.menu-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.menu-table th,
+.menu-table td {
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.menu-table th {
+  background-color: #10b981;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.menu-table td {
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+.menu-table tr:hover td {
+  background-color: #f9fafb;
+}
+
+.menu-table .item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.menu-table button {
+  margin: 2px;
+  padding: 6px 12px;
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.order-item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.order-item-body p {
-  margin: 4px 0;
-}
-
-.order-item-actions {
-  margin-top: 10px;
-  display: flex;
-  gap: 1rem;
-}
-.status-tabs {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 1rem;
-}
-
-.tab-button {
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  background-color: #f5f5f5;
-  border-radius: 4px;
   cursor: pointer;
   font-weight: 500;
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
 
-.tab-button:hover {
-  background-color: #e0e0e0;
+.menu-table button:hover {
+  background-color: #059669;
 }
 
-.tab-button.active {
-  background-color: #007bff;
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: 2px solid #e5e7eb;
+  background-color: #ffffff;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #4b5563;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.pagination .active {
+  background-color: #10b981;
   color: white;
-  border-color: #007bff;
+  border-color: #10b981;
 }
 
+.admin-menu-wrapper {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.menu-list {
+  flex: 2;
+}
+
+.menu-form {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 400px;
+  color: #1f2937;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.menu-form h4 {
+  color: #10b981;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.menu-form input,
+.menu-form select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.menu-form input:focus,
+.menu-form select:focus {
+  border-color: #10b981;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.menu-form button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.menu-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+.create-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+  .admin-menu-wrapper {
+    flex-direction: column;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .menu-table th,
+  .menu-table td {
+    font-size: 0.9rem;
+    padding: 8px 4px;
+  }
+
+  .item-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .create-btn {
+    width: 100%;
+  }
+}

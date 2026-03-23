@@ -56,6 +56,25 @@
   margin-bottom: 0.35rem;
 }
 
+.booking-time-24h {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.booking-time-24h .form-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.booking-time-sep {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #6b7280;
+  line-height: 1;
+  user-select: none;
+}
+
 .booking-section-divider {
   display: flex;
   align-items: center;
