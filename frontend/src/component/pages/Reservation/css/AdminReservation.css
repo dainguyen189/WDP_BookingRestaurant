@@ -113,7 +113,9 @@
   color: #047857 !important;
 }
 
-.reservation-admin-page .reservation-pagination .btn-outline-success:hover:not(:disabled) {
+.reservation-admin-page
+  .reservation-pagination
+  .btn-outline-success:hover:not(:disabled) {
   background: #10b981 !important;
   border-color: #10b981 !important;
   color: #ffffff !important;
@@ -121,6 +123,20 @@
 
 .reservation-admin-page .reservation-pagination .btn-outline-success:disabled {
   opacity: 0.45;
+}
+
+/* Modal chi tiết đặt bàn — căn giữa màn hình, tránh lệch một bên */
+.reservation-admin-detail-modal.modal-dialog {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: calc(100% - 1.5rem);
+  max-width: min(960px, calc(100vw - 1.5rem));
+}
+
+.modal.reservation-admin-detail-modal-root .modal-content {
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 .reservation-empty-row {
