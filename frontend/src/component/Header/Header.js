@@ -6,8 +6,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useOrder } from "../../context/OrderContext";
 import CartDrawer from "../pages/Order/CartDrawer";
 import { useLocation } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './css/Header.css';
+
+const readStoredUser = () => {
+    try {
+        const raw = localStorage.getItem("user");
+        if (!raw) return null;
+        return JSON.parse(raw);
+    } catch {
+        return null;
+    }
+};
 
 const Header = () => {
     const navigate = useNavigate();
@@ -15,15 +27,25 @@ const Header = () => {
     const searchParams = new URLSearchParams(location.search);
     const sessionId = searchParams.get("sessionId");
 
-
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = readStoredUser();
     const { cartItems } = useOrder();
     const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-
     const handleLogout = () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         navigate('/login');
+    };
+
+    const handleViewMenuClick = (e) => {
+        e.preventDefault();
+        const token = localStorage.getItem("token");
+        if (!user || !token) {
+            toast.warning("Vui lòng đăng nhập để xem menu.");
+            navigate("/login");
+            return;
+        }
+        navigate("/menu");
     };
     return (
         <>
@@ -40,7 +62,13 @@ const Header = () => {
                             <Nav.Link href="/home" className="nav-link">Home</Nav.Link>
                             <Nav.Link href="/booking" className="nav-link">My Bookings</Nav.Link>
                             <Nav.Link href="/aboutus" className="nav-link">About Us</Nav.Link>
-                            <Nav.Link as={Link} to="/menu" className="nav-link">Xem menu</Nav.Link>
+                            <Nav.Link
+                                href="#"
+                                className="nav-link"
+                                onClick={handleViewMenuClick}
+                            >
+                                Xem menu
+                            </Nav.Link>
 
                             {sessionId && (
                                 <>
@@ -107,6 +135,7 @@ const Header = () => {
 
             {/* ✅ Drawer */}
             <CartDrawer isOpen={isDrawerOpen} onClose={() => setDrawerOpen(false)} />
+            <ToastContainer position="top-center" autoClose={3200} hideProgressBar={false} />
         </>
 
     );

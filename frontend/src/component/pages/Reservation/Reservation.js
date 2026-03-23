@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container, Form, Button, Row, Col, Alert, FloatingLabel, Modal
+  Container, Form, Button, Row, Col, Alert, Modal
 } from 'react-bootstrap';
 import Header from '../../Header/Header';
 import './css/Reservation.css';
@@ -238,76 +238,148 @@ function Reservation() {
   return (
     <>
       <Header />
-      <Container className="mt-4 booking-form-container">
-        <h3 className="mb-4 text-center" style={{ color: "#ffc107" }}>Đặt bàn</h3>
+      <div className="booking-page-shell">
+      <Container className="py-4 mb-0 booking-form-container booking-form-container--narrow">
+        <h3 className="booking-page-title mb-2 text-center">Đặt bàn</h3>
+        <p className="booking-page-subtitle text-center text-muted mb-4">
+          Điền thông tin bên dưới để giữ chỗ tại nhà hàng
+        </p>
 
         {success && <Alert variant="success">{success}</Alert>}
         {errors.api && <Alert variant="danger">{errors.api}</Alert>}
 
-        <Form onSubmit={handleSubmit} className="p-4 shadow-sm rounded" style={{ backgroundColor: "#2a2a2a" }}>
-          <Row className="mb-3">
+        <Form onSubmit={handleSubmit} className="booking-form-card">
+          <Row className="g-3 mb-1">
             <Col md={6}>
-              <FloatingLabel controlId="floatingName" label="Tên khách hàng *">
-                <Form.Control type="input" name="name" value={formData.name} isInvalid={!!errors.name} onChange={handleChange} />
+              <Form.Group controlId="bookingName">
+                <Form.Label className="booking-field-label">
+                  Tên khách hàng <span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  value={formData.name}
+                  isInvalid={!!errors.name}
+                  onChange={handleChange}
+                  placeholder="Nhập họ tên"
+                />
                 <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-              </FloatingLabel>
+              </Form.Group>
             </Col>
 
             <Col md={6}>
-              <FloatingLabel controlId="floatingGuests" label="Số lượng khách *">
-                <Form.Control type="number" name="guestCount" min="1" value={formData.guestCount} isInvalid={!!errors.guestCount} onChange={handleChange} />
+              <Form.Group controlId="bookingGuests">
+                <Form.Label className="booking-field-label">
+                  Số lượng khách <span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="number"
+                  name="guestCount"
+                  min="1"
+                  value={formData.guestCount}
+                  isInvalid={!!errors.guestCount}
+                  onChange={handleChange}
+                />
                 <Form.Control.Feedback type="invalid">{errors.guestCount}</Form.Control.Feedback>
-              </FloatingLabel>
+              </Form.Group>
             </Col>
           </Row>
 
-          <Row className="mb-3">
+          <Row className="g-3 mb-1">
             <Col md={6}>
-              <FloatingLabel controlId="floatingDate" label="Ngày đặt bàn *">
-                <Form.Control type="date" name="reservationDate" value={formData.reservationDate} isInvalid={!!errors.reservationDate} onChange={handleChange} />
+              <Form.Group controlId="bookingDate">
+                <Form.Label className="booking-field-label">
+                  Ngày đặt bàn <span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="date"
+                  name="reservationDate"
+                  value={formData.reservationDate}
+                  isInvalid={!!errors.reservationDate}
+                  onChange={handleChange}
+                />
                 <Form.Control.Feedback type="invalid">{errors.reservationDate}</Form.Control.Feedback>
-              </FloatingLabel>
+              </Form.Group>
             </Col>
 
             <Col md={6}>
-              <FloatingLabel controlId="floatingTime" label="Giờ đặt bàn *">
-                <Form.Control type="time" name="reservationTime" value={formData.reservationTime} isInvalid={!!errors.reservationTime} onChange={handleChange} lang="en-GB" />
+              <Form.Group controlId="bookingTime">
+                <Form.Label className="booking-field-label">
+                  Giờ đặt bàn <span className="text-danger">*</span>
+                </Form.Label>
+                <Form.Control
+                  type="time"
+                  name="reservationTime"
+                  value={formData.reservationTime}
+                  isInvalid={!!errors.reservationTime}
+                  onChange={handleChange}
+                  lang="en-GB"
+                />
                 <Form.Control.Feedback type="invalid">{errors.reservationTime}</Form.Control.Feedback>
-              </FloatingLabel>
+              </Form.Group>
             </Col>
           </Row>
 
-          <div className="d-flex align-items-center mt-4" style={{ color: "#ffc107" }}>
-            <hr className="flex-grow-1 mx-1" />
-            <span>Email hoặc số điện thoại <span style={{ color: 'red' }}>*</span></span>
-            <hr className="flex-grow-1 mx-1" />
+          <div className="booking-section-divider mt-4 mb-3">
+            <hr className="flex-grow-1" />
+            <span>
+              Email hoặc số điện thoại <span className="text-danger">*</span>
+            </span>
+            <hr className="flex-grow-1" />
           </div>
 
-          <div className="d-flex align-items-center my-2" style={{ color: "#ffc107" }}>
-            <span style={{ color: 'red', margin: '0 auto' }}>{errors.contact}</span>
-          </div>
+          {errors.contact && (
+            <div className="text-center text-danger small mb-3">{errors.contact}</div>
+          )}
 
-          <Row className="mb-3">
+          <Row className="g-3 mb-2">
             <Col md={6}>
-              <FloatingLabel controlId="floatingPhone" label="Số điện thoại">
-                <Form.Control type="input" name="phone" value={formData.phone} isInvalid={!!errors.phone} onChange={handleChange} />
+              <Form.Group controlId="bookingPhone">
+                <Form.Label className="booking-field-label">Số điện thoại</Form.Label>
+                <Form.Control
+                  type="tel"
+                  inputMode="numeric"
+                  name="phone"
+                  autoComplete="tel"
+                  value={formData.phone}
+                  isInvalid={!!errors.phone}
+                  onChange={handleChange}
+                  placeholder="Ví dụ: 0912345678"
+                />
                 <Form.Control.Feedback type="invalid">{errors.phone}</Form.Control.Feedback>
-              </FloatingLabel>
+              </Form.Group>
             </Col>
             <Col md={6}>
-              <FloatingLabel controlId="floatingEmail" label="Email">
-                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} />
-              </FloatingLabel>
+              <Form.Group controlId="bookingEmail">
+                <Form.Label className="booking-field-label">Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="email@example.com"
+                />
+              </Form.Group>
             </Col>
           </Row>
 
-          <div className="text-center mt-4">
-            <Button variant="outline-warning" onClick={() => setShowDishModal(true)} className="">Chọn món đặt trước</Button>
-            <br />
-            <Button variant="primary" type="submit" size="lg">Đặt bàn</Button>
+          <div className="booking-actions d-flex flex-wrap gap-3 justify-content-center align-items-center mt-4 pt-3">
+            <Button
+              type="button"
+              variant="outline-success"
+              className="btn-booking-outline"
+              onClick={() => setShowDishModal(true)}
+            >
+              Chọn món đặt trước
+            </Button>
+            <Button type="submit" variant="success" className="btn-booking-primary" size="lg">
+              Đặt bàn
+            </Button>
           </div>
         </Form>
       </Container>
+      </div>
 
       {/* /OTP MODAL/ */}
       <Modal show={showOtpModal} onHide={() => setShowOtpModal(false)} centered>
