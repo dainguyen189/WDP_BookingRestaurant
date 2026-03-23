@@ -1,7 +1,7 @@
 import { FloatingLabel, Form } from 'react-bootstrap';
 
 const OrderFilters = ({ tableFilter, setTableFilter, dateFilter, setDateFilter }) => (
-  <Form className="p-4 shadow-sm rounded" style={{ backgroundColor: "#2a2a2a" }}>
+  <Form className="staff-order-filters shadow-sm rounded">
     <FloatingLabel controlId="table" label="Số bàn">
       <Form.Control type="input" value={tableFilter} onChange={(e) => setTableFilter(e.target.value)} />
     </FloatingLabel>

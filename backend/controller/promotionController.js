@@ -12,6 +12,13 @@ const getAllPromotions = async (req, res, next) => {
     }
 }
 
+const parseUsageLimit = (raw) => {
+    if (raw === undefined || raw === null || raw === '') return 0;
+    const n = parseInt(String(raw), 10);
+    if (isNaN(n) || n < 0) return 0;
+    return n;
+};
+
 const createPromotion = async (req, res, next) => {
     try {
         const {
@@ -22,11 +29,14 @@ const createPromotion = async (req, res, next) => {
             points_required,
             min_order_value,
             start_date,
-            end_date
+            end_date,
+            promotion_type,
+            usage_limit,
+            is_active,
         } = req.body;
 
 
-        if (!code || !description || !discount_type || !discount_value || !start_date || !end_date) {
+        if (!code || !description || !discount_type || discount_value === undefined || discount_value === '' || !start_date || !end_date) {
             return next(createError(400, "Missing required fields"));
         }
 
@@ -60,16 +70,21 @@ const createPromotion = async (req, res, next) => {
             return next(createError(400, "End date must be after start date"));
         }
 
+        const minVal = parseFloat(min_order_value) || 0;
         const newPromotion = new Promotion({
             code: code.toUpperCase(),
             description,
             discount_type,
             discount_value: discountVal,
-            points_required: parseInt(points_required) || 0,
-            min_order_value: parseFloat(min_order_value) || 0,
+            points_required: parseInt(points_required, 10) || 0,
+            min_order_value: minVal,
+            min_order_amount: minVal,
             start_date: startDate,
             end_date: endDate,
-            is_active: true,
+            is_active: is_active !== undefined ? Boolean(is_active) : true,
+            usage_limit: parseUsageLimit(usage_limit),
+            used_count: 0,
+            promotion_type: ['general', 'points_based'].includes(promotion_type) ? promotion_type : 'general',
         });
 
         const savedPromotion = await newPromotion.save();
@@ -87,31 +102,90 @@ const createPromotion = async (req, res, next) => {
 const updatePromotion = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { code, description, discount, startDate, endDate, pointRequired, minOrderValue, is_active } = req.body;
+        const {
+            code,
+            description,
+            discount_type,
+            discount_value,
+            points_required,
+            min_order_value,
+            start_date,
+            end_date,
+            is_active,
+            usage_limit,
+            promotion_type,
+        } = req.body;
+
+        const existing = await Promotion.findById(id);
+        if (!existing) {
+            return next(createError(404, "Promotion not found"));
+        }
+
+        if (!code || !description || !discount_type || discount_value === undefined || discount_value === '' || !start_date || !end_date) {
+            return next(createError(400, "Missing required fields"));
+        }
+
+        const discountVal = parseFloat(discount_value);
+        if (isNaN(discountVal) || discountVal <= 0) {
+            return next(createError(400, "Invalid discount value"));
+        }
+        if (discount_type === 'percentage' && discountVal > 100) {
+            return next(createError(400, "Percentage discount cannot exceed 100%"));
+        }
+
+        const codeUpper = String(code).toUpperCase();
+        if (codeUpper !== existing.code) {
+            const dup = await Promotion.findOne({ code: codeUpper, _id: { $ne: id } });
+            if (dup) {
+                return next(createError(400, "Promotion code already exists"));
+            }
+        }
+
+        const startDateObj = new Date(start_date);
+        const endDateObj = new Date(end_date);
+        if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+            return next(createError(400, "Invalid date format"));
+        }
+        if (startDateObj >= endDateObj) {
+            return next(createError(400, "End date must be after start date"));
+        }
+
+        const minVal = parseFloat(min_order_value) || 0;
+        const newUsageLimit = parseUsageLimit(usage_limit);
+        if (newUsageLimit > 0 && (existing.used_count || 0) > newUsageLimit) {
+            return next(createError(400, "Giới hạn lượt dùng không được nhỏ hơn số lượt đã sử dụng"));
+        }
 
         const updatedPromotion = await Promotion.findByIdAndUpdate(
             id,
             {
-                code: code.toUpperCase(),
+                code: codeUpper,
                 description,
-                discount_type: discount.type,
-                discount_value: discount.value,
-                points_required: pointRequired,
-                min_order_value: minOrderValue,
-                start_date: new Date(startDate),
-                end_date: new Date(endDate),
-                is_active: is_active
+                discount_type,
+                discount_value: discountVal,
+                points_required: parseInt(points_required, 10) || 0,
+                min_order_value: minVal,
+                min_order_amount: minVal,
+                start_date: startDateObj,
+                end_date: endDateObj,
+                is_active: Boolean(is_active),
+                usage_limit: newUsageLimit,
+                promotion_type: ['general', 'points_based'].includes(promotion_type) ? promotion_type : 'general',
             },
-            { new: true }
+            { new: true, runValidators: true }
         );
 
-        if (!updatedPromotion) {
-            return next(createError(404, "Promotion not found"));
-        }
-
-        res.status(200).json(updatedPromotion);
+        res.status(200).json({
+            success: true,
+            message: "Promotion updated successfully",
+            data: updatedPromotion,
+        });
     } catch (err) {
-        next(createError(500, "Failed to update promotion"));
+        console.error("Error updating promotion:", err);
+        if (err.code === 11000) {
+            return next(createError(400, "Promotion code already exists"));
+        }
+        next(createError(500, err.message || "Failed to update promotion"));
     }
 }
 

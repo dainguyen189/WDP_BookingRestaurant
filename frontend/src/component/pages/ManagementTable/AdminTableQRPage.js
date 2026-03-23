@@ -65,48 +65,78 @@ function AdminTableQRPage() {
 
   const closeQRModal = () => setSelectedSessionId(null);
 
+  const statusLabel = (status) => {
+    const s = String(status || '').toLowerCase();
+    if (s === 'available') return 'Trống';
+    if (s === 'occupied' || s === 'busy') return 'Đang dùng';
+    return status || '—';
+  };
+
+  const statusBadgeClass = (status) => {
+    const s = String(status || '').toLowerCase();
+    if (s === 'available') return 'table-status-badge table-status-available';
+    if (s === 'occupied' || s === 'busy') return 'table-status-badge table-status-busy';
+    return 'table-status-badge table-status-default';
+  };
+
   return (
     <>
       <AdminHeader />
 
-      <Container className="mt-4">
-        <Row className="align-items-center mb-4">
-          <Col><h2>Quản lý bàn</h2></Col>
-          <Col className="text-end">
-            <Button variant="primary" onClick={() => setShowAddTableModal(true)}>
-              Tạo bàn
-            </Button>
-          </Col>
-        </Row>
+      <div className="admin-table-page">
+        <Container className="py-4 pb-5">
+          <Row className="align-items-center mb-4 table-management-header">
+            <Col xs={12} md={6}>
+              <h1 className="table-management-title">Quản lý bàn</h1>
+              <p className="table-management-subtitle">Danh sách bàn nhà hàng — chỉnh sửa nhanh, giao diện sáng</p>
+            </Col>
+            <Col xs={12} md={6} className="text-md-end mt-3 mt-md-0">
+              <Button
+                className="btn-create-table"
+                onClick={() => setShowAddTableModal(true)}
+              >
+                + Tạo bàn
+              </Button>
+            </Col>
+          </Row>
 
-        <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-          {tables.map(table => {
-            const currentSessionId = activeSessions[table._id];
-            return (
-              <Col key={table._id}>
-                <Card className="h-100" style={{ backgroundColor: '#101010' }}>
-                  <Card.Body>
-                    <Card.Title style={{ color: 'white' }}>
-                      <h2>
+          <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+            {tables.map(table => {
+              const currentSessionId = activeSessions[table._id];
+              return (
+                <Col key={table._id}>
+                  <Card className="table-management-card h-100">
+                    <Card.Body className="d-flex flex-column">
+                      <div className="table-card-accent" aria-hidden />
+                      <Card.Title as="div" className="table-card-title">
                         Bàn {table.tableNumber}
-                      </h2>
-                    </Card.Title>
-                    <Card.Text style={{ color: 'white' }}>
-                      Số ghế: {table.capacity}<br />
-                      Trạng thái: {table.status}
-                    </Card.Text >
-                    {currentSessionId ? (
-                      <Button
-                        variant="danger"
-                        disabled={true}
-                      >
-                        {loadingTableId === table._id ? 'Xóa...' : 'Xóa'}
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="danger"
-                        className="me-2"
-                        onClick={async () => {
+                      </Card.Title>
+                      <div className="table-card-meta">
+                        <span className="table-card-meta-row">
+                          <span className="table-card-meta-label">Số ghế</span>
+                          <span className="table-card-meta-value">{table.capacity}</span>
+                        </span>
+                        <span className="table-card-meta-row">
+                          <span className="table-card-meta-label">Trạng thái</span>
+                          <span className={statusBadgeClass(table.status)}>
+                            {statusLabel(table.status)}
+                          </span>
+                        </span>
+                      </div>
+                      <div className="mt-auto pt-3">
+                        {currentSessionId ? (
+                          <Button
+                            variant="outline-secondary"
+                            className="btn-table-delete"
+                            disabled
+                          >
+                            {loadingTableId === table._id ? 'Đang tải...' : 'Không thể xóa'}
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="outline-danger"
+                            className="btn-table-delete"
+                            onClick={async () => {
                           const confirmed = window.confirm(`Bạn có chắc muốn xoá bàn ${table.tableNumber}?`);
                           if (!confirmed) return;
 
@@ -124,30 +154,38 @@ function AdminTableQRPage() {
                           }
                         }}
                       >
-                        Xoá
+                        Xóa bàn
                       </Button>
-                    )}
-                  </Card.Body>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
+                        )}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+
+          {tables.length === 0 && (
+            <div className="table-management-empty text-center py-5">
+              <p className="mb-0">Chưa có bàn nào. Nhấn <strong>Tạo bàn</strong> để thêm.</p>
+            </div>
+          )}
+        </Container>
+      </div>
 
       {/* Modal */}
 
       {showAddTableModal && (
-        <div className="modal-overlay" onClick={() => setShowAddTableModal(false)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <h3>Thêm bàn mới</h3>
+        <div className="modal-overlay add-table-modal-overlay" onClick={() => setShowAddTableModal(false)}>
+          <div className="modal-content add-table-modal" onClick={e => e.stopPropagation()}>
+            <h3 className="add-table-modal-title">Thêm bàn mới</h3>
             <input
               type="text"
               placeholder="Số bàn (vd: A1)"
               value={newTable.tableNumber}
               onChange={e => setNewTable({ ...newTable, tableNumber: e.target.value })}
             />
-            <p style={{ fontSize: '0.9em', color: '#888', marginTop: '4px' }}>
+            <p className="add-table-modal-hint">
               Định dạng hợp lệ: chữ + số (vd: A1, B10, 12)
             </p>
 
@@ -158,7 +196,8 @@ function AdminTableQRPage() {
               onChange={e => setNewTable({ ...newTable, capacity: e.target.value })}
             />
 
-            <button className="btn btn-primary" onClick={async () => {
+            <div className="add-table-modal-actions">
+            <button type="button" className="btn btn-modal-submit" onClick={async () => {
               const { tableNumber, capacity } = newTable;
               if (!tableNumber.trim()) {
                 toast.error("Vui lòng nhập số bàn!");
@@ -189,12 +228,13 @@ function AdminTableQRPage() {
                 }
               }
             }}>
-              Tạo
+              Tạo bàn
             </button>
 
-            <button className="btn btn-secondary" onClick={() => setShowAddTableModal(false)}>
+            <button type="button" className="btn btn-modal-cancel" onClick={() => setShowAddTableModal(false)}>
               Đóng
             </button>
+            </div>
           </div>
         </div >
       )

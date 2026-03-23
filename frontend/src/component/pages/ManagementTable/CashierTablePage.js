@@ -6,6 +6,19 @@ import './css/CashierTableQRPage.css';
 import CashierHeader from '../../Header/CashierHeader';
 import ChangeTableModal from './ChangeTableModal';
 
+function formatElapsedSince(startTime) {
+  const d = new Date(startTime);
+  if (Number.isNaN(d.getTime())) return '—';
+  const ms = Date.now() - d.getTime();
+  if (ms < 0) return '—';
+  const totalMin = Math.floor(ms / 60000);
+  if (totalMin < 1) return 'Vừa mới';
+  if (totalMin < 60) return `${totalMin} phút`;
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  return m > 0 ? `${h} giờ ${m} phút` : `${h} giờ`;
+}
+
 function CashierTablePage() {
   const [tables, setTables] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
@@ -263,7 +276,7 @@ function CashierTablePage() {
   return (
     <>
       <CashierHeader />
-      <div className="admin-table-container">
+      <div className="admin-table-container cashier-table-page">
         <h2>Quản lý bàn</h2>
         <ul className="table-grid">
           {tables.map(table => {
@@ -273,37 +286,93 @@ function CashierTablePage() {
               <li key={table._id} className={`table-item ${table.status}`}>
                 <div className="table-info">
                   <h3>Bàn {table.tableNumber}</h3>
-                  <p style={{color: 'white'}}>
-                    Sức chứa: {table.capacity} người</p>
+                  <p className="table-capacity">Sức chứa: {table.capacity} người</p>
                   <span className={`status ${table.status}`}>
                     {table.status === 'available' ? 'Trống' : 'Có khách'}
                   </span>
                 </div>
                 {table.status === 'occupied' && table.activeSession && (
-                  <div className="session-info">
-                    <p><strong>Khách:</strong> {table.activeSession.customerName}</p>
-                    <p><strong>SĐT:</strong> {table.activeSession.customerPhone}</p>
-                    <p><strong>Số khách:</strong> {table.activeSession.guestCount}</p>
+                  <div className="session-panel">
+                    <div className="session-duration-pill" title="Thời gian từ lúc vào bàn">
+                      <span className="session-duration-icon" aria-hidden>
+                        ⏱
+                      </span>
+                      <span>Đã phục vụ · {formatElapsedSince(table.activeSession.startTime)}</span>
+                    </div>
+                    <div className="session-details">
+                      <div className="session-detail">
+                        <span className="session-detail-label">
+                          <span className="session-detail-icon" aria-hidden>
+                            👤
+                          </span>
+                          Khách
+                        </span>
+                        <span className="session-detail-value">
+                          {table.activeSession.customerName || '—'}
+                        </span>
+                      </div>
+                      <div className="session-detail">
+                        <span className="session-detail-label">
+                          <span className="session-detail-icon" aria-hidden>
+                            📞
+                          </span>
+                          SĐT
+                        </span>
+                        <span className="session-detail-value session-detail-value--mono">
+                          {table.activeSession.customerPhone || '—'}
+                        </span>
+                      </div>
+                      <div className="session-detail">
+                        <span className="session-detail-label">
+                          <span className="session-detail-icon" aria-hidden>
+                            👥
+                          </span>
+                          Số khách
+                        </span>
+                        <span className="session-detail-value">{table.activeSession.guestCount}</span>
+                      </div>
+                      <div className="session-detail">
+                        <span className="session-detail-label">
+                          <span className="session-detail-icon" aria-hidden>
+                            🕐
+                          </span>
+                          Bắt đầu
+                        </span>
+                        <span className="session-detail-value session-detail-value--wrap">
+                          {new Date(table.activeSession.startTime).toLocaleString('vi-VN')}
+                        </span>
+                      </div>
+                    </div>
 
-                    {/* Hiển thị thông tin user nếu có */}
                     {userInfo?.reservationId?.userId && (
-                      <div className="user-info">
-                        <p><strong>Tài khoản:</strong> {userInfo.reservationId.userId.username}</p>
-                        <p><strong>Email:</strong> {userInfo.reservationId.userId.email}</p>
+                      <div className="session-account-box">
+                        <div className="session-account-title">Tài khoản đặt bàn</div>
+                        <div className="session-detail session-detail--compact">
+                          <span className="session-detail-label">Tài khoản</span>
+                          <span className="session-detail-value">
+                            {userInfo.reservationId.userId.username}
+                          </span>
+                        </div>
+                        <div className="session-detail session-detail--compact">
+                          <span className="session-detail-label">Email</span>
+                          <span className="session-detail-value session-detail-value--wrap">
+                            {userInfo.reservationId.userId.email}
+                          </span>
+                        </div>
                       </div>
                     )}
 
-                    <p><strong>Bắt đầu:</strong> {new Date(table.activeSession.startTime).toLocaleString('vi-VN')}</p>
-
                     <div className="session-actions">
                       <button
-                        className="btn btn-warning btn-sm"
+                        type="button"
+                        className="btn-session-change"
                         onClick={() => handleChangeTable(table.activeSession)}
                       >
                         Đổi bàn
                       </button>
                       <button
-                        className="btn btn-primary btn-sm"
+                        type="button"
+                        className="btn-session-qr"
                         onClick={() => setSelectedSessionId(table.activeSession._id)}
                       >
                         QR Code

@@ -2,11 +2,16 @@ const express = require('express')
 const router = express.Router();
 const reservationController = require('../controller/reservationController');
 const { body, param, validationResult } = require('express-validator');
+const { normalizeVietnamPhone } = require('../util/phoneNormalize');
 
 const validationHandler = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    const first = errors.array()[0];
+    return res.status(400).json({
+      message: first.msg || 'Dữ liệu không hợp lệ',
+      errors: errors.array(),
+    });
   }
   next();
 }
@@ -14,11 +19,20 @@ const validationHandler = (req, res, next) => {
 router.post('/otp/email', [
   body('email').isEmail().notEmpty().withMessage("Email is required"),
   body('name').optional().isString().withMessage("Name must be a string"),
-], reservationController.bookingOtpEmail)
+], validationHandler, reservationController.bookingOtpEmail)
 
 router.post('/otp/phone', [
-  body('phone').matches(/^[0-9]{9,15}$/).notEmpty().withMessage("Phone number is required and must be 9-15 digits"),
-], reservationController.bookingOtpPhone)
+  body('phone')
+    .trim()
+    .notEmpty()
+    .withMessage('Số điện thoại là bắt buộc.')
+    .custom((value) => {
+      if (!normalizeVietnamPhone(value)) {
+        throw new Error('Số điện thoại không hợp lệ (ví dụ: 09xxxxxxxx, +849xxxxxxxx).');
+      }
+      return true;
+    }),
+], validationHandler, reservationController.bookingOtpPhone)
 
 router.post('/', [
   body('phone').matches(/^\+?[0-9]{7,14}$/).optional({ checkFalsy: true }),

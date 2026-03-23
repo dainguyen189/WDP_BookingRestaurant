@@ -21,6 +21,14 @@ const PromotionSchema = new mongoose.Schema({
     end_date: { type: Date, required: true },
     is_active: { type: Boolean, default: false },
     min_order_amount: { type: Number, default: 0 },
+    /** 0 = không giới hạn lượt dùng */
+    usage_limit: { type: Number, default: 0 },
+    used_count: { type: Number, default: 0 },
+    promotion_type: {
+        type: String,
+        enum: ['general', 'points_based'],
+        default: 'general',
+    },
 });
 
 module.exports = mongoose.models.Promotion || mongoose.model('Promotion', PromotionSchema);

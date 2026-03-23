@@ -222,8 +222,22 @@ function AdminMenuItem() {
                     <td>{Number(item.price).toLocaleString()}</td>
                     <td>{item.isAvailable ? 'Phục vụ' : 'Không phục vụ'}</td>
                     <td>
-                      <button onClick={() => handleEdit(item)}>Sửa</button>
-                      <button className='danger' onClick={() => handleDelete(item._id)}>Xóa</button>
+                      <div className="menu-table-actions">
+                        <button
+                          type="button"
+                          className="btn-menu-edit"
+                          onClick={() => handleEdit(item)}
+                        >
+                          Sửa
+                        </button>
+                        <button
+                          type="button"
+                          className="btn-menu-delete"
+                          onClick={() => handleDelete(item._id)}
+                        >
+                          Xóa
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -249,8 +263,8 @@ function AdminMenuItem() {
               <h4>{editingId ? 'Sửa món ăn' : 'Tạo món ăn'}</h4>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label htmlFor="imageUpload" className="btn btn-primary">
-                    <i className="" /> Đăng ảnh
+                  <label htmlFor="imageUpload" className="btn-upload-image">
+                    Đăng ảnh
                   </label>
                   <input
                     id="imageUpload"
@@ -288,56 +302,52 @@ function AdminMenuItem() {
                   ))}
                 </select>
 
-                <div className="form-check d-flex align-items-center" style={{ marginLeft: '30px', maxWidth: '400px', margin: '10px auto' }}>
+                <div className="menu-form-check form-check">
                   <input
-                    style={{ width: '20px' }}
-                    className="form-check-input"
+                    className="form-check-input menu-form-checkbox"
                     type="checkbox"
                     id="isAvailable"
                     name="isAvailable"
                     checked={form.isAvailable}
                     onChange={handleChange}
                   />
-                  <label className="form-check-label ms-2" htmlFor="isAvailable">
+                  <label className="form-check-label" htmlFor="isAvailable">
                     Đang còn
                   </label>
                 </div>
 
-                <div className="form-check d-flex align-items-center" style={{ marginLeft: '30px', maxWidth: '400px', margin: '10px auto' }}>
+                <div className="menu-form-check form-check">
                   <input
-                    style={{ width: '20px' }}
-                    className="form-check-input"
+                    className="form-check-input menu-form-checkbox"
                     type="checkbox"
                     id="needPreOrder"
                     name="needPreOrder"
                     checked={form.needPreOrder}
                     onChange={handleChange}
                   />
-                  <label className="form-check-label ms-2" htmlFor="needPreOrder">
+                  <label className="form-check-label" htmlFor="needPreOrder">
                     Món đặt trước
                   </label>
                 </div>
 
-                <button
-                  className="submit-button"
-                  type="submit"
-                  disabled={loading}
-                  style={{ backgroundColor: !loading ? '' : 'gray' }}
-                >
-                  {loading && <span className="spinner-border spinner-border-sm me-2" role="status" />}
-                  {editingId ? 'Cập nhật' : 'Tạo'}
-                </button>
-
-                <button
-                  className="mx-2"
-                  type="button"
-                  style={{ backgroundColor: !loading ? '#ff6666' : 'gray' }}
-                  disabled={loading}
-                  onClick={() => setShowForm(false)}
-                >
-                  {loading && <span className="spinner-border spinner-border-sm me-2" role="status" />}
-                  Hủy
-                </button>
+                <div className="menu-form-actions">
+                  <button
+                    className="btn-menu-primary submit-button"
+                    type="submit"
+                    disabled={loading}
+                  >
+                    {loading && <span className="spinner-border spinner-border-sm me-2" role="status" />}
+                    {editingId ? 'Cập nhật' : 'Tạo'}
+                  </button>
+                  <button
+                    className="btn-menu-secondary"
+                    type="button"
+                    disabled={loading}
+                    onClick={() => setShowForm(false)}
+                  >
+                    Hủy
+                  </button>
+                </div>
               </form>
             </div>
           )}

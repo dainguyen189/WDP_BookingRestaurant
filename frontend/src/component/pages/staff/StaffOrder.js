@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../Chef/css/ChefOrder.css';
 import StaffHeader from '../../Header/StaffHeader';
 import OrderHeader from './OrderHeader';
 import OrderStats from './OrderStats';
@@ -102,24 +103,15 @@ const Order = () => {
 
         {error && <div className="error-message">❌ {error}</div>}
 
-        <div className='my-3 mr-3'>
+        <div className="staff-item-status-tabs">
           {['all', 'ordered', 'preparing', 'cooking', 'completed'].map(status => {
             const isActive = defaultStatus === status;
             return (
               <button
                 key={status}
+                type="button"
+                className={`staff-item-status-tab${isActive ? ' staff-item-status-tab--active' : ''}`}
                 onClick={() => setDefaultStatus(status)}
-                style={{
-                  backgroundColor: isActive ? '#ff6347' : '#1a1a1a',
-                  color: isActive ? 'white' : '#ccc',
-                  border: `1px solid ${isActive ? '#ff6347' : '#333'}`,
-                  padding: '6px 14px',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  fontSize: '0.9rem',
-                  fontWeight: isActive ? 'bold' : 'normal',
-                  transition: 'background-color 0.2s, color 0.2s'
-                }}
               >
                 {status === 'all' ? 'Tất cả' :
                   status === 'ordered' ? 'Chờ' :

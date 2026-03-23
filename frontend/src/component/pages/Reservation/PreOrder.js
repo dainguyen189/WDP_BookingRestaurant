@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Container, Form, Button, Row, Col, Alert, FloatingLabel, Card, Badge, Table
+    Container, Form, Row, Col, Alert, FloatingLabel, Card, Table
 } from 'react-bootstrap';
 import Header from '../../Header/AdminHeader';
 import StaffHeader from '../../Header/StaffHeader';
 import CashierHeader from '../../Header/CashierHeader';
 import './css/AdminReservation.css';
+import './css/PreOrder.css';
 
 function PreOrdersSummary() {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -159,14 +160,15 @@ function PreOrdersSummary() {
             {user.role === 'staff' && <StaffHeader />}
             {user.role === 'cashier' && <CashierHeader />}
 
+            <div className="preorder-summary-page">
             <Container className="mt-4 booking-form-container">
-                <Card className="mb-4 shadow" style={{ background: 'linear-gradient(90deg, #232526 0%, #414345 100%)', border: 'none' }}>
+                <Card className="mb-4 shadow preorder-hero-card">
                     <Card.Body>
-                        <h2 className="mb-2 text-center" style={{ color: "#ffc107", fontWeight: 700, letterSpacing: 1 }}>
+                        <h2 className="mb-2 text-center preorder-title">
                             Tổng hợp Món ăn Đặt trước
                         </h2>
-                        <div className="text-center mb-2" style={{ color: "#fff" }}>
-                            <span style={{ fontSize: 18 }}>Ngày: <b>{formatDate(filters.reservationDate)}</b></span>
+                        <div className="text-center mb-3 preorder-date-line">
+                            <span>Ngày: <b>{formatDate(filters.reservationDate)}</b></span>
                         </div>
                         <Row className="justify-content-center">
                             <Col md={4} className="mb-2">
@@ -175,7 +177,6 @@ function PreOrdersSummary() {
                                         type="date"
                                         value={filters.reservationDate}
                                         onChange={(e) => setFilters(prev => ({ ...prev, reservationDate: e.target.value }))}
-                                        style={{ backgroundColor: '#fff', color: '#000' }}
                                     />
                                 </FloatingLabel>
                             </Col>
@@ -185,7 +186,6 @@ function PreOrdersSummary() {
                                         type="text"
                                         value={filters.itemName}
                                         onChange={(e) => setFilters(prev => ({ ...prev, itemName: e.target.value }))}
-                                        style={{ backgroundColor: '#fff', color: '#000' }}
                                         placeholder="Tìm kiếm món ăn..."
                                     />
                                 </FloatingLabel>
@@ -195,33 +195,33 @@ function PreOrdersSummary() {
                     </Card.Body>
                 </Card>
 
-                <Row className="mb-4">
+                <Row className="mb-4 g-3">
                     <Col md={4}>
-                        <Card className="text-center shadow" style={{ background: '#232526', border: 'none' }}>
+                        <Card className="text-center shadow preorder-stat-card h-100">
                             <Card.Body>
-                                <Card.Title style={{ color: '#ffc107' }}>Số loại món</Card.Title>
-                                <h4>
-                                    <span className="text-primary fw-bold">{preOrdersSummary.length} loại</span>
+                                <Card.Title>Số loại món</Card.Title>
+                                <h4 className="mb-0">
+                                    <span className="preorder-stat-value-types">{preOrdersSummary.length} loại</span>
                                 </h4>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={4}>
-                        <Card className="text-center shadow" style={{ background: '#232526', border: 'none' }}>
+                        <Card className="text-center shadow preorder-stat-card h-100">
                             <Card.Body>
-                                <Card.Title style={{ color: '#ffc107' }}>Tổng số lượng</Card.Title>
-                                <h4>
-                                    <span className="text-warning fw-bold">{totalItems} </span>
+                                <Card.Title>Tổng số lượng</Card.Title>
+                                <h4 className="mb-0">
+                                    <span className="preorder-stat-value-qty">{totalItems}</span>
                                 </h4>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={4}>
-                        <Card className="text-center shadow" style={{ background: '#232526', border: 'none' }}>
+                        <Card className="text-center shadow preorder-stat-card h-100">
                             <Card.Body>
-                                <Card.Title style={{ color: '#ffc107' }}>Tổng giá trị</Card.Title>
-                                <h4>
-                                    <span className="text-success fw-bold">{formatCurrency(preOrdersSummary.reduce((sum, item) => sum + (item.itemPrice * item.totalAmount), 0))}</span>
+                                <Card.Title>Tổng giá trị</Card.Title>
+                                <h4 className="mb-0">
+                                    <span className="preorder-stat-value-money">{formatCurrency(preOrdersSummary.reduce((sum, item) => sum + (item.itemPrice * item.totalAmount), 0))}</span>
                                 </h4>
                             </Card.Body>
                         </Card>
@@ -230,7 +230,7 @@ function PreOrdersSummary() {
 
                 {loading ? (
                     <div className="text-center">
-                        <div className="spinner-border text-warning" role="status">
+                        <div className="spinner-border text-success preorder-spinner" role="status">
                             <span className="visually-hidden">Loading...</span>
                         </div>
                     </div>
@@ -239,62 +239,53 @@ function PreOrdersSummary() {
                 ) : (
                     <>
                         {preOrdersSummary.length > 0 ? (
-                            <Card className="shadow" style={{ background: '#343a40', border: 'none' }}>
-                                <Card.Body>
-                                    <Table 
-                                        striped 
-                                        hover 
-                                        variant="dark" 
-                                        className="mb-0"
-                                        style={{ borderRadius: '10px', overflow: 'hidden' }}
+                            <Card className="shadow preorder-table-card">
+                                <Card.Body className="p-0">
+                                    <Table
+                                        striped
+                                        hover
+                                        className="mb-0 preorder-table"
+                                        responsive
                                     >
-                                        <thead style={{ background: '#232526' }}>
+                                        <thead>
                                             <tr>
-                                                <th className="text-warning">STT</th>
-                                                <th className="text-warning">Hình ảnh</th>
-                                                <th className="text-warning">Tên món ăn</th>
-                                                <th className="text-warning text-center">Số lượng</th>
-                                                <th className="text-warning text-center">Giá đơn vị</th>
-                                                <th className="text-warning text-center">Tổng giá trị</th>
-                                                
+                                                <th>STT</th>
+                                                <th>Hình ảnh</th>
+                                                <th>Tên món ăn</th>
+                                                <th className="text-center">Số lượng</th>
+                                                <th className="text-center">Giá đơn vị</th>
+                                                <th className="text-center">Tổng giá trị</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {preOrdersSummary.map((item, idx) => (
                                                 <tr key={item.itemId || idx}>
-                                                    <td className="text-white align-middle">{idx + 1}</td>
+                                                    <td className="align-middle">{idx + 1}</td>
                                                     <td className="align-middle">
                                                         <img
                                                             src={item.itemImage || '/default-food.jpg'}
                                                             alt={item.itemName}
-                                                            style={{
-                                                                width: '60px',
-                                                                height: '60px',
-                                                                objectFit: 'cover',
-                                                                borderRadius: '8px',
-                                                                border: '2px solid #ffc107'
-                                                            }}
+                                                            className="preorder-item-img"
                                                         />
                                                     </td>
-                                                    <td className="text-white align-middle">
+                                                    <td className="align-middle">
                                                         <strong>{item.itemName}</strong>
                                                     </td>
                                                     <td className="text-center align-middle">
-                                                        <Badge bg="warning" text="dark" style={{ fontSize: '14px' }}>
+                                                        <span className="badge preorder-badge-qty">
                                                             {item.totalAmount}
-                                                        </Badge>
+                                                        </span>
                                                     </td>
                                                     <td className="text-center align-middle">
-                                                        <Badge bg="info" style={{ fontSize: '14px' }}>
+                                                        <span className="badge preorder-badge-price">
                                                             {formatCurrency(item.itemPrice)}
-                                                        </Badge>
+                                                        </span>
                                                     </td>
                                                     <td className="text-center align-middle">
-                                                        <Badge bg="success" style={{ fontSize: '14px' }}>
+                                                        <span className="badge preorder-badge-total">
                                                             {formatCurrency(item.itemPrice * item.totalAmount)}
-                                                        </Badge>
+                                                        </span>
                                                     </td>
-                                                    
                                                 </tr>
                                             ))}
                                         </tbody>
@@ -302,16 +293,17 @@ function PreOrdersSummary() {
                                 </Card.Body>
                             </Card>
                         ) : (
-                            <div className="text-center text-warning mt-4">
-                                <div className="p-4" style={{ backgroundColor: '#343a40', borderRadius: '10px', border: '1px solid #ffc107' }}>
+                            <div className="text-center mt-4">
+                                <div className="preorder-empty-box mx-auto" style={{ maxWidth: 520 }}>
                                     <h5>Không có món ăn đặt trước nào</h5>
-                                    <p className="text-muted">Cho ngày {formatDate(filters.reservationDate)} với các bộ lọc hiện tại</p>
+                                    <p className="preorder-empty-sub">Cho ngày {formatDate(filters.reservationDate)} với các bộ lọc hiện tại</p>
                                 </div>
                             </div>
                         )}
                     </>
                 )}
             </Container>
+            </div>
         </>
     );
 }
