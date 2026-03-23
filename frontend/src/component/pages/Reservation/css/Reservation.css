@@ -56,6 +56,65 @@
   margin-bottom: 0.35rem;
 }
 
+.booking-form-card .booking-input-customer-name {
+  min-height: 48px;
+}
+
+/* Modal xác thực OTP — ô nhập luôn rõ ràng, tránh bị CSS global che/kẹt */
+.booking-otp-modal .modal-dialog {
+  max-width: 420px;
+}
+
+.booking-otp-modal-content {
+  overflow: visible;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.booking-otp-modal-body {
+  overflow: visible;
+}
+
+.booking-otp-input-block {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.25rem;
+}
+
+.booking-otp-code-input {
+  display: block !important;
+  width: 100% !important;
+  min-height: 3.25rem !important;
+  padding: 0.75rem 1rem !important;
+  margin-top: 0.35rem;
+  font-size: 1.25rem !important;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-align: center;
+  color: #111827 !important;
+  background-color: #ffffff !important;
+  border: 2px solid #d1d5db !important;
+  border-radius: 12px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.booking-otp-code-input:focus {
+  border-color: #10b981 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+
+.booking-otp-code-input::placeholder {
+  letter-spacing: 0.15em;
+  color: #9ca3af !important;
+  font-weight: 500;
+}
+
 .booking-time-24h {
   display: flex;
   align-items: center;
