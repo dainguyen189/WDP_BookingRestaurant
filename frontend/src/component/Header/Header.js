@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils, faUser, faSignOutAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useOrder } from "../../context/OrderContext";
 import CartDrawer from "../pages/Order/CartDrawer";
@@ -26,6 +26,16 @@ const Header = () => {
     }
     const { cartItems } = useOrder();
     const [isDrawerOpen, setDrawerOpen] = useState(false);
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark');
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    };
 
 
     const handleLogout = () => {
@@ -45,6 +55,15 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
+                            <button
+                                type="button"
+                                className="theme-toggle-btn"
+                                onClick={toggleTheme}
+                                aria-label={theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
+                                title={theme === 'dark' ? 'Chế độ sáng' : 'Chế độ tối'}
+                            >
+                                <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
+                            </button>
                             <Nav.Link as={NavLink} to="/home" end className="nav-link">Trang chủ</Nav.Link>
                             <Nav.Link as={NavLink} to="/booking" className="nav-link">Đặt bàn</Nav.Link>
                             <Nav.Link as={NavLink} to="/aboutus" className="nav-link">Giới thiệu</Nav.Link>

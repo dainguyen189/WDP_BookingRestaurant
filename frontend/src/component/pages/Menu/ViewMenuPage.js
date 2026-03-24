@@ -5,6 +5,8 @@ import Header from '../../Header/Header';
 import './MenuPage.css';
 import './MenuItemCard.css';
 
+const FAVORITES_KEY = 'favorite_menu_items';
+
 const ViewMenuPage = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -12,6 +14,20 @@ const ViewMenuPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [favoriteIds, setFavoriteIds] = useState(() => {
+    try {
+      const raw = localStorage.getItem(FAVORITES_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  });
+  const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favoriteIds));
+  }, [favoriteIds]);
 
   useEffect(() => {
     fetchData();
@@ -57,8 +73,15 @@ const ViewMenuPage = () => {
     const matchesSearch = !searchTerm || 
       (item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (item.description && item.description.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
+    const matchesFavorite = !showOnlyFavorites || favoriteIds.includes(item._id);
+    return matchesCategory && matchesSearch && matchesFavorite;
   });
+
+  const toggleFavorite = (itemId) => {
+    setFavoriteIds((prev) =>
+      prev.includes(itemId) ? prev.filter((id) => id !== itemId) : [...prev, itemId]
+    );
+  };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price || 0);
@@ -97,19 +120,21 @@ const ViewMenuPage = () => {
           placeholder="Tìm món ăn..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            width: "300px",
-            height: "40px",
-            fontSize: "16px",
-            margin: "20px auto",
-            display: "block",
-            border: "2px solid blue",
-            zIndex: 1000,
-            position: "relative",
-            backgroundColor: "#fff",
-            color: "#000",
-          }}
+          className="search-input"
         />
+        <div className="favorite-filter-wrap">
+          <button
+            type="button"
+            className={`favorite-filter-btn ${showOnlyFavorites ? 'active' : ''}`}
+            onClick={() => {
+              setShowOnlyFavorites((prev) => !prev);
+              setCurrentPage(1);
+            }}
+          >
+            {showOnlyFavorites ? 'Dang loc mon yeu thich' : 'Chi xem mon yeu thich'}
+          </button>
+          <span className="favorite-count">Yeu thich: {favoriteIds.length}</span>
+        </div>
 
         {/* Category Filter */}
         <div className="category-list">
@@ -144,6 +169,7 @@ const ViewMenuPage = () => {
             </div>
           ) : (
             currentItems.map(item => {
+              const isFavorite = favoriteIds.includes(item._id);
               const imageUrl = item.image?.startsWith("http")
                 ? item.image
                 : item.image
@@ -152,6 +178,15 @@ const ViewMenuPage = () => {
 
               return (
                 <div key={item._id} className="menu-card">
+                  <button
+                    type="button"
+                    className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+                    onClick={() => toggleFavorite(item._id)}
+                    aria-label={isFavorite ? 'Bo yeu thich' : 'Them yeu thich'}
+                    title={isFavorite ? 'Bo yeu thich' : 'Them yeu thich'}
+                  >
+                    {isFavorite ? '♥' : '♡'}
+                  </button>
                   <img src={imageUrl} alt={item.name} className="menu-card-img" />
                   <div className="menu-card-body">
                     <div className="menu-card-header">

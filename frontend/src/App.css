@@ -12,6 +12,16 @@
   --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 
+:root[data-theme="light"] {
+  --color-bg: #f7f5ef;
+  --color-bg-elevated: #ffffff;
+  --color-text: #1d1b17;
+  --color-text-muted: #615f58;
+  --color-accent: #b8860b;
+  --color-accent-hover: #8f6a08;
+  --shadow-soft: 0 8px 24px rgba(29, 27, 23, 0.08);
+}
+
 *,
 *::before,
 *::after {
