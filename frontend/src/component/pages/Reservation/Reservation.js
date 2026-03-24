@@ -372,7 +372,7 @@ function Reservation() {
 
           <Form onSubmit={handleSubmit} className="booking-form-card">
             <Row className="g-3 mb-1">
-              <Col md={6}>
+              <Col xs={12}>
                 <Form.Group controlId="bookingName">
                   <Form.Label className="booking-field-label">
                     Tên khách hàng <span className="text-danger">*</span>
@@ -393,7 +393,9 @@ function Reservation() {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
+            </Row>
 
+            <Row className="g-3 mb-1">
               <Col md={6}>
                 <Form.Group controlId="bookingGuests">
                   <Form.Label className="booking-field-label">
@@ -412,9 +414,7 @@ function Reservation() {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
-            </Row>
 
-            <Row className="g-3 mb-1">
               <Col md={6}>
                 <Form.Group controlId="bookingDate">
                   <Form.Label className="booking-field-label">
@@ -432,7 +432,9 @@ function Reservation() {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
+            </Row>
 
+            <Row className="g-3 mb-1">
               <Col md={6}>
                 <Form.Group controlId="bookingTime">
                   <Form.Label className="booking-field-label">
