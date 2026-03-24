@@ -55,26 +55,18 @@ const OrderItem = ({ item, order, setOrders }) => {
   return (
     <div className="order-item">
       <div className="item-info">
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="staff-order-item-line">
           <input
             type="number"
             min="1"
+            className="staff-order-item-qty"
             disabled={item.status !== 'ordered'}
             value={item.updatedQuantity ?? item.quantity}
             onChange={(e) => handleQuantityChange(e.target.value)}
-            style={{
-              width: '60px',
-              padding: '4px 6px',
-              borderRadius: '4px',
-              border: '1px solid #555',
-              backgroundColor: item.status === 'ordered' ? '#1a1a1a' : '#2a2a2a',
-              color: item.status === 'ordered' ? '#fff' : '#888',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              textAlign: 'center'
-            }}
           />
-          <span>{item.menuItemId?.name || 'Món ăn'}</span>
+          <span className="staff-order-item-name">
+            {item.menuItemId?.name || 'Món ăn'}
+          </span>
         </div>
         <p className="item-details">
           {item.menuItemId?.category?.name || item.menuItemId?.categoryName || 'Danh mục'}

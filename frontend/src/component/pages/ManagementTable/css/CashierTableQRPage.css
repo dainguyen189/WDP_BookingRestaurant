@@ -290,6 +290,10 @@
 
 .cashier-table-page .create-section {
   padding: 0 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  position: static;
 }
 
 .cashier-table-page .create-btn {
@@ -314,6 +318,34 @@
 
 .cashier-table-page .create-btn:disabled {
   opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.cashier-table-page .create-btn-secondary {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 2px solid #10b981;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #047857;
+  background: #ffffff;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.cashier-table-page .create-btn-secondary:hover:not(:disabled) {
+  background: #ecfdf5;
+  border-color: #059669;
+  color: #065f46;
+}
+
+.cashier-table-page .create-btn-secondary:disabled {
+  opacity: 0.55;
   cursor: not-allowed;
 }
 

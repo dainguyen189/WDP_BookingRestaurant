@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/ChefOrder.css';
 import StaffHeader from '../../Header/StaffHeader';
+import {
+  formatWaitingDisplay,
+  waitingTimeClass,
+} from '../../../utils/waitingTimeFormat';
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
@@ -383,11 +387,8 @@ const Order = () => {
                     )}
                     <div className="order-meta">
                       <span className="order-time">🕒 {formatTime(order.orderTime)}</span>
-                      <span className={`waiting-time ${
-                        order.waitingTime > 30 ? 'urgent' : 
-                        order.waitingTime > 15 ? 'warning' : 'normal'
-                      }`}>
-                        ⏱️ {order.waitingTime} phút
+                      <span className={`waiting-time ${waitingTimeClass(order.waitingTime)}`}>
+                        ⏱️ {formatWaitingDisplay(order.waitingTime)}
                       </span>
                     </div>
                   </div>

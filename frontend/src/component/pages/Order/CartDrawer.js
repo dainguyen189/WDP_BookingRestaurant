@@ -5,50 +5,74 @@ import axios from "axios";
 import { useSession } from "../../../context/SessionContext";
 import "./css/CartDrawer.css";
 
-function CartItem({ item, increaseQuantity, decreaseQuantity, updateNote, removeFromCart }) {
+function CartItem({
+  item,
+  increaseQuantity,
+  decreaseQuantity,
+  updateNote,
+  removeFromCart,
+}) {
   const [noteOpen, setNoteOpen] = useState(false);
 
   return (
-    <li className={`cart-item ${noteOpen ? "active" : ""}`}>
-      <div className="item-info">
-        <span title={item.name}>{item.name}</span>
-        <div className="quantity-control">
-          <button onClick={() => decreaseQuantity(item._id)}>-</button>
-          <span>{item.quantity}</span>
-          <button onClick={() => increaseQuantity(item._id)}>+</button>
-        </div>
-        <div>{(item.price * item.quantity).toLocaleString()}₫</div>
+    <li className={`cart-item ${noteOpen ? "cart-item--note-open" : ""}`}>
+      <div className="cart-item-top">
+        <span className="cart-item-name" title={item.name}>
+          {item.name}
+        </span>
+        <span className="cart-item-line-total">
+          {(item.price * item.quantity).toLocaleString()}₫
+        </span>
       </div>
 
-      <button
-        onClick={() => setNoteOpen(!noteOpen)}
-        style={{
-          marginTop: "6px",
-          backgroundColor: "#444",
-          color: "#ffcc00",
-          border: "none",
-          padding: "4px 8px",
-          cursor: "pointer",
-          borderRadius: "4px",
-          fontSize: "0.85rem",
-          alignSelf: "flex-start",
-        }}
-      >
-        {noteOpen ? "Hide Note" : "Add Note"}
-      </button>
+      <div className="cart-item-row">
+        <div className="quantity-control" role="group" aria-label="Số lượng">
+          <button
+            type="button"
+            className="qty-btn"
+            onClick={() => decreaseQuantity(item._id)}
+            aria-label="Giảm"
+          >
+            −
+          </button>
+          <span className="qty-value">{item.quantity}</span>
+          <button
+            type="button"
+            className="qty-btn"
+            onClick={() => increaseQuantity(item._id)}
+            aria-label="Tăng"
+          >
+            +
+          </button>
+        </div>
 
-      {noteOpen && (
+        <div className="cart-item-actions">
+          <button
+            type="button"
+            className="cart-chip cart-chip--ghost"
+            onClick={() => setNoteOpen(!noteOpen)}
+          >
+            {noteOpen ? "Ẩn ghi chú" : "Ghi chú"}
+          </button>
+          <button
+            type="button"
+            className="cart-chip cart-chip--danger"
+            onClick={() => removeFromCart(item._id)}
+          >
+            Xóa
+          </button>
+        </div>
+      </div>
+
+      {noteOpen ? (
         <input
           type="text"
-          placeholder="Add note"
+          className="cart-item-note-input"
+          placeholder="Ghi chú cho món này…"
           value={item.notes || ""}
           onChange={(e) => updateNote(item._id, e.target.value)}
         />
-      )}
-
-      <button className="remove-btn" onClick={() => removeFromCart(item._id)}>
-         Remove
-      </button>
+      ) : null}
     </li>
   );
 }
@@ -103,19 +127,31 @@ function CartDrawer({ isOpen, onClose }) {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className={`cart-drawer ${isOpen ? "open" : ""}`}>
-      <div className="cart-header">
-        <h3> Your Cart</h3>
-        <button className="btn btn-danger" onClick={onClose}>
-          Close
+    <div className={`cart-drawer ${isOpen ? "open" : ""}`} aria-hidden={!isOpen}>
+      <header className="cart-drawer-header">
+        <div className="cart-drawer-header-text">
+          <h2 className="cart-drawer-title">Giỏ hàng</h2>
+          <p className="cart-drawer-sub">
+            {cartItems.length === 0
+              ? "Chưa có món"
+              : `${cartItems.length} món đã chọn`}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="cart-drawer-close"
+          onClick={onClose}
+          aria-label="Đóng giỏ hàng"
+        >
+          Đóng
         </button>
-      </div>
+      </header>
 
-      <div className="cart-body">
+      <div className="cart-drawer-body">
         {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
+          <p className="cart-drawer-empty">Giỏ hàng trống — hãy chọn món từ thực đơn.</p>
         ) : (
-          <ul style={{ paddingLeft: 0, listStyle: "none" }}>
+          <ul className="cart-drawer-list">
             {cartItems.map((item) => (
               <CartItem
                 key={item._id}
@@ -130,15 +166,23 @@ function CartDrawer({ isOpen, onClose }) {
         )}
       </div>
 
-      <div className="cart-footer">
-        <p className="total">Total: {total.toLocaleString()}₫</p>
-        <button className="send-btn" onClick={handleSendOrder}>
-           Send Order
+      <footer className="cart-drawer-footer">
+        <div className="cart-drawer-total-row">
+          <span className="cart-drawer-total-label">Tổng cộng</span>
+          <span className="cart-drawer-total-value">{total.toLocaleString()}₫</span>
+        </div>
+        <button type="button" className="cart-drawer-btn cart-drawer-btn--primary" onClick={handleSendOrder}>
+          Gửi đơn
         </button>
-        <button className="clear-btn" onClick={clearCart}>
-           Clear All
+        <button
+          type="button"
+          className="cart-drawer-btn cart-drawer-btn--secondary"
+          onClick={clearCart}
+          disabled={cartItems.length === 0}
+        >
+          Xóa giỏ
         </button>
-      </div>
+      </footer>
     </div>
   );
 }

@@ -1,5 +1,48 @@
+const mongoose = require('mongoose');
 const Order = require('../models/order');
 const OrderItem = require('../models/orderItem');
+
+/** @returns {number|null} epoch ms hoặc null */
+function toTimeMs(value) {
+  if (value == null || value === '') return null;
+  const d = new Date(value);
+  const t = d.getTime();
+  return Number.isNaN(t) ? null : t;
+}
+
+function idToTimeMs(id) {
+  try {
+    return new mongoose.Types.ObjectId(id).getTimestamp().getTime();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Thời điểm bắt đầu tính chờ: ưu tiên orderTime hợp lệ và không trước lúc mở bàn.
+ * Tránh sai số cực lớn khi orderTime lệch so với phiên (session).
+ */
+function computeWaitingMinutes(order) {
+  const session = order.sessionId;
+  const sessionMs =
+    toTimeMs(session?.startTime) ?? toTimeMs(session?.createdAt) ?? null;
+
+  let orderMs = toTimeMs(order.orderTime);
+  if (orderMs == null) {
+    orderMs = sessionMs ?? idToTimeMs(order._id);
+  } else if (sessionMs != null && orderMs < sessionMs) {
+    orderMs = sessionMs;
+  }
+
+  if (orderMs == null) {
+    orderMs = Date.now();
+  }
+
+  let diffMin = Math.floor((Date.now() - orderMs) / (1000 * 60));
+  if (!Number.isFinite(diffMin)) diffMin = 0;
+  if (diffMin < 0) diffMin = 0;
+  return diffMin;
+}
 
 exports.getOrdersForChef = async (req, res) => {
   try {
@@ -39,7 +82,7 @@ exports.getOrdersForChef = async (req, res) => {
           model: 'Table'
         }
       })
-      .sort({ orderTime: 1 }) // Chef thường xem đơn cũ trước
+      .sort({ orderTime: -1, updatedAt: -1 }) // Mới nhất lên trước
       .limit(parseInt(limit))
       .skip(skip)
       .lean();
@@ -71,7 +114,7 @@ exports.getOrdersForChef = async (req, res) => {
     const ordersWithItems = orders.map(order => {
       const items = itemMap[order._id.toString()] || [];
       const mergedItems = items; // 🔧 Use raw, unmerged items
-      const waitingTime = Math.floor((new Date() - new Date(order.orderTime)) / (1000 * 60));
+      const waitingTime = computeWaitingMinutes(order);
 
       return {
         ...order,

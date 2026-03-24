@@ -1,6 +1,10 @@
 import axios from 'axios';
 import React from 'react';
 import OrderItem from './Order.Item';
+import {
+  formatWaitingDisplay,
+  waitingTimeClass,
+} from '../../../utils/waitingTimeFormat';
 
 const OrderCard = ({
   order,
@@ -16,7 +20,10 @@ const OrderCard = ({
 
   const sortItemsByStatus = (items, statusFilter) => {
     if (statusFilter === 'all') return items;
-    return items.filter(item => item.status === statusFilter);
+    if (statusFilter === 'completed') {
+      return items.filter((item) => item.status === 'done');
+    }
+    return items.filter((item) => item.status === statusFilter);
   };
 
   const filteredItems = sortItemsByStatus(order.items || [], filterStatus);
@@ -36,72 +43,79 @@ const OrderCard = ({
     }
 
     try {
-      console.log(itemsToUpdate)
       await axios.put('http://localhost:8080/api/order-items/', { items: itemsToUpdate });
       toast.success('Đã xác nhận các món ăn');
       fetchOrders(false);
       fetchStats();
     } catch (error) {
-      console.log(error)
       toast.error('Lỗi khi xác nhận món ăn');
     }
   };
 
   const formatTime = (dateString) => {
-    return new Date(dateString).toLocaleTimeString('vi-VN', {
-      hour: '2-digit',
-      minute: '2-digit'
+    if (!dateString) return "—";
+    const d = new Date(dateString);
+    if (Number.isNaN(d.getTime())) return "—";
+    return d.toLocaleTimeString("vi-VN", {
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
+  const waitClass = waitingTimeClass(order.waitingTime);
+  const waitLabel = formatWaitingDisplay(order.waitingTime);
+
   return (
-    <div className="shadow" style={{ backgroundColor: '#101010' }}>
+    <div className="chef-order-card shadow-sm">
       <div className="order-header">
         <div className="order-info">
-          <h3>Bàn {order.sessionId?.table?.tableNumber || 'N/A'}</h3>
+          <h3>Bàn {order.sessionId?.table?.tableNumber || "N/A"}</h3>
           {order.sessionId?.customerName && (
-            <p className="customer-name">Tên khách: {order.sessionId.customerName}</p>
+            <p className="customer-name">
+              Tên khách: {order.sessionId.customerName}
+            </p>
           )}
-          <div className="order-meta">
-            <span className="order-time">Vào lúc: {formatTime(order.orderTime)}</span>
-            <span className={`waiting-time ${order.waitingTime > 30 ? 'urgent' : order.waitingTime > 15 ? 'warning' : 'normal'}`}>
-              Thời gian: {order.waitingTime} phút
+          <div className="order-meta chef-order-meta">
+            <span className="order-time">
+              Vào lúc: {formatTime(order.orderTime)}
+            </span>
+            <span className={`waiting-time ${waitClass}`}>
+              Đã chờ: {waitLabel}
             </span>
           </div>
         </div>
 
         <div className="order-summary">
-          <p className="order-total">{order.totalAmount.toLocaleString('vi-VN')}₫</p>
-          <p className="item-count">{order.itemCount || order.items?.length || 0} món</p>
+          <p className="order-total">
+            {order.totalAmount.toLocaleString("vi-VN")}₫
+          </p>
+          <p className="item-count">
+            {order.itemCount || order.items?.length || 0} món
+          </p>
         </div>
       </div>
 
-      {/* Sorting Tabs */}
-      <div className="item-sorting-tabs" style={{ display: 'flex', gap: '10px', margin: '12px 0 16px', paddingLeft: '12px', flexWrap: 'wrap' }}>
-        {['all', 'ordered', 'preparing', 'cooking', 'completed'].map(status => {
+      <div className="chef-order-inner-tabs">
+        {["all", "ordered", "preparing", "cooking", "completed"].map((status) => {
           const isActive = filterStatus === status;
-
           return (
             <button
               key={status}
-              onClick={() => setItemSortOption(prev => ({ ...prev, [order._id]: status }))}
-              style={{
-                backgroundColor: isActive ? '#ff6347' : '#1a1a1a',
-                color: isActive ? 'white' : '#ccc',
-                border: `1px solid ${isActive ? '#ff6347' : '#333'}`,
-                padding: '6px 14px',
-                borderRadius: '6px',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-                fontWeight: isActive ? 'bold' : 'normal',
-                transition: 'background-color 0.2s, color 0.2s'
-              }}
+              type="button"
+              className={`staff-item-status-tab${isActive ? " staff-item-status-tab--active" : ""}`}
+              onClick={() =>
+                setItemSortOption((prev) => ({ ...prev, [order._id]: status }))
+              }
             >
-              {status === 'all' ? 'Tất cả' :
-                status === 'ordered' ? 'Chờ' :
-                  status === 'preparing' ? 'Đã nhận' :
-                    status === 'cooking' ? 'Đang nấu' :
-                      'Xong'}
+              {status === "all"
+                ? "Tất cả"
+                : status === "ordered"
+                  ? "Chờ"
+                  : status === "preparing"
+                    ? "Đã nhận"
+                    : status === "cooking"
+                      ? "Đang nấu"
+                      : "Xong"}
             </button>
           );
         })}

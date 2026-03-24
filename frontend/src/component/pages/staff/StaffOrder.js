@@ -94,12 +94,14 @@ const Order = () => {
       <div className="chef-order-container">
         <OrderHeader onRefresh={() => { setRefreshing(true); fetchOrders(false); fetchStats(); }} refreshing={refreshing} />
         <OrderStats stats={stats} />
-        <OrderFilters
-          tableFilter={tableFilter}
-          setTableFilter={setTableFilter}
-          dateFilter={dateFilter}
-          setDateFilter={setDateFilter}
-        />
+        <div className="staff-order-filters-legacy">
+          <OrderFilters
+            tableFilter={tableFilter}
+            setTableFilter={setTableFilter}
+            dateFilter={dateFilter}
+            setDateFilter={setDateFilter}
+          />
+        </div>
 
         {error && <div className="error-message">❌ {error}</div>}
 

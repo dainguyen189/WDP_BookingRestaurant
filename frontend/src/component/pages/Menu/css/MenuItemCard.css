@@ -152,6 +152,7 @@
   color: #9ca3af;
   cursor: not-allowed;
   box-shadow: none;
+  transform: none;
 }
 
 .menu-card-add-icon {
