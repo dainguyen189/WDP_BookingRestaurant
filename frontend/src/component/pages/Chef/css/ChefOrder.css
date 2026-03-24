@@ -216,6 +216,24 @@
   color: #047857;
 }
 
+/* Khối tab lọc danh sách đơn (chef orders) */
+.chef-list-filter-block {
+  margin-bottom: 1rem;
+}
+
+.chef-list-filter-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.01em;
+}
+
+.chef-list-filter-block .staff-item-status-tabs {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
 /* Nút lọc trạng thái món (Chờ / Đang nấu / …) */
 .staff-item-status-tabs {
   display: flex;
@@ -336,6 +354,100 @@
   display: flex;
   gap: 15px;
   font-size: 12px;
+}
+
+/* Thẻ đơn chef/staff (OrderCard) — nền sáng, chữ tương phản tốt */
+.chef-order-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.chef-order-card:hover {
+  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.chef-order-card .order-header {
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 55%);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.chef-order-card .order-info h3 {
+  color: #059669;
+}
+
+.chef-order-card .customer-name {
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.chef-order-meta {
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 0.35rem;
+}
+
+.chef-order-meta .order-time {
+  color: #6b7280;
+  font-size: 0.8125rem;
+}
+
+.chef-order-inner-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.85rem 1.15rem 0.25rem;
+  margin: 0;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fafafa;
+}
+
+.chef-order-card .order-items {
+  padding: 0 1.15rem;
+  background: #ffffff;
+}
+
+.staff-order-item-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.staff-order-item-qty {
+  width: 3.25rem;
+  padding: 0.35rem 0.4rem;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  background: #ffffff;
+  color: #1f2937;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.staff-order-item-qty:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.staff-order-item-qty:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  border-color: #e5e7eb;
+}
+
+.staff-order-item-name {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 0.95rem;
 }
 
 .order-time {
@@ -765,5 +877,292 @@ a:hover {
   .btn-success {
     padding: 10px 16px;
     font-size: 12px;
+  }
+}
+
+/* =============================================================================
+   Staff: bọc lọc (OrderFilters dùng Row) — giữ style thẻ xanh như cũ
+   ============================================================================= */
+
+.staff-order-filters-legacy {
+  padding: 1.25rem 1.35rem;
+  margin-bottom: 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #ecfdf5 0%, #f0fdf4 40%, #ffffff 100%);
+  border: 1px solid #a7f3d0;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.08);
+}
+
+.staff-order-filters-legacy .form-floating > .form-control {
+  min-height: 52px;
+  padding-top: 1.1rem;
+  background-color: #ffffff;
+  border: 2px solid #d1fae5;
+  border-radius: 12px;
+  color: #1f2937;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.staff-order-filters-legacy .form-floating > .form-control:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.staff-order-filters-legacy .form-floating > label {
+  color: #6b7280;
+}
+
+.staff-order-filters-legacy .form-floating > .form-control:focus ~ label,
+.staff-order-filters-legacy .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: #047857;
+}
+
+/* Thống kê — cấu trúc mới (stat-text + icon tròn) */
+.stat-text {
+  min-width: 0;
+}
+
+.stat-text .stat-label {
+  margin: 0 0 0.35rem;
+}
+
+.stat-text .stat-number {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.stats-grid--modern {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.stat-card--modern {
+  padding: 1rem 1.15rem;
+  border-left-width: 4px;
+}
+
+.stat-card--modern.preparing {
+  border-left-color: #10b981;
+}
+
+.stat-icon-badge {
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+.stat-icon-badge--amber {
+  background: linear-gradient(145deg, #fffbeb 0%, #fde68a 100%);
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22);
+}
+
+.stat-icon-badge--emerald {
+  background: linear-gradient(145deg, #ecfdf5 0%, #6ee7b7 100%);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.22);
+}
+
+/* OrderHeader — staff subtitle */
+.header-left-sub {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.45;
+  max-width: 36rem;
+}
+
+.refresh-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  font-weight: 800;
+}
+
+/* Chef /orders — trang danh sách đơn */
+.chef-order-container.chef-orders-page {
+  background: linear-gradient(
+    165deg,
+    #ecfdf5 0%,
+    #f0fdf4 12%,
+    #f5f7fa 45%,
+    #f5f7fa 100%
+  );
+  padding-bottom: 2.5rem;
+}
+
+.chef-header--chef-orders {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  padding: 1.35rem 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 50%, #ffffff 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 10px 36px rgba(15, 118, 110, 0.08);
+  border-radius: 20px;
+  margin-bottom: 1.25rem;
+}
+
+.chef-header-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #059669;
+}
+
+.chef-header-title-main {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #064e3b;
+  line-height: 1.2;
+}
+
+.chef-header-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  max-width: 34rem;
+}
+
+.chef-header--chef-orders .refresh-btn {
+  margin-top: 0.15rem;
+  padding: 0.65rem 1.15rem;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.32);
+}
+
+.chef-orders-panel {
+  margin-bottom: 1.35rem;
+  padding: 1.35rem 1.45rem 1.25rem;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 22px rgba(15, 23, 42, 0.06);
+}
+
+.chef-orders-panel-title {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #047857;
+  letter-spacing: -0.02em;
+}
+
+.chef-orders-panel-divider {
+  height: 1px;
+  margin: 1.15rem 0 0.85rem;
+  background: linear-gradient(90deg, transparent, #e5e7eb 12%, #e5e7eb 88%, transparent);
+  border: 0;
+}
+
+.chef-orders-panel-hint {
+  margin: 0 0 0.65rem;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  line-height: 1.45;
+}
+
+.chef-orders-page .chef-list-filter-label {
+  margin-bottom: 0.35rem;
+  color: #374151;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+}
+
+.chef-orders-status-tabs {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.chef-orders-page .chef-orders-filter-fields .form-floating > .form-control {
+  min-height: 50px;
+  padding-top: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.chef-orders-page .chef-orders-filter-fields .form-floating > .form-control:focus {
+  border-color: #10b981;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.chef-orders-page .chef-orders-filter-fields .form-floating > label {
+  color: #6b7280;
+}
+
+.chef-orders-page .chef-orders-filter-fields .form-floating > .form-control:focus ~ label,
+.chef-orders-page .chef-orders-filter-fields .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: #047857;
+}
+
+.chef-orders-list.orders-container {
+  gap: 1.1rem;
+}
+
+.chef-orders-error.error-message {
+  border-radius: 14px;
+  border: 1px solid #fecaca;
+  font-size: 0.9rem;
+}
+
+.chef-orders-page .no-orders {
+  padding: 2.5rem 1.5rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px dashed #d1fae5;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+.chef-orders-page .no-orders-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: linear-gradient(145deg, #ecfdf5, #d1fae5);
+  border-radius: 50%;
+  color: #059669;
+}
+
+.chef-orders-page .no-orders p {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 20rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+@media (max-width: 576px) {
+  .chef-header--chef-orders .refresh-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chef-header--chef-orders .refresh-btn:hover:not(:disabled) {
+    transform: none;
   }
 }

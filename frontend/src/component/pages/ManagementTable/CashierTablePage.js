@@ -24,7 +24,6 @@ function CashierTablePage() {
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const [loadingTableId, setLoadingTableId] = useState(null);
   const [activeSessions, setActiveSessions] = useState({});
-  const [showCreateOptions, setShowCreateOptions] = useState(null);
   const [pendingReservations, setPendingReservations] = useState([]);
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [selectedTableForReservation, setSelectedTableForReservation] = useState(null);
@@ -150,7 +149,6 @@ function CashierTablePage() {
       setSelectedSessionId(res.data._id);
       await fetchTables();
       await fetchPendingReservations();
-      setShowCreateOptions(null);
       setShowReservationModal(false);
     } catch (err) {
       console.error('Error creating session:', err);
@@ -160,14 +158,7 @@ function CashierTablePage() {
     }
   };
 
-  const handleCreateClick = (tableId, e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    setShowCreateOptions(prev => prev === tableId ? null : tableId);
-  };
-
   const handleNewCustomer = (tableId) => {
-    setShowCreateOptions(null);
     setSelectedTableForReservation(tableId);
     setShowCustomerInfoModal(true);
 
@@ -182,7 +173,6 @@ function CashierTablePage() {
   };
 
   const handleReservedCustomer = (tableId) => {
-    setShowCreateOptions(null);
     setSelectedTableForReservation(tableId);
     setShowReservationModal(true);
   };
@@ -192,7 +182,6 @@ function CashierTablePage() {
   };
 
   const closeQRModal = () => setSelectedSessionId(null);
-  const closeCreateOptions = () => setShowCreateOptions(null);
   const closeReservationModal = () => {
     setShowReservationModal(false);
     setSelectedTableForReservation(null);
@@ -254,24 +243,6 @@ function CashierTablePage() {
       return `${new Date(date).toLocaleDateString('vi-VN')} ${time}`;
     }
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest('.create-section')) {
-        setShowCreateOptions(null);
-      }
-    };
-
-    if (showCreateOptions) {
-      setTimeout(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-      }, 0);
-
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-      };
-    }
-  }, [showCreateOptions]);
 
   return (
     <>
@@ -401,33 +372,29 @@ function CashierTablePage() {
                 ) : (
                   <div className="create-section">
                     <button
+                      type="button"
                       className="create-btn"
-                      onClick={(e) => handleCreateClick(table._id, e)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        handleNewCustomer(table._id);
+                      }}
                       disabled={loadingTableId === table._id}
                     >
                       {loadingTableId === table._id ? 'Đang tạo...' : 'Tạo'}
                     </button>
-
-                    {showCreateOptions === table._id && (
-                      <div className="create-options" onClick={e => e.stopPropagation()}>
-                        <button onClick={() => handleNewCustomer(table._id)}>
-                          Khách mới
-                        </button>
-                        <button
-                          onClick={() => handleReservedCustomer(table._id)}
-                          onMouseEnter={(e) => {
-                            e.target.style.backgroundColor = '#17a2b8';
-                            e.target.style.color = '#ffffff';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.target.style.backgroundColor = '#2a2a2a';
-                            e.target.style.color = '#ffffff';
-                          }}
-                        >
-                          Khách đã đặt bàn
-                        </button>
-                      </div>
-                    )}
+                    <button
+                      type="button"
+                      className="create-btn-secondary"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        handleReservedCustomer(table._id);
+                      }}
+                      disabled={loadingTableId === table._id}
+                    >
+                      Khách đặt trước
+                    </button>
                   </div>
                 )}
               </li>
@@ -776,11 +743,6 @@ function CashierTablePage() {
     </div>
   </div>
 )}
-      {/* Click outside to close create options */}
-      {showCreateOptions && (
-        <div className="overlay" onClick={closeCreateOptions}></div>
-      )}
-
       <ChangeTableModal
         show={showChangeTableModal}
         onHide={() => {

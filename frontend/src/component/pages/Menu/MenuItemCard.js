@@ -1,55 +1,52 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensils } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import { useOrder } from "../../../context/OrderContext";
 import "./css/MenuItemCard.css";
 
 function MenuItemCard({ item }) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const { addToCart } = useOrder();
+
+  const handleAdd = () => {
+    if (!item.isAvailable) return;
+    addToCart(
+      {
+        _id: item._id,
+        name: item.name,
+        price: item.price,
+      },
+      1
+    );
+  };
 
   const imageUrl = item.image?.startsWith("http")
     ? item.image
     : item.image
-      ? `http://localhost:8080/uploads/${item.image}`
-      : null;
-
-  const showImage = Boolean(imageUrl && !imageFailed);
+    ? `http://localhost:8080/uploads/${item.image}`
+    : "https://via.placeholder.com/300x200?text=No+Image";
 
   return (
-    <article
-      className={`menu-card${!item.isAvailable ? " menu-card--unavailable" : ""}`}
-    >
-      <div className="menu-card-media">
-        {showImage ? (
-          <img
-            src={imageUrl}
-            alt=""
-            className="menu-card-img"
-            onError={() => setImageFailed(true)}
-          />
-        ) : (
-          <div className="menu-card-placeholder" aria-hidden>
-            <FontAwesomeIcon
-              icon={faUtensils}
-              className="menu-card-placeholder-icon"
-            />
-          </div>
-        )}
-        {!item.isAvailable && <span className="menu-card-badge">Hết món</span>}
-      </div>
+    <div className="menu-card">
+      <img src={imageUrl} alt={item.name} className="menu-card-img" />
       <div className="menu-card-body">
         <div className="menu-card-header">
-          <h2 className="menu-card-title">{item.name}</h2>
-          {item.description ? (
-            <p className="menu-card-desc">{item.description}</p>
-          ) : null}
+          <h5 className="menu-card-title">{item.name}</h5>
+          <p className="menu-card-desc">{item.description}</p>
         </div>
         <div className="menu-card-footer">
-          <div className="menu-card-price">
-            {item.price.toLocaleString("vi-VN")}₫
-          </div>
+          <div className="menu-card-price">{item.price.toLocaleString()}₫</div>
+          <button
+            type="button"
+            onClick={handleAdd}
+            disabled={!item.isAvailable}
+            className="menu-card-add-btn"
+          >
+            <span className="menu-card-add-icon" aria-hidden>
+              +
+            </span>
+            {item.isAvailable ? "Thêm vào giỏ" : "Hết món"}
+          </button>
         </div>
       </div>
-    </article>
+    </div>
   );
 }
 
