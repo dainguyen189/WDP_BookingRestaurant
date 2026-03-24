@@ -8,18 +8,18 @@ import MenuItemCard from "./MenuItemCard";
 
 import { useOrder } from "../../../context/OrderContext";
 import { useSession } from "../../../context/SessionContext";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import "./css/MenuPage.css";
 
-/** loading | menu | session-bad | need-auth */
+/** loading | menu | session-bad */
 function MenuPage() {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [viewState, setViewState] = useState("loading");
-  const [browseWithoutTable, setBrowseWithoutTable] = useState(false);
+  const [hasSession, setHasSession] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState({});
 
@@ -34,47 +34,37 @@ function MenuPage() {
   loadCartRef.current = loadCartFromServer;
   setOrderIdRef.current = setOrderId;
 
-  const isLoggedIn = () =>
-    Boolean(localStorage.getItem("token") && localStorage.getItem("user"));
-
-  // Gán sessionId từ URL / localStorage; nếu không có phiên bàn thì cho khách đã đăng nhập xem menu
+  // Gán sessionId từ URL / localStorage
   useEffect(() => {
     const idFromUrl = searchParams.get("sessionId");
     if (idFromUrl) {
       saveSession(idFromUrl);
       localStorage.setItem("sessionId", idFromUrl);
-      setBrowseWithoutTable(false);
       return;
     }
     const stored = localStorage.getItem("sessionId");
     if (stored) {
       saveSession(stored);
-      setBrowseWithoutTable(false);
-      return;
-    }
-
-    setBrowseWithoutTable(true);
-    if (isLoggedIn()) {
-      setViewState("menu");
-    } else {
-      setViewState("need-auth");
     }
   }, [searchParams, saveSession]);
 
-  // Chỉ kiểm tra API khi có phiên bàn (QR / chọn bàn)
+  // Chỉ kiểm tra API khi có phiên bàn (QR / chọn bàn); không có sessionId thì cho xem menu luôn
   useEffect(() => {
-    if (browseWithoutTable) return;
-
     const idFromUrl = searchParams.get("sessionId");
     const stored = idFromUrl || localStorage.getItem("sessionId");
-    if (!stored) return;
+    if (!stored) {
+      setHasSession(false);
+      setViewState("menu");
+      return;
+    }
+    setHasSession(true);
     if (!sessionId) return;
 
     let cancelled = false;
     const validateSession = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/api/dining-sessions/${sessionId}`
+          `http://localhost:8080/api/dining-sessions/${sessionId}`,
         );
         if (cancelled) return;
         if (res.data.status !== "active") {
@@ -92,7 +82,7 @@ function MenuPage() {
     return () => {
       cancelled = true;
     };
-  }, [sessionId, searchParams, browseWithoutTable]);
+  }, [sessionId, searchParams]);
 
   // Tải menu; chỉ đồng bộ giỏ / đơn khi có phiên bàn hợp lệ
   useEffect(() => {
@@ -103,15 +93,15 @@ function MenuPage() {
           axios.get("http://localhost:8080/api/menu-items"),
         ]);
 
-        const validMenuItems = menuRes.data.filter(item => item && item.name);
+        const validMenuItems = menuRes.data.filter((item) => item && item.name);
 
         setCategories(categoriesRes.data);
         setMenuItems(validMenuItems);
 
-        if (!browseWithoutTable && sessionId) {
+        if (hasSession && sessionId) {
           try {
             const orderRes = await axios.get(
-              `http://localhost:8080/api/orders/session/${sessionId}`
+              `http://localhost:8080/api/orders/session/${sessionId}`,
             );
             const currentOrder = orderRes.data[0];
             if (currentOrder) {
@@ -119,10 +109,10 @@ function MenuPage() {
               setOrderIdRef.current(currentOrder._id);
 
               const itemsRes = await axios.get(
-                `http://localhost:8080/api/order-items/order/${currentOrder._id}`
+                `http://localhost:8080/api/order-items/order/${currentOrder._id}`,
               );
 
-              const formattedItems = itemsRes.data.map(item => ({
+              const formattedItems = itemsRes.data.map((item) => ({
                 _id: item.menuItemId,
                 name: item.menuItem?.name || "Không rõ",
                 price: item.price,
@@ -146,7 +136,7 @@ function MenuPage() {
     };
 
     if (viewState === "menu") fetchData();
-  }, [viewState, sessionId, browseWithoutTable]);
+  }, [viewState, sessionId, hasSession]);
 
   if (viewState === "loading") {
     return (
@@ -157,33 +147,14 @@ function MenuPage() {
     );
   }
 
-  if (viewState === "need-auth") {
-    return (
-      <>
-        <Header />
-        <div className="px-3 py-5 text-center" style={{ maxWidth: 520, margin: "0 auto" }}>
-          <h2 className="h4 mb-3">Cần đăng nhập hoặc quét mã tại bàn</h2>
-          <p className="text-muted mb-4">
-            Để xem menu khi chưa có mã QR bàn, vui lòng đăng nhập. Nếu bạn đang tại nhà hàng, hãy quét mã QR
-            trên bàn để gọi món theo phiên.
-          </p>
-          <Link to="/login" className="btn btn-success me-2">
-            Đăng nhập
-          </Link>
-          <Link to="/home" className="btn btn-outline-secondary">
-            Về trang chủ
-          </Link>
-        </div>
-      </>
-    );
-  }
-
   if (viewState === "session-bad") {
     return (
       <>
         <Header />
         <div className="px-3 py-4" style={{ maxWidth: 640, margin: "0 auto" }}>
-          <h2 className="h4 text-danger mb-2">Phiên không hợp lệ hoặc đã kết thúc</h2>
+          <h2 className="h4 text-danger mb-2">
+            Phiên không hợp lệ hoặc đã kết thúc
+          </h2>
           <p className="mb-0">
             Vui lòng quét lại mã QR hoặc chọn lại bàn để bắt đầu phiên mới.
           </p>
@@ -194,8 +165,10 @@ function MenuPage() {
 
   // 🪄 Lọc theo danh mục + tìm kiếm (đã fix lỗi toLowerCase)
   const filteredMenuItems = menuItems
-    .filter(item => !selectedCategory || item.category?._id === selectedCategory)
-    .filter(item => {
+    .filter(
+      (item) => !selectedCategory || item.category?._id === selectedCategory,
+    )
+    .filter((item) => {
       const name = item?.name || "";
       return name.toLowerCase().includes(searchTerm.toLowerCase());
     });
@@ -203,7 +176,10 @@ function MenuPage() {
   // 📑 Phân trang
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredMenuItems.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredMenuItems.slice(
+    indexOfFirstItem,
+    indexOfLastItem,
+  );
   const totalPages = Math.ceil(filteredMenuItems.length / itemsPerPage);
 
   return (
@@ -223,7 +199,7 @@ function MenuPage() {
             </p>
           </header>
 
-          {browseWithoutTable && (
+          {!sessionId && (
             <div className="menu-page-banner" role="status">
               Bạn đang xem menu. Để gọi món gắn với bàn, hãy quét mã QR tại bàn.
             </div>
@@ -231,14 +207,18 @@ function MenuPage() {
 
           <div className="menu-search-row">
             <label className="menu-search-wrap" htmlFor="menu-search-input">
-              <FontAwesomeIcon icon={faSearch} className="menu-search-icon" aria-hidden />
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="menu-search-icon"
+                aria-hidden
+              />
               <input
                 id="menu-search-input"
                 type="search"
                 className="menu-search-input"
                 placeholder="Tìm món ăn theo tên..."
                 value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 autoComplete="off"
               />
             </label>
@@ -256,7 +236,7 @@ function MenuPage() {
               >
                 Tất cả
               </button>
-              {categories.map(cat => (
+              {categories.map((cat) => (
                 <button
                   type="button"
                   key={cat._id}
@@ -274,9 +254,13 @@ function MenuPage() {
 
           <div className="menu-grid">
             {currentItems.length === 0 ? (
-              <p className="menu-empty-hint">Không có món nào phù hợp. Thử từ khóa khác nhé.</p>
+              <p className="menu-empty-hint">
+                Không có món nào phù hợp. Thử từ khóa khác nhé.
+              </p>
             ) : (
-              currentItems.map(item => <MenuItemCard key={item._id} item={item} />)
+              currentItems.map((item) => (
+                <MenuItemCard key={item._id} item={item} />
+              ))
             )}
           </div>
 
