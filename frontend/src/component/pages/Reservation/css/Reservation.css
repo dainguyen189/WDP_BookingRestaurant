@@ -57,7 +57,11 @@
 }
 
 .booking-form-card .booking-input-customer-name {
+  display: block !important;
+  width: 100%;
   min-height: 48px;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Modal xác thực OTP — ô nhập luôn rõ ràng, tránh bị CSS global che/kẹt */
