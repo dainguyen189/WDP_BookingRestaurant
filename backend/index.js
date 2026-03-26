@@ -30,7 +30,7 @@ app.use(cookieParser());
 // Cấu hình CORS để cho phép credentials (cookies)
 app.use(
   cors({
-    origin: "http://localhost:3000", // URL của frontend
+    origin: ["http://localhost:3000", "http://localhost:3001"], // URL của frontend
     credentials: true, // Quan trọng cho việc gửi cookies
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
