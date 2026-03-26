@@ -1,4 +1,5 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { getMenuContext } = require("../util/menuCache");
 
 const ai = new GoogleGenerativeAI(process.env.GENEMI_API_KEY);
 
@@ -15,28 +16,32 @@ Nếu câu hỏi không liên quan đến nhà hàng (như hỏi chính trị, t
 `;
 
 exports.chatWithBot = async (req, res) => {
-    try {
-        const { prompt } = req.body;
+  try {
+    const { prompt } = req.body;
 
-        if (!prompt) {
-            return res.status(400).json({ error: "Prompt is required" });
-        }
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
+    const menuContext = await getMenuContext();
 
-        // Tạo prompt hoàn chỉnh
-        const fullPrompt = `
+    // Tạo prompt hoàn chỉnh
+    const fullPrompt = `
 ${systemPrompt}
+
+=== THỰC ĐƠN HIỆN TẠI ===
+${menuContext}
 
 Khách: ${prompt}
 Bot:
 `;
 
-        const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
-        const result = await model.generateContent(fullPrompt);
-        const reply = result.response.text();
+    const model = ai.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const result = await model.generateContent(fullPrompt);
+    const reply = result.response.text();
 
-        res.json({ reply });
-    } catch (error) {
-        console.error("❌ Chatbot error:", error);
-        res.status(500).json({ error: error.message });
-    }
+    res.json({ reply });
+  } catch (error) {
+    console.error("❌ Chatbot error:", error);
+    res.status(500).json({ error: error.message });
+  }
 };

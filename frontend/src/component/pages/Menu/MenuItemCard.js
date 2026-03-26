@@ -2,7 +2,7 @@ import React from "react";
 import { useOrder } from "../../../context/OrderContext";
 import "./css/MenuItemCard.css";
 
-function MenuItemCard({ item }) {
+function MenuItemCard({ item, hasSession }) {
   const { addToCart } = useOrder();
 
   const handleAdd = () => {
@@ -13,15 +13,15 @@ function MenuItemCard({ item }) {
         name: item.name,
         price: item.price,
       },
-      1
+      1,
     );
   };
 
   const imageUrl = item.image?.startsWith("http")
     ? item.image
     : item.image
-    ? `http://localhost:8080/uploads/${item.image}`
-    : "https://via.placeholder.com/300x200?text=No+Image";
+      ? `http://localhost:8080/uploads/${item.image}`
+      : "https://via.placeholder.com/300x200?text=No+Image";
 
   return (
     <div className="menu-card">
@@ -33,17 +33,21 @@ function MenuItemCard({ item }) {
         </div>
         <div className="menu-card-footer">
           <div className="menu-card-price">{item.price.toLocaleString()}₫</div>
-          <button
-            type="button"
-            onClick={handleAdd}
-            disabled={!item.isAvailable}
-            className="menu-card-add-btn"
-          >
-            <span className="menu-card-add-icon" aria-hidden>
-              +
-            </span>
-            {item.isAvailable ? "Thêm vào giỏ" : "Hết món"}
-          </button>
+          {hasSession ? (
+            <button
+              type="button"
+              onClick={handleAdd}
+              disabled={!item.isAvailable}
+              className="menu-card-add-btn"
+            >
+              <span className="menu-card-add-icon" aria-hidden>
+                +
+              </span>
+              {item.isAvailable ? "Thêm vào giỏ" : "Hết món"}
+            </button>
+          ) : (
+            <span className="menu-card-no-session"></span> // 👈 guest hint
+          )}
         </div>
       </div>
     </div>

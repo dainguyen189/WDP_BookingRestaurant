@@ -260,7 +260,7 @@ function MenuPage() {
               </p>
             ) : (
               currentItems.map((item) => (
-                <MenuItemCard key={item._id} item={item} />
+                <MenuItemCard key={item._id} item={item} hasSession={!!sessionId} />
               ))
             )}
           </div>
