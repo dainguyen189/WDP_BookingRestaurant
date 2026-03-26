@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import CashierHeader from '../../Header/CashierHeader';
+import WaiterHeader from '../../Header/WaiterHeader';
 
 import './css/OrdersList.css';
 
 function OrdersList() {
-  const user = JSON.parse(sessionStorage.getItem('user') || '{"role": "cashier"}');
+  const user = JSON.parse(sessionStorage.getItem('user') || '{"role": "waiter"}');
 
   const [filters, setFilters] = useState({
     date: new Date().toISOString().split('T')[0], 
@@ -261,7 +261,7 @@ function OrdersList() {
 
   return (
     <>
-      <CashierHeader />
+      <WaiterHeader />
     <div className="orders-list-page">
       <div className="container">
         <div className="main-card">

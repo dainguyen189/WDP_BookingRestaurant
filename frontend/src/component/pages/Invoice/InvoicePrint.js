@@ -84,7 +84,7 @@ function PrintableInvoice() {
                 <p className="thank-you-note">Thank you for your visit!</p>
             </div>
             <div className="print-controls">
-                <Link to="/cashier/tables" className="btn-back">Back to Tables</Link>
+                <Link to="/waiter/tables" className="btn-back">Back to Tables</Link>
                 <button onClick={handlePrint} className="btn-print">Print Invoice</button>
             </div>
         </div>

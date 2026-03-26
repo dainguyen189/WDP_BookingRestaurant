@@ -72,8 +72,8 @@ const Login = () => {
           navigate('/admin');
         } else if (role === 'chef') {
           navigate('/chef');
-          } else if (role === 'cashier') {
-          navigate('/cashier');
+          } else if (role === 'waiter') {
+          navigate('/waiter');
           } else if (role === 'staff') {
           navigate('/staff');
         } else {

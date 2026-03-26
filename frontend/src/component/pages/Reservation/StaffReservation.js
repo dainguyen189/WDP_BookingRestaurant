@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import Header from "../../Header/AdminHeader";
 import StaffHeader from "../../Header/StaffHeader";
-import CashierHeader from "../../Header/CashierHeader";
+import WaiterHeader from "../../Header/WaiterHeader";
 import "./css/AdminReservation.css";
 
 function Reservation() {
@@ -169,7 +169,7 @@ function Reservation() {
     <>
       {user?.role === "admin" && <Header />}
       {user?.role === "staff" && <StaffHeader />}
-      {user?.role === "cashier" && <CashierHeader />}
+      {user?.role === "waiter" && <WaiterHeader />}
 
       <div className="reservation-admin-page">
         <Container className="mt-4 booking-form-container">

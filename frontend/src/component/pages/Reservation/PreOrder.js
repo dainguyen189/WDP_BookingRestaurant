@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import Header from '../../Header/AdminHeader';
 import StaffHeader from '../../Header/StaffHeader';
-import CashierHeader from '../../Header/CashierHeader';
+import WaiterHeader from '../../Header/WaiterHeader';
 import './css/AdminReservation.css';
 import './css/PreOrder.css';
 
@@ -158,7 +158,7 @@ function PreOrdersSummary() {
         <>
             {user.role === 'admin' && <Header />}
             {user.role === 'staff' && <StaffHeader />}
-            {user.role === 'cashier' && <CashierHeader />}
+            {user.role === 'waiter' && <WaiterHeader />}
 
             <div className="preorder-summary-page">
             <Container className="mt-4 booking-form-container">

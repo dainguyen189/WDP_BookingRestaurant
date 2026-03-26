@@ -68,7 +68,7 @@ export default function FailedPage() {
                         <button className={styles.buttonPrimary} onClick={handleRetry}>
                             ↻ Thử lại
                         </button>
-                        <Link to="/cashier">
+                        <Link to="/waiter">
                             <button className={styles.buttonSecondary}>Quay lại trang chủ</button>
                         </Link>
                     </div>

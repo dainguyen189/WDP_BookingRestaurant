@@ -4,7 +4,7 @@ import AdminHeader from '../../Header/AdminHeader';
 import './css/AdminOrdersList.css';
 
 function OrdersList() {
-  const user = JSON.parse(sessionStorage.getItem('user') || '{"role": "cashier"}');
+  const user = JSON.parse(sessionStorage.getItem('user') || '{"role": "waiter"}');
 
   const [filters, setFilters] = useState({
     date: new Date().toISOString().split('T')[0], 

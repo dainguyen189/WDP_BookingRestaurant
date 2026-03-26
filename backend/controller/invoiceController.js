@@ -458,7 +458,7 @@ exports.getInvoiceByOrderId = async (req, res, next) => {
 /**
  * @desc    Get details of a single invoice
  * @route   GET /api/invoices/:id
- * @access  Private (Admin/Cashier)
+ * @access  Private (Admin/Waiter)
  */
 exports.getInvoiceDetails = async (req, res, next) => {
     try {

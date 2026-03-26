@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import CashierHeader from "../../Header/CashierHeader";
-import "./css/CashierCheckout.css";
+import WaiterHeader from "../../Header/WaiterHeader";
+import "./css/WaiterCheckout.css";
 import axiosInstance from "../../../utils/axiosConfig";
 
-function CashierCheckout() {
+function WaiterCheckout() {
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("sessionId");
   const [pendingOrder, setPendingOrder] = useState(null);
@@ -24,11 +24,11 @@ function CashierCheckout() {
     }
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/orders/session/${sessionId}`
+        `http://localhost:8080/api/orders/session/${sessionId}`,
       );
       const ordersData = Array.isArray(res.data) ? res.data : [];
       const orderToPay = ordersData.find(
-        (order) => order.paymentStatus === "unpaid"
+        (order) => order.paymentStatus === "unpaid",
       );
       setPendingOrder(orderToPay);
     } catch (err) {
@@ -50,7 +50,7 @@ function CashierCheckout() {
     setFoundUser(null);
     try {
       const res = await axios.get(
-        `http://localhost:8080/api/user/search?q=${userSearchQuery}`
+        `http://localhost:8080/api/user/search?q=${userSearchQuery}`,
       );
       if (res.data.success && res.data.user) {
         setFoundUser(res.data.user);
@@ -69,7 +69,7 @@ function CashierCheckout() {
         `http://localhost:8080/api/orders/${pendingOrder._id}/link-user`,
         {
           userId: foundUser._id,
-        }
+        },
       );
       setPendingOrder(res.data.order);
       setLinkingMessage({
@@ -94,40 +94,41 @@ function CashierCheckout() {
           userId:
             typeof order.userId === "object" ? order.userId._id : order.userId,
           totalAmount: order.totalAmount,
-        }
+        },
       );
       console.log("Cộng điểm thành công.");
     } catch (pointError) {
       console.warn(
         "⚠️ Đã có lỗi xảy ra khi cộng điểm:",
-        pointError.response?.data || pointError.message
+        pointError.response?.data || pointError.message,
       );
     }
   };
 
   const handleCashPayment = async () => {
     if (!pendingOrder) return alert("No order available to pay.");
-    
+
     const isConfirmed = window.confirm(
-      `Confirm cash payment of ${pendingOrder.totalAmount.toLocaleString("en-US")}₫?`
+      `Confirm cash payment of ${pendingOrder.totalAmount.toLocaleString("en-US")}₫?`,
     );
 
     if (isConfirmed) {
       try {
         await axios.put(
-          `http://localhost:8080/api/orders/${pendingOrder._id}/pay-by-cash`
+          `http://localhost:8080/api/orders/${pendingOrder._id}/pay-by-cash`,
         );
-        
+
         await addPointsForOrder(pendingOrder);
 
         if (sessionId) {
-            await axios.put(`http://localhost:8080/api/dining-sessions/${sessionId}/complete`);
+          await axios.put(
+            `http://localhost:8080/api/dining-sessions/${sessionId}/complete`,
+          );
         }
 
         alert("✅ Cash payment successful and session ended!");
-        
-        navigate(`/invoice/print/${pendingOrder._id}`);
 
+        navigate(`/invoice/print/${pendingOrder._id}`);
       } catch (error) {
         alert(`❌ ${error.response?.data?.message || "An error occurred."}`);
       }
@@ -152,6 +153,7 @@ function CashierCheckout() {
       const res = await axiosInstance.post("/payos/create-order", {
         orderId: pendingOrder._id,
         amount: pendingOrder.totalAmount,
+        sessionId: sessionId,
       });
 
       if (res.data.checkoutUrl) {
@@ -165,8 +167,7 @@ function CashierCheckout() {
     }
   };
 
-  if (loading)
-    return <div className="info-container">🔄 Đang tải...</div>;
+  if (loading) return <div className="info-container">🔄 Đang tải...</div>;
   if (!sessionId)
     return (
       <div className="info-container">
@@ -176,8 +177,8 @@ function CashierCheckout() {
 
   return (
     <>
-      <CashierHeader />
-      <div className="cashier-checkout-container">
+      <WaiterHeader />
+      <div className="waiter-checkout-container">
         <h2>🧾 Thanh toán - Phiên: {sessionId}</h2>
         {pendingOrder ? (
           <>
@@ -188,12 +189,14 @@ function CashierCheckout() {
               </h4>
               <p>
                 Trạng thái:
-                <span className={`payment-status ${pendingOrder.paymentStatus}`}>
+                <span
+                  className={`payment-status ${pendingOrder.paymentStatus}`}
+                >
                   {pendingOrder.paymentStatus.toUpperCase()}
                 </span>
               </p>
               <ul className="order-items-list">
-              {pendingOrder.items?.map((item) => (
+                {pendingOrder.items?.map((item) => (
                   <li key={item._id}>
                     <span>
                       🍽️ {item.menuItemId?.name || "Sản phẩm không rõ"} ×{" "}
@@ -237,9 +240,7 @@ function CashierCheckout() {
                     </button>
                   </div>
                   {linkingMessage.text && (
-                    <p
-                      className={`linking-message ${linkingMessage.type}`}
-                    >
+                    <p className={`linking-message ${linkingMessage.type}`}>
                       {linkingMessage.text}
                     </p>
                   )}
@@ -282,7 +283,7 @@ function CashierCheckout() {
           <div className="info-container">
             <h3>🧺 Không có đơn hàng nào cần thanh toán.</h3>
             <button
-              onClick={() => navigate("/cashier/tables")}
+              onClick={() => navigate("/waiter/tables")}
               className="btn-action"
             >
               Quay lại danh sách bàn
@@ -294,4 +295,4 @@ function CashierCheckout() {
   );
 }
 
-export default CashierCheckout;
+export default WaiterCheckout;

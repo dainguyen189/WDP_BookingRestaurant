@@ -14,7 +14,7 @@ const userSchema = new Schema({
   points: { type: Number, default: 0, min: 0 },
   role: {
     type: String,
-    enum: ['admin', 'user', 'manager', 'chef', 'cashier', 'staff'],
+    enum: ['admin', 'user', 'manager', 'chef', 'waiter', 'staff'],
     default: 'user'
   },
   

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import QRCodeComponent from './QRCodeGenerator';
-import './css/CashierTableQRPage.css';
-import CashierHeader from '../../Header/CashierHeader';
+import './css/WaiterTableQRPage.css';
+import WaiterHeader from '../../Header/WaiterHeader';
 import ChangeTableModal from './ChangeTableModal';
 
 function formatElapsedSince(startTime) {
@@ -19,7 +19,7 @@ function formatElapsedSince(startTime) {
   return m > 0 ? `${h} giờ ${m} phút` : `${h} giờ`;
 }
 
-function CashierTablePage() {
+function WaiterTablePage() {
   const [tables, setTables] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const [loadingTableId, setLoadingTableId] = useState(null);
@@ -246,8 +246,8 @@ function CashierTablePage() {
 
   return (
     <>
-      <CashierHeader />
-      <div className="admin-table-container cashier-table-page">
+      <WaiterHeader />
+      <div className="admin-table-container waiter-table-page">
         <h2>Quản lý bàn</h2>
         <ul className="table-grid">
           {tables.map(table => {
@@ -476,7 +476,7 @@ function CashierTablePage() {
               </button>
 
               <button
-                onClick={() => navigate(`/cashier/checkout?sessionId=${selectedSessionId}`)}
+                onClick={() => navigate(`/waiter/checkout?sessionId=${selectedSessionId}`)}
                 className="checkout-btn"
               >
                 💵 Thanh toán
@@ -590,7 +590,7 @@ function CashierTablePage() {
         </button>
 
         <button
-          onClick={() => navigate(`/cashier/checkout?sessionId=${selectedSessionId}`)}
+          onClick={() => navigate(`/waiter/checkout?sessionId=${selectedSessionId}`)}
           className="payment-button"
         >
           💵 Thanh toán
@@ -763,4 +763,4 @@ function CashierTablePage() {
   );
 }
 
-export default CashierTablePage;
+export default WaiterTablePage;

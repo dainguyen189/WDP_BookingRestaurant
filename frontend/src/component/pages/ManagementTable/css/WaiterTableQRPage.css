@@ -3,7 +3,7 @@
    ============================================================================= */
 
 /* ========== Trang quản lý bàn (Thu ngân) ========== */
-.cashier-table-page.admin-table-container {
+.waiter-table-page.admin-table-container {
   min-height: calc(100vh - 72px);
   padding: 28px 24px 40px;
   background: linear-gradient(
@@ -16,7 +16,7 @@
   color: #1f2937;
 }
 
-.cashier-table-page h2 {
+.waiter-table-page h2 {
   margin: 0 0 1.5rem;
   font-size: clamp(1.65rem, 3.5vw, 2.1rem);
   font-weight: 800;
@@ -25,7 +25,7 @@
   text-align: left;
 }
 
-.cashier-table-page .table-grid {
+.waiter-table-page .table-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.25rem;
@@ -34,7 +34,7 @@
   margin: 0;
 }
 
-.cashier-table-page .table-item {
+.waiter-table-page .table-item {
   position: relative;
   background: #ffffff;
   border: 2px solid #e5e7eb;
@@ -47,7 +47,7 @@
   flex-direction: column;
 }
 
-.cashier-table-page .table-item::before {
+.waiter-table-page .table-item::before {
   content: '';
   position: absolute;
   top: 0;
@@ -59,37 +59,37 @@
   opacity: 0.85;
 }
 
-.cashier-table-page .table-item:hover {
+.waiter-table-page .table-item:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(16, 185, 129, 0.12);
 }
 
-.cashier-table-page .table-item.occupied {
+.waiter-table-page .table-item.occupied {
   border-color: #fbbf24;
   background: linear-gradient(180deg, #fffbeb 0%, #ffffff 52%);
   box-shadow: 0 8px 28px rgba(245, 158, 11, 0.14);
 }
 
-.cashier-table-page .table-item.occupied::before {
+.waiter-table-page .table-item.occupied::before {
   background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
 }
 
-.cashier-table-page .table-item.occupied:hover {
+.waiter-table-page .table-item.occupied:hover {
   border-color: #f59e0b;
   box-shadow: 0 14px 40px rgba(245, 158, 11, 0.2);
 }
 
-.cashier-table-page .table-info {
+.waiter-table-page .table-info {
   padding: 1.05rem 1.2rem 1rem;
   border-bottom: 1px solid #f3f4f6;
 }
 
-.cashier-table-page .table-item.occupied .table-info {
+.waiter-table-page .table-item.occupied .table-info {
   border-bottom-color: #fde68a;
   background: linear-gradient(135deg, rgba(255, 251, 235, 0.95) 0%, #ffffff 100%);
 }
 
-.cashier-table-page .table-info h3 {
+.waiter-table-page .table-info h3 {
   margin: 0 0 0.35rem;
   font-size: 1.28rem;
   font-weight: 800;
@@ -97,13 +97,13 @@
   letter-spacing: -0.02em;
 }
 
-.cashier-table-page .table-capacity {
+.waiter-table-page .table-capacity {
   margin: 0 0 0.65rem;
   font-size: 0.875rem;
   color: #6b7280;
 }
 
-.cashier-table-page .status {
+.waiter-table-page .status {
   display: inline-flex;
   align-items: center;
   padding: 0.32rem 0.75rem;
@@ -112,13 +112,13 @@
   font-weight: 700;
 }
 
-.cashier-table-page .status.available {
+.waiter-table-page .status.available {
   background: rgba(16, 185, 129, 0.14);
   color: #047857;
   border: 1px solid rgba(16, 185, 129, 0.32);
 }
 
-.cashier-table-page .status.occupied {
+.waiter-table-page .status.occupied {
   background: rgba(180, 83, 9, 0.12);
   color: #9a3412;
   border: 1px solid rgba(245, 158, 11, 0.45);
@@ -288,7 +288,7 @@
   box-shadow: 0 8px 20px rgba(16, 185, 129, 0.38);
 }
 
-.cashier-table-page .create-section {
+.waiter-table-page .create-section {
   padding: 0 1.2rem 1.2rem;
   display: flex;
   flex-direction: column;
@@ -296,7 +296,7 @@
   position: static;
 }
 
-.cashier-table-page .create-btn {
+.waiter-table-page .create-btn {
   width: 100%;
   margin-top: 0.25rem;
   padding: 0.55rem 1rem;
@@ -311,17 +311,17 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.cashier-table-page .create-btn:hover:not(:disabled) {
+.waiter-table-page .create-btn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(16, 185, 129, 0.38);
 }
 
-.cashier-table-page .create-btn:disabled {
+.waiter-table-page .create-btn:disabled {
   opacity: 0.65;
   cursor: not-allowed;
 }
 
-.cashier-table-page .create-btn-secondary {
+.waiter-table-page .create-btn-secondary {
   width: 100%;
   padding: 0.5rem 1rem;
   border: 2px solid #10b981;
@@ -338,13 +338,13 @@
     transform 0.15s ease;
 }
 
-.cashier-table-page .create-btn-secondary:hover:not(:disabled) {
+.waiter-table-page .create-btn-secondary:hover:not(:disabled) {
   background: #ecfdf5;
   border-color: #059669;
   color: #065f46;
 }
 
-.cashier-table-page .create-btn-secondary:disabled {
+.waiter-table-page .create-btn-secondary:disabled {
   opacity: 0.55;
   cursor: not-allowed;
 }

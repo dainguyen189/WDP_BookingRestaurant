@@ -21,7 +21,7 @@ import PaymentResult from "./component/pages/payment/PaymentResult";
 import TestQRCode from "./component/pages/payment/TestQRCode";
 
 import AdminRoutes from "./routes/AdminRoutes";
-import CashierRoutes from "./routes/CashierRoutes";
+import WaiterRoutes from "./routes/WaiterRoutes";
 import ChefRoutes from "./routes/ChefRoutes";
 import UserManagement from './component/pages/UserManagement/UserManagement';
 import AdminLayout from './component/LayoutAdmin/AdminLayout';
@@ -57,7 +57,7 @@ function App() {
                         <Route path="/test-qr" element={<TestQRCode />} />
                         <Route path="/admin/*" element={<AdminRoutes />} />
                         <Route path="/staff/*" element={<StaffRoutes />} />
-                        <Route path="/cashier/*" element={<CashierRoutes />} />
+                        <Route path="/waiter/*" element={<WaiterRoutes />} />
                         <Route path="/chef/*" element={<ChefRoutes />} />
                         <Route path='admin' element={<AdminLayout />}>
                             <Route path="/admin/users" element={<UserManagement />} />

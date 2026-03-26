@@ -1,27 +1,27 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import CashierCheckout from "../component/pages/Checkout/CashierCheckout";
-import CashierTablePage from "../component/pages/ManagementTable/CashierTablePage";
-import CashierReservation from '../component/pages/Reservation/CashierReservation';
+import WaiterCheckout from "../component/pages/Checkout/WaiterCheckout";
+import WaiterTablePage from "../component/pages/ManagementTable/WaiterTablePage";
+import WaiterReservation from '../component/pages/Reservation/WaiterReservation';
 import UserProfile from '../component/pages/UserProfile/UserProfile';
 import PreOrder from '../component/pages/Reservation/PreOrder';
 import OrdersList from '../component/pages/Revenue/OrdersList';
 
 
-const isCashier = () => {
+const isWaiter = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  return user?.role === "cashier";
+  return user?.role === "waiter";
 };
 
-const CashierRoutes = () => {
+const WaiterRoutes = () => {
   return (
     <Routes>
-      {isCashier() ? (
+      {isWaiter() ? (
         <>
-          <Route path="/" element={<CashierTablePage />} />
-          <Route path="/checkout" element={<CashierCheckout />} />
-          <Route path="reservation" element={<CashierReservation />} />
+          <Route path="/" element={<WaiterTablePage />} />
+          <Route path="/checkout" element={<WaiterCheckout />} />
+          <Route path="reservation" element={<WaiterReservation />} />
           <Route path="profile" element={<UserProfile />} />
-          <Route path="tables" element={<CashierTablePage />} />
+          <Route path="tables" element={<WaiterTablePage />} />
 
           <Route path="pre-order" element={<PreOrder />} />
 
@@ -36,4 +36,4 @@ const CashierRoutes = () => {
   );
 };
 
-export default CashierRoutes;
+export default WaiterRoutes;
