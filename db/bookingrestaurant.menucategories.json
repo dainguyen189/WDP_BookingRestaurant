@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "name": "Món Khai Vị",
+  "description": "Các món nhẹ dùng trước bữa chính",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "name": "Món Chính",
+  "description": "Các món ăn chính thịnh soạn",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "name": "Món Nướng & Lẩu",
+  "description": "Các món nướng than hoa và lẩu đặc sắc",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "name": "Hải Sản",
+  "description": "Hải sản tươi sống chế biến theo yêu cầu",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "name": "Cơm & Mì",
+  "description": "Cơm rang, cơm niêu, mì xào các loại",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000006"
+  },
+  "name": "Món Chay",
+  "description": "Thực đơn chay thanh đạm",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000007"
+  },
+  "name": "Tráng Miệng",
+  "description": "Các món ngọt sau bữa ăn",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000008"
+  },
+  "name": "Đồ Uống",
+  "description": "Nước giải khát, sinh tố, trà, cà phê",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa000000000000000000009"
+  },
+  "name": "Combo Đặc Biệt",
+  "description": "Bộ combo tiết kiệm cho nhóm",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "aaa00000000000000000000a"
+  },
+  "name": "Bia & Rượu Vang",
+  "description": "Bia tươi, bia chai và rượu vang nhập khẩu",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+}]

@@ -1,0 +1,1050 @@
+[{
+  "_id": {
+    "$oid": "bbb000000000000000000001"
+  },
+  "name": "Gỏi cuốn tôm thịt",
+  "description": "Gỏi cuốn tươi nhân tôm, thịt heo, bún và rau sống, chấm tương đậu phộng",
+  "price": 75000,
+  "isAvailable": false,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651156/xlzykr1onqjdv0gviivk.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000002"
+  },
+  "name": "Chả giò hải sản",
+  "description": "Chả giò giòn tan nhân mực, tôm, cua, chiên vàng ngập dầu",
+  "price": 85000,
+  "isAvailable": false,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651218/q5p7ulqpzpyiadpjxeze.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000003"
+  },
+  "name": "Súp bào ngư vi cá",
+  "description": "Súp đặc sánh với bào ngư và vi cá hầm kỹ",
+  "price": 180000,
+  "isAvailable": false,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651239/yzjarrvzoiajzvxpjphz.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000004"
+  },
+  "name": "Salad rau củ trộn mè rang",
+  "description": "Salad tươi mát với dressing mè rang đặc biệt của nhà hàng",
+  "price": 65000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651324/kcd8ugo2qswdogo21tg5.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000005"
+  },
+  "name": "Bánh mì nướng bơ tỏi",
+  "description": "Bánh mì baguette nướng giòn với bơ tỏi thơm lừng",
+  "price": 45000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651303/uw50j4rgagjyptbcmtur.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000006"
+  },
+  "name": "Đậu hũ chiên sả ớt",
+  "description": "Đậu hũ non chiên vàng, xào sả ớt cay thơm",
+  "price": 70000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651352/v80y3eabm6yckvsmmfyw.png",
+  "category": {
+    "$oid": "aaa000000000000000000001"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000007"
+  },
+  "name": "Bò nướng lá lốt",
+  "description": "Thịt bò tươi cuộn lá lốt nướng than hoa, thơm đặc trưng",
+  "price": 185000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651361/dm2q7itqobfhhch2ltgs.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000008"
+  },
+  "name": "Sườn heo nướng mật ong",
+  "description": "Sườn heo tảng ướp mật ong nướng than, da vàng giòn",
+  "price": 195000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651379/i6viyhnjqg3bcmoskqpu.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000009"
+  },
+  "name": "Gà chiên nước mắm",
+  "description": "Gà ta chiên giòn sốt nước mắm tỏi ớt kiểu miền Nam",
+  "price": 175000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651401/dw8vzwdvdb0bc8065odk.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000a"
+  },
+  "name": "Vịt quay Bắc Kinh",
+  "description": "Vịt quay nguyên con da giòn màu đỏ đặc trưng, kèm bánh tráng và tương hoisin",
+  "price": 450000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651417/x40pf1clmcxic0hfkjhf.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000b"
+  },
+  "name": "Bò lúc lắc sốt tiêu đen",
+  "description": "Thịt bò hạt lựu xào sốt tiêu đen kiểu Tây, ăn kèm cơm hoặc bánh mì",
+  "price": 220000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651434/mhxp3yjm06kcfdkueihn.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000c"
+  },
+  "name": "Heo quay da giòn",
+  "description": "Heo quay miếng da giòn rụm, chấm mắm tỏi chua ngọt",
+  "price": 210000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651455/wwbvevjobtsihokavktl.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000d"
+  },
+  "name": "Gà hấp muối sả",
+  "description": "Gà ta hấp muối sả giữ nguyên vị ngọt tự nhiên",
+  "price": 195000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651484/vnrytbmv4bhztsejzrw0.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000e"
+  },
+  "name": "Thịt kho tàu",
+  "description": "Thịt ba chỉ và trứng kho nước dừa đậm đà kiểu Nam Bộ",
+  "price": 150000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651499/wuaprrzid8wflbbkaq2v.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000000f"
+  },
+  "name": "Cá kho tộ",
+  "description": "Cá basa kho tộ sền sệt với tiêu, ớt và nước dừa",
+  "price": 145000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651513/ilfq3tedpymsmeyvdrlp.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000010"
+  },
+  "name": "Bún bò Huế",
+  "description": "Bún bò chua cay đặc trưng xứ Huế, nước dùng hầm xương trong",
+  "price": 95000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651546/kzb2zorwaxeimtj2n5is.png",
+  "category": {
+    "$oid": "aaa000000000000000000002"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000011"
+  },
+  "name": "Lẩu hải sản Thái",
+  "description": "Lẩu nước dùng Tom Yum chua cay, kèm tôm, mực, nghêu, nấm",
+  "price": 380000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651552/wm2tizsqhbs2cylavo0p.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000012"
+  },
+  "name": "Lẩu bò nhúng giấm",
+  "description": "Bò tươi thái mỏng nhúng nước giấm me, ăn kèm bún và rau sống",
+  "price": 320000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651575/gmrto3tq9mrekzgre3dk.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000013"
+  },
+  "name": "Lẩu mắm miền Tây",
+  "description": "Lẩu mắm đặc trưng Nam Bộ với rau đồng và cá đồng",
+  "price": 290000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651589/efddqlydrcoo42bpfj8k.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000014"
+  },
+  "name": "Set nướng BBQ hỗn hợp",
+  "description": "Set gồm bò, tôm, mực, gà và rau củ nướng vỉ than hoa",
+  "price": 420000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651608/ado43oz9ongt4x1hwcfr.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000015"
+  },
+  "name": "Cá lóc nướng trui",
+  "description": "Cá lóc đồng nướng rơm, bóc lớp than ngoài ăn với bún và rau",
+  "price": 195000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651634/unbvfa8awaffg6lptya4.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000016"
+  },
+  "name": "Nầm bò nướng muối ớt",
+  "description": "Nầm bò tươi ướp muối ớt nướng vỉ than, giòn dai thơm lừng",
+  "price": 165000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651664/wekvzx4qopxfigwhve8z.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000017"
+  },
+  "name": "Lẩu gà lá é",
+  "description": "Lẩu gà ta nấu với lá é thơm nức, nước dùng ngọt thanh",
+  "price": 280000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651680/ro2v9gzxh8tnoaqcy363.png",
+  "category": {
+    "$oid": "aaa000000000000000000003"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000018"
+  },
+  "name": "Tôm hùm hấp gừng",
+  "description": "Tôm hùm hấp gừng hành giữ nguyên vị ngọt tươi",
+  "price": 950000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651697/efhqpyi3ptmdprv4xuqa.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000019"
+  },
+  "name": "Mực nướng sa tế",
+  "description": "Mực ống tươi nướng sa tế cay thơm, chấm muối chanh",
+  "price": 195000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651713/jllwsmeksxbp76cbog8y.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001a"
+  },
+  "name": "Nghêu xào sả ớt",
+  "description": "Nghêu tươi xào sả ớt, nước sốt đậm đà ngọt tự nhiên",
+  "price": 110000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651728/tpjkzsiwriyyrsblz1pr.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001b"
+  },
+  "name": "Cua rang muối",
+  "description": "Cua biển rang muối ớt vàng giòn, thơm lừng",
+  "price": 320000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651752/i06lm4fqkkvos2xfo484.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001c"
+  },
+  "name": "Tôm sú hấp bia",
+  "description": "Tôm sú to hấp bia với gừng, giữ độ ngọt và giòn",
+  "price": 245000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651773/uli6wb8l4ihkbwlzs1vv.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001d"
+  },
+  "name": "Bạch tuộc xào bơ tỏi",
+  "description": "Bạch tuộc tươi xào bơ tỏi ngậy bùi, dai giòn",
+  "price": 185000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651786/onboimy8aqyaa65oty3x.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001e"
+  },
+  "name": "Hàu nướng mỡ hành",
+  "description": "Hàu sữa nướng phô mai bơ lò, béo thơm",
+  "price": 195000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651809/gdc4p1rhgrxpftuyytvq.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000001f"
+  },
+  "name": "Cá chẽm hấp Hồng Kông",
+  "description": "Cá chẽm tươi hấp xì dầu gừng kiểu Hồng Kông",
+  "price": 285000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652104/mzbugersazg0zozxfckc.png",
+  "category": {
+    "$oid": "aaa000000000000000000004"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000020"
+  },
+  "name": "Cơm rang hải sản",
+  "description": "Cơm rang dương châu với tôm, mực và rau củ",
+  "price": 120000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652116/xpmrxxshpmrsnraugabg.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000021"
+  },
+  "name": "Mì xào bò lúc lắc",
+  "description": "Mì trứng xào với bò hạt lựu sốt dầu hào đậm đà",
+  "price": 135000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652133/fce7fhwbjhulnwbwlfy6.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000022"
+  },
+  "name": "Cơm niêu cá kho",
+  "description": "Cơm niêu đất dẻo thơm ăn kèm cá kho tộ",
+  "price": 110000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652146/pvqmardfojp0ccwjpyhj.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000023"
+  },
+  "name": "Phở bò tái chín",
+  "description": "Phở bò truyền thống nước dùng hầm xương 12 tiếng",
+  "price": 95000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652172/dlqk0bgpquhgqdi0qaa1.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000024"
+  },
+  "name": "Bún thịt nướng",
+  "description": "Bún tươi kèm thịt heo nướng, chả giò và rau sống",
+  "price": 90000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652035/huyteepyciq3lug4e0xq.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000025"
+  },
+  "name": "Hủ tiếu Nam Vang",
+  "description": "Hủ tiếu nước trong ngọt, nhân tôm, thịt và gan heo",
+  "price": 95000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652047/kolwcldxc8huvnwa79i2.png",
+  "category": {
+    "$oid": "aaa000000000000000000005"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000026"
+  },
+  "name": "Cơm chay thập cẩm",
+  "description": "Cơm trắng với 4 món chay đặc sắc theo mùa",
+  "price": 95000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652061/elgrsj1tqrutlbhkmwls.png",
+  "category": {
+    "$oid": "aaa000000000000000000006"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000027"
+  },
+  "name": "Bún riêu chay",
+  "description": "Bún riêu nấu từ cà chua và đậu hũ, vị chua thanh",
+  "price": 80000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652075/hjv1stkq0nq5zzxxbecz.png",
+  "category": {
+    "$oid": "aaa000000000000000000006"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000028"
+  },
+  "name": "Nấm hương xào rau củ",
+  "description": "Nấm hương Đà Lạt xào với bông cải, cà rốt và ớt chuông",
+  "price": 85000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652086/zfw12wyv2ukygoeyghus.png",
+  "category": {
+    "$oid": "aaa000000000000000000006"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000029"
+  },
+  "name": "Đậu hũ nhồi thịt chay",
+  "description": "Đậu hũ nhồi nhân nấm và rau củ, sốt cà chua",
+  "price": 90000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651957/p6atjxkmtdemku4xnoak.png",
+  "category": {
+    "$oid": "aaa000000000000000000006"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002a"
+  },
+  "name": "Chè khúc bạch",
+  "description": "Thạch sữa, hạt sen, nhãn và vải trong nước đường thơm",
+  "price": 65000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651970/upn0tt2ovcy64ysisaky.png",
+  "category": {
+    "$oid": "aaa000000000000000000007"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002b"
+  },
+  "name": "Bánh flan caramel",
+  "description": "Bánh flan mềm mịn sốt caramel đắng nhẹ",
+  "price": 55000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651986/wjv7s30wmxwca1riiwg7.png",
+  "category": {
+    "$oid": "aaa000000000000000000007"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002c"
+  },
+  "name": "Kem dừa tươi",
+  "description": "Kem béo nhẹ phục vụ ngay trong trái dừa tươi",
+  "price": 75000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651999/vpuqppdtukheghulcrg3.png",
+  "category": {
+    "$oid": "aaa000000000000000000007"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002d"
+  },
+  "name": "Sinh tố xoài dừa",
+  "description": "Xoài chín mịn xay cùng nước cốt dừa tươi béo ngậy",
+  "price": 65000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774652011/pj5nxwdhq5qbpvhrcvgj.png",
+  "category": {
+    "$oid": "aaa000000000000000000008"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002e"
+  },
+  "name": "Trà đào cam sả",
+  "description": "Trà xanh pha đào, cam và sả tươi mát",
+  "price": 55000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651839/n74nzupspqmj2cxroimd.png",
+  "category": {
+    "$oid": "aaa000000000000000000008"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb00000000000000000002f"
+  },
+  "name": "Cà phê sữa đá",
+  "description": "Cà phê phin Robusta đậm, pha sữa đặc và đá",
+  "price": 45000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651873/yqycejo4xa518fufhjex.png",
+  "category": {
+    "$oid": "aaa000000000000000000008"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000030"
+  },
+  "name": "Nước ép dưa hấu",
+  "description": "Dưa hấu ép tươi nguyên chất không đường",
+  "price": 50000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651877/z9guf5ewg9wckxlgidsu.png",
+  "category": {
+    "$oid": "aaa000000000000000000008"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000031"
+  },
+  "name": "Combo Gia Đình 4 người",
+  "description": "Set gồm 1 lẩu hải sản Thái + 2 món chính + 4 phần cơm + 4 đồ uống",
+  "price": 890000,
+  "isAvailable": true,
+  "needPreOrder": true,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651896/tpcesflgpykmllfsmnh0.png",
+  "category": {
+    "$oid": "aaa000000000000000000009"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "bbb000000000000000000032"
+  },
+  "name": "Bia tươi Hà Nội (1 lít)",
+  "description": "Bia tươi lọc ngay tại nhà hàng, bọt mịn vị thanh",
+  "price": 80000,
+  "isAvailable": true,
+  "needPreOrder": false,
+  "image": "https://res.cloudinary.com/dx4w0iijo/image/upload/v1774651922/dvs0eymh1mfcseqyeths.png",
+  "category": {
+    "$oid": "aaa00000000000000000000a"
+  },
+  "__v": 0,
+  "createdAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T08:00:00.000Z"
+  }
+}]

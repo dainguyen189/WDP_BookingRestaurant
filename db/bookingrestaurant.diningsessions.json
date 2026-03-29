@@ -1,0 +1,58 @@
+[{
+  "_id": {
+    "$oid": "69c706188d96c690c7009ddd"
+  },
+  "table": {
+    "$oid": "691100000000000000000002"
+  },
+  "status": "completed",
+  "customerName": "Trần Hùng Anh",
+  "customerPhone": "",
+  "guestCount": 1,
+  "reservationId": {
+    "$oid": "69c705f38d96c690c7009d02"
+  },
+  "specialRequest": "",
+  "notes": "",
+  "startTime": {
+    "$date": "2026-03-27T22:35:04.963Z"
+  },
+  "createdAt": {
+    "$date": "2026-03-27T22:35:04.965Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:38:02.910Z"
+  },
+  "__v": 0,
+  "endTime": {
+    "$date": "2026-03-27T22:38:02.909Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69c70b318d96c690c700a22d"
+  },
+  "table": {
+    "$oid": "691100000000000000000001"
+  },
+  "status": "completed",
+  "customerName": "asd",
+  "customerPhone": "asdasd",
+  "guestCount": 1,
+  "reservationId": null,
+  "specialRequest": "",
+  "notes": "",
+  "startTime": {
+    "$date": "2026-03-27T22:56:49.851Z"
+  },
+  "createdAt": {
+    "$date": "2026-03-27T22:56:49.852Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:58:12.599Z"
+  },
+  "__v": 0,
+  "endTime": {
+    "$date": "2026-03-27T22:58:12.598Z"
+  }
+}]

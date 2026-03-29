@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import AdminHeader from '../../Header/AdminHeader';
-import { Container } from 'react-bootstrap';
-import './css/AdminmenuItem.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import AdminHeader from "../../Header/AdminHeader";
+import { Container } from "react-bootstrap";
+import "./css/AdminmenuItem.css";
 
-const API_URL = 'http://localhost:8080/api/menu-items';
+const API_URL = "http://localhost:8080/api/menu-items";
 
 function AdminMenuItem() {
   const [errors, setErrors] = useState({});
@@ -12,18 +12,18 @@ function AdminMenuItem() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    name: '',
-    description: '',
-    image: '',
-    price: '',
+    name: "",
+    description: "",
+    image: "",
+    price: "",
     isAvailable: true,
-    category: '',
-    needPreOrder: false
+    category: "",
+    needPreOrder: false,
   });
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -37,17 +37,17 @@ function AdminMenuItem() {
       const res = await axios.get(API_URL);
       setItems(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      console.error('Error loading items:', err);
+      console.error("Error loading items:", err);
       setItems([]);
     }
   };
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/menu-categories');
+      const res = await axios.get("http://localhost:8080/api/menu-categories");
       setCategories(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      console.error('Error loading categories:', err);
+      console.error("Error loading categories:", err);
       setCategories([]);
     }
   };
@@ -56,12 +56,26 @@ function AdminMenuItem() {
     const { name, value, type, checked } = e.target;
     setForm({
       ...form,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     });
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!form.name || !form.name.trim()) {
+      newErrors.name = "Tên món không được để trống.";
+    }
+    const priceNum = Number(form.price);
+    if (!form.price || isNaN(priceNum) || priceNum <= 0) {
+      newErrors.price = "Giá phải lớn hơn 0.";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validate()) return; 
     setLoading(true);
     try {
       const hasNewImage = form.image instanceof File;
@@ -69,16 +83,16 @@ function AdminMenuItem() {
       if (editingId) {
         if (hasNewImage) {
           const formData = new FormData();
-          formData.append('name', form.name);
-          formData.append('description', form.description);
-          formData.append('price', form.price);
-          formData.append('isAvailable', form.isAvailable);
-          formData.append('needPreOrder', form.needPreOrder);
-          formData.append('category', form.category);
-          formData.append('image', form.image);
+          formData.append("name", form.name);
+          formData.append("description", form.description);
+          formData.append("price", form.price);
+          formData.append("isAvailable", form.isAvailable);
+          formData.append("needPreOrder", form.needPreOrder);
+          formData.append("category", form.category);
+          formData.append("image", form.image);
 
           await axios.put(`${API_URL}/${editingId}`, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+            headers: { "Content-Type": "multipart/form-data" },
           });
         } else {
           const payload = {
@@ -94,27 +108,36 @@ function AdminMenuItem() {
         }
       } else {
         const formData = new FormData();
-        formData.append('name', form.name);
-        formData.append('description', form.description);
-        formData.append('price', form.price);
-        formData.append('isAvailable', form.isAvailable);
-        formData.append('needPreOrder', form.needPreOrder);
-        formData.append('category', form.category);
+        formData.append("name", form.name);
+        formData.append("description", form.description);
+        formData.append("price", form.price);
+        formData.append("isAvailable", form.isAvailable);
+        formData.append("needPreOrder", form.needPreOrder);
+        formData.append("category", form.category);
         if (form.image instanceof File) {
-          formData.append('image', form.image);
+          formData.append("image", form.image);
         }
 
         await axios.post(API_URL, formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
+          headers: { "Content-Type": "multipart/form-data" },
         });
       }
 
-      setForm({ name: '', description: '', image: '', price: '', isAvailable: true, category: '', needPreOrder: false });
+      setForm({
+        name: "",
+        description: "",
+        image: "",
+        price: "",
+        isAvailable: true,
+        category: "",
+        needPreOrder: false,
+      });
       setEditingId(null);
       setShowForm(false);
       fetchItems();
+      setErrors({});
     } catch (err) {
-      console.error('Submit error:', err);
+      console.error("Submit error:", err);
     } finally {
       setLoading(false);
     }
@@ -123,33 +146,42 @@ function AdminMenuItem() {
   const handleEdit = (item) => {
     setForm({
       ...item,
-      category: item.category?._id || ''
+      category: item.category?._id || "",
     });
     setEditingId(item._id);
     setShowForm(true);
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
+    if (window.confirm("Are you sure you want to delete this item?")) {
       try {
         await axios.delete(`${API_URL}/${id}`);
         fetchItems();
       } catch (err) {
-        console.error('Delete error:', err);
+        console.error("Delete error:", err);
       }
     }
   };
 
   const handleCreateNew = () => {
-    setForm({ name: '', description: '', image: '', price: '', isAvailable: true, category: '', needPreOrder: false });
+    setForm({
+      name: "",
+      description: "",
+      image: "",
+      price: "",
+      isAvailable: true,
+      category: "",
+      needPreOrder: false,
+    });
     setEditingId(null);
     setShowForm(true);
+    setErrors({});
   };
 
   // ✅ FIX LỖI "toLowerCase" AN TOÀN
   const filteredItems = items.filter((item) => {
-    const name = (item?.name || '').toLowerCase();
-    const term = (searchTerm || '').toLowerCase();
+    const name = (item?.name || "").toLowerCase();
+    const term = (searchTerm || "").toLowerCase();
     const matchesSearch = name.includes(term);
 
     const matchesCategory = selectedCategory
@@ -173,7 +205,9 @@ function AdminMenuItem() {
         <div className="admin-menu-wrapper">
           {/* LEFT SIDE */}
           <div className="menu-list">
-            <button className="create-btn" onClick={handleCreateNew}>+ Thêm món ăn</button>
+            <button className="create-btn" onClick={handleCreateNew}>
+              + Thêm món ăn
+            </button>
 
             <div className="filters">
               <input
@@ -197,7 +231,9 @@ function AdminMenuItem() {
               >
                 <option value="">Tất cả danh mục</option>
                 {categories.map((cat) => (
-                  <option key={cat._id} value={cat._id}>{cat.name}</option>
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -216,11 +252,17 @@ function AdminMenuItem() {
               <tbody>
                 {currentItems.map((item) => (
                   <tr key={item._id}>
-                    <td><img src={item.image} alt={item.name} className="item-img" /></td>
+                    <td>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="item-img"
+                      />
+                    </td>
                     <td>{item.name}</td>
-                    <td>{item.category?.name || 'No Category'}</td>
+                    <td>{item.category?.name || "No Category"}</td>
                     <td>{Number(item.price).toLocaleString()}</td>
-                    <td>{item.isAvailable ? 'Phục vụ' : 'Không phục vụ'}</td>
+                    <td>{item.isAvailable ? "Phục vụ" : "Không phục vụ"}</td>
                     <td>
                       <div className="menu-table-actions">
                         <button
@@ -249,7 +291,7 @@ function AdminMenuItem() {
                 <button
                   key={i}
                   onClick={() => setCurrentPage(i + 1)}
-                  className={currentPage === i + 1 ? 'active' : ''}
+                  className={currentPage === i + 1 ? "active" : ""}
                 >
                   {i + 1}
                 </button>
@@ -260,7 +302,7 @@ function AdminMenuItem() {
           {/* RIGHT SIDE */}
           {showForm && (
             <div className="menu-form">
-              <h4>{editingId ? 'Sửa món ăn' : 'Tạo món ăn'}</h4>
+              <h4>{editingId ? "Sửa món ăn" : "Tạo món ăn"}</h4>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="imageUpload" className="btn-upload-image">
@@ -271,7 +313,9 @@ function AdminMenuItem() {
                     type="file"
                     name="image"
                     accept="image/*"
-                    onChange={(e) => setForm({ ...form, image: e.target.files[0] })}
+                    onChange={(e) =>
+                      setForm({ ...form, image: e.target.files[0] })
+                    }
                   />
                   {form.image && form.image.name && (
                     <div className="mt-2">
@@ -279,26 +323,52 @@ function AdminMenuItem() {
                     </div>
                   )}
                 </div>
-                <input name="name" value={form.name} onChange={handleChange} placeholder="Tên" required />
-                <input name="description" value={form.description} onChange={handleChange} placeholder="Giới thiệu" />
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="Tên"
+                  required
+                />
+                {errors.name && (
+                  <small className="text-danger">{errors.name}</small>
+                )}
+                <input
+                  name="description"
+                  value={form.description}
+                  onChange={handleChange}
+                  placeholder="Giới thiệu"
+                />
 
                 <input
                   name="price"
                   type="text"
-                  value={(form.price ?? '').toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  value={(form.price ?? "")
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   onChange={(e) => {
-                    const raw = e.target.value.replace(/,/g, '');
+                    const raw = e.target.value.replace(/,/g, "");
                     if (!isNaN(raw)) {
                       setForm({ ...form, price: raw });
                     }
                   }}
                   placeholder="Giá"
                 />
+                {errors.price && (
+                  <small className="text-danger">{errors.price}</small>
+                )}
 
-                <select name="category" value={form.category} onChange={handleChange} required>
+                <select
+                  name="category"
+                  value={form.category}
+                  onChange={handleChange}
+                  required
+                >
                   <option value="">-- Chọn loại --</option>
                   {categories.map((cat) => (
-                    <option key={cat._id} value={cat._id}>{cat.name}</option>
+                    <option key={cat._id} value={cat._id}>
+                      {cat.name}
+                    </option>
                   ))}
                 </select>
 
@@ -336,8 +406,13 @@ function AdminMenuItem() {
                     type="submit"
                     disabled={loading}
                   >
-                    {loading && <span className="spinner-border spinner-border-sm me-2" role="status" />}
-                    {editingId ? 'Cập nhật' : 'Tạo'}
+                    {loading && (
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                      />
+                    )}
+                    {editingId ? "Cập nhật" : "Tạo"}
                   </button>
                   <button
                     className="btn-menu-secondary"

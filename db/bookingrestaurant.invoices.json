@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "69c706ca8d96c690c7009f7f"
+  },
+  "order_id": {
+    "$oid": "69c706348d96c690c7009e24"
+  },
+  "customer_id": null,
+  "total_amount": 450000,
+  "discount": 0,
+  "tax_amount": 0,
+  "payment_method": "payos",
+  "payment_status": "paid",
+  "invoice_date": {
+    "$date": "2026-03-27T22:38:02.866Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c70b848d96c690c700a3ad"
+  },
+  "order_id": {
+    "$oid": "69c70b448d96c690c700a26d"
+  },
+  "customer_id": null,
+  "total_amount": 110000,
+  "discount": 0,
+  "tax_amount": 0,
+  "payment_method": "cash",
+  "payment_status": "paid",
+  "invoice_date": {
+    "$date": "2026-03-27T22:58:12.509Z"
+  },
+  "__v": 0
+}]

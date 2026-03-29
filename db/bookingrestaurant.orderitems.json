@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "69c706348d96c690c7009e26"
+  },
+  "orderId": {
+    "$oid": "69c706348d96c690c7009e24"
+  },
+  "menuItemId": {
+    "$oid": "bbb000000000000000000002"
+  },
+  "quantity": 1,
+  "price": 85000,
+  "status": "done",
+  "createdAt": {
+    "$date": "2026-03-27T22:35:32.176Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c706348d96c690c7009e28"
+  },
+  "orderId": {
+    "$oid": "69c706348d96c690c7009e24"
+  },
+  "menuItemId": {
+    "$oid": "bbb000000000000000000007"
+  },
+  "quantity": 1,
+  "price": 185000,
+  "status": "done",
+  "createdAt": {
+    "$date": "2026-03-27T22:35:32.177Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c706348d96c690c7009e27"
+  },
+  "orderId": {
+    "$oid": "69c706348d96c690c7009e24"
+  },
+  "menuItemId": {
+    "$oid": "bbb000000000000000000003"
+  },
+  "quantity": 1,
+  "price": 180000,
+  "status": "done",
+  "createdAt": {
+    "$date": "2026-03-27T22:35:32.177Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c70b448d96c690c700a26f"
+  },
+  "orderId": {
+    "$oid": "69c70b448d96c690c700a26d"
+  },
+  "menuItemId": {
+    "$oid": "bbb000000000000000000004"
+  },
+  "quantity": 1,
+  "price": 65000,
+  "status": "done",
+  "createdAt": {
+    "$date": "2026-03-27T22:57:08.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c70b448d96c690c700a270"
+  },
+  "orderId": {
+    "$oid": "69c70b448d96c690c700a26d"
+  },
+  "menuItemId": {
+    "$oid": "bbb000000000000000000005"
+  },
+  "quantity": 1,
+  "price": 45000,
+  "status": "done",
+  "createdAt": {
+    "$date": "2026-03-27T22:57:08.784Z"
+  },
+  "__v": 0
+}]

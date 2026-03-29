@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../Chef/css/ChefOrder.css';
-import StaffHeader from '../../Header/StaffHeader';
-import OrderHeader from './OrderHeader';
-import OrderStats from './OrderStats';
-import OrderFilters from './OrderFilters';
-import OrderCard from './OrderCard';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../Chef/css/ChefOrder.css";
+import StaffHeader from "../../Header/StaffHeader";
+import OrderHeader from "./OrderHeader";
+import OrderStats from "./OrderStats";
+import OrderFilters from "./OrderFilters";
+import OrderCard from "./OrderCard";
+import { toast } from "react-toastify";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState({});
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState('');
-  const [tableFilter, setTableFilter] = useState('');
+  const [error, setError] = useState("");
+  const [tableFilter, setTableFilter] = useState("");
   const [dateFilter, setDateFilter] = useState(() => {
     const today = new Date();
-    return today.toISOString().split('T')[0]; // returns YYYY-MM-DD
+    return today.toISOString().split("T")[0]; // returns YYYY-MM-DD
   });
   const [itemSortOption, setItemSortOption] = useState({});
-  const [defaultStatus, setDefaultStatus] = useState('ordered');
+  const [defaultStatus, setDefaultStatus] = useState("ordered");
 
   const mergeOrdersPreservingEdits = (newOrders, prevOrders) => {
-    return newOrders.map(newOrder => {
-      const prevOrder = prevOrders.find(o => o._id === newOrder._id);
+    return newOrders.map((newOrder) => {
+      const prevOrder = prevOrders.find((o) => o._id === newOrder._id);
       if (!prevOrder) return newOrder;
 
-      const mergedItems = newOrder.items.map(newItem => {
-        const prevItem = prevOrder.items?.find(i => i._id === newItem._id);
+      const mergedItems = newOrder.items.map((newItem) => {
+        const prevItem = prevOrder.items?.find((i) => i._id === newItem._id);
         return prevItem?.updatedQuantity !== undefined
           ? { ...newItem, updatedQuantity: prevItem.updatedQuantity }
           : newItem;
@@ -44,19 +43,20 @@ const Order = () => {
     try {
       if (showLoading) setLoading(true);
       const queryParams = new URLSearchParams();
-      if (filter !== 'all') queryParams.append('status', filter);
-      if (dateFilter) queryParams.append('date', dateFilter);
-      const response = await axios.get(`http://localhost:8080/api/chef/orders?${queryParams}`);
+      if (filter !== "all") queryParams.append("status", filter);
+      if (dateFilter) queryParams.append("date", dateFilter);
+      const response = await axios.get(
+        `http://localhost:8080/api/chef/orders?${queryParams}`,
+      );
       const sortedOrders = [...(response.data.orders || [])].sort((a, b) => {
-        const aHasPending = a.items.some(item => item.status === 'ordered');
-        const bHasPending = b.items.some(item => item.status === 'ordered');
-        return (aHasPending === bHasPending) ? 0 : aHasPending ? -1 : 1;
+        const aHasPending = a.items.some((item) => item.status === "ordered");
+        const bHasPending = b.items.some((item) => item.status === "ordered");
+        return aHasPending === bHasPending ? 0 : aHasPending ? -1 : 1;
       });
 
-      setOrders(prev => mergeOrdersPreservingEdits(sortedOrders, prev));
-
+      setOrders((prev) => mergeOrdersPreservingEdits(sortedOrders, prev));
     } catch (err) {
-      setError('Không thể tải danh sách đơn hàng');
+      setError("Không thể tải danh sách đơn hàng");
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -65,10 +65,12 @@ const Order = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/chef/dashboard/stats');
+      const response = await axios.get(
+        "http://localhost:8080/api/chef/dashboard/stats",
+      );
       setStats(response.data);
     } catch (err) {
-      console.error('Failed to fetch stats');
+      console.error("Failed to fetch stats");
     }
   };
 
@@ -83,16 +85,26 @@ const Order = () => {
     return () => clearInterval(interval);
   }, [filter, dateFilter]);
 
-  const filteredOrders = orders.filter(order =>
-    !tableFilter ||
-    order.sessionId?.table?.tableNumber?.toLowerCase().includes(tableFilter.toLowerCase())
+  const filteredOrders = orders.filter(
+    (order) =>
+      !tableFilter ||
+      order.sessionId?.table?.tableNumber
+        ?.toLowerCase()
+        .includes(tableFilter.toLowerCase()),
   );
 
   return (
     <>
       <StaffHeader />
       <div className="chef-order-container">
-        <OrderHeader onRefresh={() => { setRefreshing(true); fetchOrders(false); fetchStats(); }} refreshing={refreshing} />
+        <OrderHeader
+          onRefresh={() => {
+            setRefreshing(true);
+            fetchOrders(false);
+            fetchStats();
+          }}
+          refreshing={refreshing}
+        />
         <OrderStats stats={stats} />
         <div className="staff-order-filters-legacy">
           <OrderFilters
@@ -106,32 +118,44 @@ const Order = () => {
         {error && <div className="error-message">❌ {error}</div>}
 
         <div className="staff-item-status-tabs">
-          {['all', 'ordered', 'preparing', 'cooking', 'completed'].map(status => {
-            const isActive = defaultStatus === status;
-            return (
-              <button
-                key={status}
-                type="button"
-                className={`staff-item-status-tab${isActive ? ' staff-item-status-tab--active' : ''}`}
-                onClick={() => setDefaultStatus(status)}
-              >
-                {status === 'all' ? 'Tất cả' :
-                  status === 'ordered' ? 'Chờ' :
-                    status === 'preparing' ? 'Đã nhận' :
-                      status === 'cooking' ? 'Đang nấu' :
-                        'Xong'}
-              </button>
-            );
-          })}
+          {["all", "ordered", "preparing", "cooking", "completed"].map(
+            (status) => {
+              const isActive = defaultStatus === status;
+              return (
+                <button
+                  key={status}
+                  type="button"
+                  className={`staff-item-status-tab${isActive ? " staff-item-status-tab--active" : ""}`}
+                  onClick={() => setDefaultStatus(status)}
+                >
+                  {status === "all"
+                    ? "Tất cả"
+                    : status === "ordered"
+                      ? "Chờ"
+                      : status === "preparing"
+                        ? "Đã nhận"
+                        : status === "cooking"
+                          ? "Đang nấu"
+                          : "Xong"}
+                </button>
+              );
+            },
+          )}
         </div>
 
         <div className="orders-container">
           {loading ? (
-            <div className="loading"><div className="spinner" />Đang tải...</div>
+            <div className="loading">
+              <div className="spinner" />
+              Đang tải...
+            </div>
           ) : filteredOrders.length === 0 ? (
-            <div className="no-orders"><div className="no-orders-icon">🧑‍🍳</div><p>Không có đơn hàng</p></div>
+            <div className="no-orders">
+              <div className="no-orders-icon">🧑‍🍳</div>
+              <p>Không có đơn hàng</p>
+            </div>
           ) : (
-            filteredOrders.map(order => (
+            filteredOrders.map((order) => (
               <OrderCard
                 key={order._id}
                 order={order}
@@ -147,7 +171,6 @@ const Order = () => {
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
-import '../../Chef/css/ChefOrder.css';
-import OrderHeader from '../OrderHeader';
-import OrderStats from '../OrderStats';
-import OrderFilters from '../OrderFilters';
-import OrderCard from '../OrderCard';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import ChefHeader from '../../../Header/ChefHeader';
+import React, { useState, useEffect, useMemo } from "react";
+import axios from "axios";
+import "../../Chef/css/ChefOrder.css";
+import OrderHeader from "../OrderHeader";
+import OrderStats from "../OrderStats";
+import OrderFilters from "../OrderFilters";
+import OrderCard from "../OrderCard";
+import ChefHeader from "../../../Header/ChefHeader";
+import { toast } from "react-toastify";
 
 /** Đơn có ít nhất một món khớp tab (lọc danh sách đơn). */
 function orderMatchesItemTab(order, tab) {
   const items = order.items || [];
-  if (tab === 'all') return true;
+  if (tab === "all") return true;
   if (items.length === 0) return false;
-  if (tab === 'completed') return items.some((i) => i.status === 'done');
+  if (tab === "completed") return items.some((i) => i.status === "done");
   return items.some((i) => i.status === tab);
 }
 
@@ -24,26 +23,22 @@ function getOrderSortTimeMs(order) {
     const t = new Date(v).getTime();
     return Number.isNaN(t) ? null : t;
   };
-  return (
-    tryParse(order.orderTime) ??
-    tryParse(order.updatedAt) ??
-    0
-  );
+  return tryParse(order.orderTime) ?? tryParse(order.updatedAt) ?? 0;
 }
 
-const ITEM_TAB_KEYS = ['all', 'ordered', 'preparing', 'cooking', 'completed'];
+const ITEM_TAB_KEYS = ["all", "ordered", "preparing", "cooking", "completed"];
 
 const ChOrder = () => {
   const [orders, setOrders] = useState([]);
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [error, setError] = useState('');
-  const [tableFilter, setTableFilter] = useState('');
-  const [dateFilter, setDateFilter] = useState('');
+  const [error, setError] = useState("");
+  const [tableFilter, setTableFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
   const [itemSortOption, setItemSortOption] = useState({});
   /** Một state: lọc đơn theo trạng thái món + tab mặc định trong từng thẻ */
-  const [itemViewFilter, setItemViewFilter] = useState('all');
+  const [itemViewFilter, setItemViewFilter] = useState("all");
 
   const mergeOrdersPreservingEdits = (newOrders, prevOrders) => {
     return newOrders.map((newOrder) => {
@@ -65,7 +60,7 @@ const ChOrder = () => {
     try {
       if (showLoading) setLoading(true);
       const queryParams = new URLSearchParams();
-      if (dateFilter) queryParams.append('date', dateFilter);
+      if (dateFilter) queryParams.append("date", dateFilter);
       const response = await axios.get(
         `http://localhost:8080/api/chef/orders?${queryParams}`,
       );
@@ -76,7 +71,7 @@ const ChOrder = () => {
 
       setOrders((prev) => mergeOrdersPreservingEdits(sorted, prev));
     } catch (err) {
-      setError('Không thể tải danh sách đơn hàng');
+      setError("Không thể tải danh sách đơn hàng");
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -86,11 +81,11 @@ const ChOrder = () => {
   const fetchStats = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/chef/dashboard/stats',
+        "http://localhost:8080/api/chef/dashboard/stats",
       );
       setStats(response.data);
     } catch (err) {
-      console.error('Failed to fetch stats');
+      console.error("Failed to fetch stats");
     }
   };
 
@@ -111,7 +106,7 @@ const ChOrder = () => {
       .filter(
         (order) =>
           !q ||
-          String(order.sessionId?.table?.tableNumber ?? '')
+          String(order.sessionId?.table?.tableNumber ?? "")
             .toLowerCase()
             .includes(q),
       )
@@ -145,7 +140,8 @@ const ChOrder = () => {
           <div className="chef-orders-panel-divider" aria-hidden />
           <p className="chef-list-filter-label">Trạng thái món trong đơn</p>
           <p className="chef-orders-panel-hint">
-            Chỉ hiện đơn có ít nhất một món khớp; tab trong từng thẻ đồng bộ với lựa chọn này.
+            Chỉ hiện đơn có ít nhất một món khớp; tab trong từng thẻ đồng bộ với
+            lựa chọn này.
           </p>
           <div className="staff-item-status-tabs chef-orders-status-tabs">
             {ITEM_TAB_KEYS.map((status) => {
@@ -206,7 +202,6 @@ const ChOrder = () => {
           )}
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

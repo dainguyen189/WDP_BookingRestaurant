@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "68ecb70bc922a8e55895bd3b"
+  },
+  "username": "admin",
+  "email": "admin@gmail.com",
+  "password": "$2b$10$LXG.sb0Z7No6RGZOQkJmquDxSUbRyDLRLUTPfF9NP3radDOHFsv4i",
+  "phone": null,
+  "is_verified_email": true,
+  "is_verified_phone": false,
+  "vouchers": [],
+  "points": 0,
+  "role": "admin",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ecb646c922a8e55895bcf6"
+  },
+  "username": "chef",
+  "email": "chef@gmail.com",
+  "password": "$2b$10$LXG.sb0Z7No6RGZOQkJmquDxSUbRyDLRLUTPfF9NP3radDOHFsv4i",
+  "phone": null,
+  "is_verified_email": true,
+  "is_verified_phone": false,
+  "vouchers": [],
+  "points": 0,
+  "role": "chef",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ecb7abc922a8e55895bd40"
+  },
+  "username": "waiter",
+  "email": "waiter@gmail.com",
+  "password": "$2b$10$LXG.sb0Z7No6RGZOQkJmquDxSUbRyDLRLUTPfF9NP3radDOHFsv4i",
+  "phone": null,
+  "is_verified_email": true,
+  "is_verified_phone": false,
+  "vouchers": [],
+  "points": 0,
+  "role": "waiter",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ecb7d7c922a8e55895bd43"
+  },
+  "username": "staff",
+  "email": "staff@gmail.com",
+  "password": "$2b$10$LXG.sb0Z7No6RGZOQkJmquDxSUbRyDLRLUTPfF9NP3radDOHFsv4i",
+  "phone": null,
+  "is_verified_email": true,
+  "is_verified_phone": false,
+  "vouchers": [],
+  "points": 0,
+  "role": "staff",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69c705478d96c690c7009ce4"
+  },
+  "username": "Trần Hùng Anh",
+  "email": "tranhunganhC@gmail.com",
+  "password": "$2b$10$LXG.sb0Z7No6RGZOQkJmquDxSUbRyDLRLUTPfF9NP3radDOHFsv4i",
+  "phone": null,
+  "is_verified_email": false,
+  "is_verified_phone": false,
+  "vouchers": [],
+  "points": 0,
+  "role": "user",
+  "createdAt": {
+    "$date": "2026-03-27T22:31:35.844Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:31:35.844Z"
+  },
+  "__v": 0
+}]

@@ -143,7 +143,7 @@ const UserProfile = () => {
     // Only allow canceling if status is 'pending' and the reservation date is in the future
     const reservationDate = new Date(reservation.reservationDate);
     const now = new Date();
-    return reservationDate >= now;
+    return true;
   };
 
   const handleInputChange = (e) => {

@@ -1,0 +1,360 @@
+[{
+  "_id": {
+    "$oid": "691100000000000000000001"
+  },
+  "tableNumber": "A1",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:58:12.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000002"
+  },
+  "tableNumber": "A2",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:38:02.913Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000003"
+  },
+  "tableNumber": "A3",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000004"
+  },
+  "tableNumber": "A4",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000005"
+  },
+  "tableNumber": "A5",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000006"
+  },
+  "tableNumber": "A6",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000007"
+  },
+  "tableNumber": "A7",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000008"
+  },
+  "tableNumber": "A8",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000009"
+  },
+  "tableNumber": "B1",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000a"
+  },
+  "tableNumber": "B2",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000b"
+  },
+  "tableNumber": "B3",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000c"
+  },
+  "tableNumber": "B4",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000d"
+  },
+  "tableNumber": "B5",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000e"
+  },
+  "tableNumber": "B6",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69110000000000000000000f"
+  },
+  "tableNumber": "B7",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000010"
+  },
+  "tableNumber": "B8",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000011"
+  },
+  "tableNumber": "C1",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000012"
+  },
+  "tableNumber": "C2",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000013"
+  },
+  "tableNumber": "C3",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000014"
+  },
+  "tableNumber": "C4",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000015"
+  },
+  "tableNumber": "C5",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000016"
+  },
+  "tableNumber": "C6",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000017"
+  },
+  "tableNumber": "C7",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691100000000000000000018"
+  },
+  "tableNumber": "C8",
+  "capacity": 6,
+  "status": "available",
+  "createdAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "updatedAt": {
+    "$date": "2026-02-01T07:00:00.000Z"
+  },
+  "__v": 0
+}]

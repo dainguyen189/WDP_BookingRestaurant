@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import QRCodeComponent from './QRCodeGenerator';
 import AdminHeader from '../../Header/AdminHeader';
 import './css/AdminTableQRPage.css';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { toast } from "react-toastify";
 
 function AdminTableQRPage() {
   const [tables, setTables] = useState([]);
@@ -239,7 +238,6 @@ function AdminTableQRPage() {
         </div >
       )
       }
-      <ToastContainer />
     </>
   );
 }

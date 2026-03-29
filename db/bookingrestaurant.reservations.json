@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "69c705f38d96c690c7009d02"
+  },
+  "phone": null,
+  "email": "tranhunganhC@gmail.com",
+  "name": "Trần Hùng Anh",
+  "reservationDate": {
+    "$date": "2026-03-28T00:00:00.000Z"
+  },
+  "reservationTime": "20:00",
+  "status": "confirmed",
+  "specialRequest": "",
+  "guestCount": 1,
+  "preOrders": [],
+  "accountId": {
+    "$oid": "69c705478d96c690c7009ce4"
+  },
+  "userId": {
+    "$oid": "69c705478d96c690c7009ce4"
+  },
+  "createdAt": {
+    "$date": "2026-03-27T22:34:27.808Z"
+  },
+  "updatedAt": {
+    "$date": "2026-03-27T22:35:04.915Z"
+  },
+  "__v": 0
+}]

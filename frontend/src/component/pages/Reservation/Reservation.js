@@ -11,7 +11,7 @@ import {
 import Header from "../../Header/Header";
 import "./css/Reservation.css";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import DishSelectionModal from "./DishSelectionModal";
 
 function readStoredUsername() {
@@ -119,12 +119,15 @@ function Reservation() {
   const validate = () => {
     const errs = {};
     const phoneRegex = /^0(3|5|7|8|9)[0-9]{8,9}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const timeRegex = /^([01]\d|2[0-3]):[0-5]\d$/;
 
     if (!formData.phone && !formData.email)
       errs.contact = "Cần cung cấp số điện thoại hoặc email";
     if (formData.phone && !phoneRegex.test(formData.phone))
-      errs.phone = "Số điện thoại không hợp lệ";
+      errs.phone = "Số điện thoại không hợp lệ (phải bắt đầu bằng 0, đủ 10 số)";
+    if (formData.email && !emailRegex.test(formData.email))
+      errs.email = "Email không hợp lệ";
     const resolvedName = formData.name.trim() || readStoredUsername();
     if (!resolvedName) errs.name = "Tên là bắt buộc";
 
@@ -523,9 +526,13 @@ function Reservation() {
                     type="email"
                     name="email"
                     value={formData.email}
+                    isInvalid={!!errors.email}
                     onChange={handleChange}
                     placeholder="email@example.com"
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.email}
+                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             </Row>
@@ -557,8 +564,10 @@ function Reservation() {
         show={showOtpModal}
         onHide={() => setShowOtpModal(false)}
         centered
+        size="md"
         className="booking-otp-modal"
         contentClassName="booking-otp-modal-content"
+        dialogClassName="booking-otp-modal-dialog"
       >
         <Modal.Header closeButton>
           <Modal.Title>Xác thực OTP</Modal.Title>
@@ -640,9 +649,6 @@ function Reservation() {
         selectedDishes={selectedDishes}
         setSelectedDishes={setSelectedDishes}
       />
-      <div>
-        <ToastContainer />
-      </div>
     </>
   );
 }

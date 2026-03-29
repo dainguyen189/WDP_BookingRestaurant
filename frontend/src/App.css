@@ -23,7 +23,7 @@ a:hover {
     color: #059669;
 }
 
-.container {
+.app-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
